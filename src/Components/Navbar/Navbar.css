@@ -1,0 +1,135 @@
+.navbar{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding:15px 7%;
+    transition: 0.5s;
+
+
+
+}
+.logo{
+    width: 100px;
+    cursor:pointer;
+}
+ul{
+    flex:1;
+    list-style: none;
+    text-align: center;
+
+
+
+
+}
+ul li {
+    display: inline-block;
+    margin: 10px 20px;
+    font-size:12px;
+    cursor:pointer;
+
+
+
+
+}
+/* ===== Estilo base del link ===== */
+/* Base */
+/* ===== Estilo base ===== */
+ul li a {
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    padding-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+/* Línea base (oculta) */
+ul li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background: currentColor;
+    transition: width 0.3s ease;
+}
+
+/* Hover */
+ul li a:hover::after {
+    width: 100%;
+}
+
+/* Activo */
+ul li a.active::after {
+    width: 100%;
+}
+
+
+
+.toggle-icon{
+    width: 50px;
+    cursor:pointer;
+    margin-left:40px;
+
+
+
+
+}
+.search-box{
+    display:flex;
+    align-items: center;
+    background: #242424;
+    padding:10px 20px;
+    border-radius: 50px;
+
+
+
+}
+.search-box input{
+    padding:6px;
+    background: transparent;
+    border:0;
+    outline:0;
+    color:#fff;
+    font-size: 10px;
+    max-width: 200px;
+
+
+
+}
+.search-box input::placeholder{
+    color:#fff;
+
+
+
+}
+.search-box img {
+    width: 15px;
+    cursor:pointer;
+
+
+
+
+}
+.dark .navbar{
+    background: #000;
+    color:#fff;
+
+
+
+
+}
+.dark .search-box{
+    background: #fff;
+
+
+
+}
+.dark .search-box input::placeholder{
+    background: #222;
+
+
+
+}

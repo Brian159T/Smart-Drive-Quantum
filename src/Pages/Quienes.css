@@ -1,0 +1,200 @@
+/* ===== CONTENEDOR ===== */
+.quienes-container {
+    width: 100%;
+    min-height: 100vh;
+    background: #000;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+
+/* ================= CARRUSEL ================= */
+
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    overflow: hidden;
+}
+
+.carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.6s ease-in-out;
+}
+
+/* BOTONES */
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.4);
+    border: none;
+    color: white;
+    font-size: 28px;
+    padding: 12px 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.prev:hover,
+.next:hover {
+    background: rgba(0,0,0,0.7);
+}
+
+.prev {
+    left: 20px;
+}
+
+.next {
+    right: 20px;
+}
+
+/* DOTS */
+.dots {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dot.active {
+    background-color: #00ff88;
+}
+
+
+/* ================= SECCIONES ================= */
+
+.section,
+.section3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 550px;
+}
+
+/* TEXTOS */
+.section-text,
+.section3-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px;
+}
+
+.section-text h2,
+.section3-text h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.section-text p,
+.section3-text p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #ccc;
+}
+
+/* IMÁGENES */
+.section-image,
+.section3-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+.section-image img,
+.section3-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+
+/* ================= FOOTER ================= */
+
+.footer {
+    background: #111;
+    padding: 60px 8% 20px;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-column h3,
+.footer-column h4 {
+    margin-bottom: 20px;
+}
+
+.footer-column p {
+    color: #ccc;
+    line-height: 1.6;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.footer-column ul li:hover {
+    color: #00ff88;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #333;
+    padding-top: 20px;
+    font-size: 14px;
+    color: #777;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+
+    .carousel {
+        height: 60vh;
+    }
+
+    .section,
+    .section3 {
+        grid-template-columns: 1fr;
+    }
+
+    .section-text,
+    .section3-text {
+        padding: 40px;
+        text-align: center;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
