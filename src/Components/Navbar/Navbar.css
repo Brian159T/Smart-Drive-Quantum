@@ -1,135 +1,158 @@
-.navbar{
+/* Configuración General */
+.navbar {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     background: #fff;
-    padding:15px 7%;
+    padding: 15px 7%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     transition: 0.5s;
-
-
-
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
-.logo{
+
+.dark.navbar {
+    background: #000;
+    color: #fff;
+    box-shadow: 0 2px 10px rgba(255,255,255,0.05);
+}
+
+.logo {
     width: 100px;
-    cursor:pointer;
+    cursor: pointer;
 }
-ul{
-    flex:1;
+
+/* Lista de Navegación */
+.nav-links {
+    flex: 1;
     list-style: none;
     text-align: center;
-
-
-
-
+    display: flex;
+    justify-content: center;
+    transition: 0.4s ease;
 }
-ul li {
-    display: inline-block;
-    margin: 10px 20px;
-    font-size:12px;
-    cursor:pointer;
 
-
-
-
+.nav-links li {
+    margin: 0 15px;
 }
-/* ===== Estilo base del link ===== */
-/* Base */
-/* ===== Estilo base ===== */
-ul li a {
-    position: relative;
+
+.nav-links a {
     text-decoration: none;
     color: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    position: relative;
     padding-bottom: 5px;
-    transition: color 0.3s ease;
+    transition: 0.3s;
 }
 
-/* Línea base (oculta) */
-ul li a::after {
+.nav-links a::after {
     content: "";
     position: absolute;
     left: 0;
     bottom: 0;
     width: 0%;
     height: 2px;
-    background: currentColor;
-    transition: width 0.3s ease;
+    background: #00ff88; /* Color acento */
+    transition: 0.3s;
 }
 
-/* Hover */
-ul li a:hover::after {
+.nav-links a:hover::after, 
+.nav-links a.active::after {
     width: 100%;
 }
 
-/* Activo */
-ul li a.active::after {
-    width: 100%;
-}
-
-
-
-.toggle-icon{
-    width: 50px;
-    cursor:pointer;
-    margin-left:40px;
-
-
-
-
-}
-.search-box{
-    display:flex;
+.nav-right {
+    display: flex;
     align-items: center;
-    background: #242424;
-    padding:10px 20px;
-    border-radius: 50px;
-
-
-
 }
-.search-box input{
-    padding:6px;
-    background: transparent;
-    border:0;
-    outline:0;
-    color:#fff;
-    font-size: 10px;
-    max-width: 200px;
 
-
-
+.toggle-icon {
+    width: 40px;
+    cursor: pointer;
+    margin-left: 20px;
 }
-.search-box input::placeholder{
-    color:#fff;
 
+/* ================= RESPONSIVE (Móvil) ================= */
 
-
+/* Botón Hamburguesa */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    z-index: 1001;
 }
-.search-box img {
-    width: 15px;
-    cursor:pointer;
 
-
-
-
+.menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: currentColor;
+    border-radius: 5px;
+    transition: 0.3s;
 }
-.dark .navbar{
-    background: #000;
-    color:#fff;
 
+@media (max-width: 1050px) {
+    .navbar {
+        padding: 15px 5%;
+    }
 
+    .menu-toggle {
+        display: flex;
+        order: 2;
+    }
 
+    .nav-right {
+        order: 3;
+        margin-left: 20px;
+    }
 
-}
-.dark .search-box{
-    background: #fff;
+    .logo-container {
+        order: 1;
+    }
 
+    /* Menú lateral / Overlap */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Oculto */
+        width: 70%;
+        height: 100vh;
+        background: #fff;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow: -10px 0 20px rgba(0,0,0,0.1);
+        z-index: 1000;
+    }
 
+    .dark .nav-links {
+        background: #111;
+    }
 
-}
-.dark .search-box input::placeholder{
-    background: #222;
+    .nav-links.active {
+        right: 0; /* Mostrar */
+    }
 
+    .nav-links li {
+        margin: 20px 0;
+    }
 
+    .nav-links a {
+        font-size: 18px;
+    }
 
+    /* Animación hamburguesa a X */
+    .menu-toggle.open span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 6px);
+    }
+    .menu-toggle.open span:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle.open span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -6px);
+    }
 }

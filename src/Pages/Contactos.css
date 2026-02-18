@@ -1,0 +1,131 @@
+.contactos-view {
+  background-color: #020c1b;
+  color: #e6f1ff;
+  min-height: 100vh;
+  width: 100%; /* Asegura que ocupe todo el ancho */
+  font-family: 'Inter', sans-serif;
+}
+
+/* Contenedor centralizado que NO rompe el ancho total */
+.contactos-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- HERO --- */
+.contactos-hero {
+  padding: 120px 0 60px;
+  text-align: center;
+}
+
+.contactos-kicker {
+  color: #00ff88;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.contactos-highlight { color: #00ff88; }
+
+/* --- GRID LAYOUT --- */
+.contactos-main {
+  padding-bottom: 80px;
+}
+
+.contactos-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+}
+
+/* --- ESTILO GLASS --- */
+.contactos-glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 40px;
+}
+
+/* --- FORMULARIO --- */
+.contactos-field { margin-bottom: 20px; text-align: left; }
+.contactos-field label { display: block; margin-bottom: 8px; font-size: 0.9rem; color: #a8b2d1; }
+
+.contactos-field input, 
+.contactos-field select, 
+.contactos-field textarea {
+  width: 100%;
+  padding: 12px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  color: white;
+}
+
+.contactos-btn {
+  width: 100%;
+  padding: 15px;
+  background: #00ff88;
+  color: #020c1b;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contactos-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3); }
+
+/* --- SIDEBAR INFO --- */
+.contactos-info-item { display: flex; gap: 15px; margin-bottom: 25px; }
+.contactos-info-item h4 { margin: 0; color: #00ff88; }
+.contactos-info-item p { margin: 5px 0 0; color: #a8b2d1; font-size: 0.9rem; }
+
+.contactos-map-box {
+  height: 150px;
+  background: #0a192f;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  border: 1px dashed #00ff88;
+}
+
+.contactos-social-bar {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px !important;
+}
+
+.contactos-social-bar a { color: white; text-decoration: none; font-weight: bold; }
+.contactos-social-bar a:hover { color: #00ff88; }
+
+/* --- FOOTER PROFESIONAL --- */
+.site-footer {
+  background: #010811;
+  padding: 80px 5% 40px;
+  border-top: 1px solid #111;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+}
+
+.footer-info h3 { color: #00ff88; }
+.footer-nav ul { list-style: none; padding: 0; }
+.footer-nav a { color: #a8b2d1; text-decoration: none; display: block; padding: 5px 0; }
+.footer-bottom { text-align: center; border-top: 1px solid #111; padding-top: 30px; color: #444; }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 968px) {
+  .contactos-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; text-align: center; }
+  .contactos-hero { padding-top: 80px; }
+}

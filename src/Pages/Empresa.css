@@ -1,0 +1,179 @@
+:root {
+  --primary-green: #00ff88;
+  --dark-blue: #020c1b;
+  --soft-blue: #0a192f;
+  --card-bg: #111111;
+  --text-light: #e6f1ff;
+  --text-dim: #a8b2d1;
+  --glass: rgba(255, 255, 255, 0.05);
+  --border-glass: rgba(255, 255, 255, 0.1);
+  --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.empresa-page {
+  background-color: var(--dark-blue);
+  color: var(--text-light);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* --- SECCIÓN VISIÓN --- */
+.section-vision {
+  display: flex;
+  min-height: 70vh;
+}
+
+.vision-image { flex: 1.2; }
+.vision-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vision-content {
+  flex: 0.8;
+  display: flex;
+  align-items: center;
+  padding: 50px;
+  background: var(--dark-blue);
+}
+
+.glass-card {
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid var(--border-glass);
+}
+
+/* --- SECCIÓN IMPACTO (Banner Misión) --- */
+.section-impact {
+  padding: 100px 10%;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: 1fr 2px 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.impact-divider {
+  height: 100px;
+  background: var(--primary-green);
+  opacity: 0.5;
+}
+
+.impact-item h3 {
+  font-size: 2rem;
+  color: var(--primary-green);
+  margin-bottom: 20px;
+}
+
+.impact-item p {
+  line-height: 1.8;
+  color: var(--text-dim);
+}
+
+/* --- SECCIÓN ECOSISTEMA --- */
+.section-ecosystem {
+  padding: 100px 10%;
+  background: var(--soft-blue);
+}
+
+.ecosystem-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.kicker {
+  display: block;
+  color: var(--primary-green);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-size: 0.8rem;
+}
+
+.ecosystem-text h2 { font-size: 2.8rem; margin-bottom: 20px; }
+
+.highlight-p {
+  font-size: 1.3rem;
+  color: var(--primary-green);
+  margin-bottom: 20px;
+}
+
+.eco-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.stat h4 { font-size: 2.5rem; margin: 0; }
+.stat span { color: var(--primary-green); font-size: 0.9rem; font-weight: 600; }
+
+.ecosystem-image img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.floating-img {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+/* --- FOOTER (Mismo estilo que Quienes.css) --- */
+.site-footer {
+  background: var(--card-bg);
+  padding: 80px 10% 40px;
+  border-top: 1px solid #222;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 60px;
+}
+
+.footer-info h3 { color: var(--primary-green); margin-bottom: 20px; }
+
+.footer-nav ul { list-style: none; padding: 0; }
+.footer-nav a {
+  color: var(--text-dim);
+  text-decoration: none;
+  display: block;
+  padding: 8px 0;
+  transition: 0.3s;
+}
+
+.footer-nav a:hover { color: var(--primary-green); transform: translateX(5px); }
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 40px;
+  border-top: 1px solid #222;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .section-vision { flex-direction: column; }
+  .vision-image { height: 350px; }
+  .impact-grid { grid-template-columns: 1fr; text-align: center; }
+  .impact-divider { height: 2px; width: 60px; margin: 0 auto; }
+  .ecosystem-container { grid-template-columns: 1fr; text-align: center; }
+  .eco-stats { justify-content: center; }
+  .footer-top { grid-template-columns: 1fr; text-align: center; }
+}
