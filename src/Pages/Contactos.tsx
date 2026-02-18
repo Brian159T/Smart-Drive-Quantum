@@ -83,7 +83,7 @@ const Contactos: React.FC = () => {
                 <span className="contactos-icon">📍</span>
                 <div>
                   <h4>Dirección</h4>
-                  <p>Equipetrol, Calle 5 Este, Santa Cruz</p>
+                  <p>Cochabamba Bolivia</p>
                 </div>
               </div>
               <div className="contactos-info-item">
