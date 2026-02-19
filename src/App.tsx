@@ -7,6 +7,10 @@ import ComoFunciona from './Pages/Comofunciona';
 import Contactos from './Pages/Contactos';
 import Empresa from './Pages/Empresa';
 import Vehiculos from './Pages/Vehiculos';
+import Alquilermpv from './Pages/Alquilermpv';
+import Alquilernexus from './Pages/Alquilernexus';
+import Alquilertrooper from './Pages/Alquilertrooper';
+import Alquilermate from './Pages/Alquilermate';
 
 import Alquiler from './Pages/Alquiler';
 
@@ -29,6 +33,10 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Quienes />} />
         <Route path='/Alquiler' element={<Alquiler />} />
+        <Route path='/Alquiler/Nexus' element={<Alquilernexus />} />
+        <Route path='/Alquiler/Trooper' element={<Alquilertrooper />} />
+        <Route path='/Alquiler/MPV' element={<Alquilermpv />} />
+        <Route path='/Alquiler/Mate' element={<Alquilermate />} />
         <Route path='/Calculadora' element={<Calculadora />} />
         <Route path='/ComoFunciona' element={<ComoFunciona />} />
         <Route path='/Contactos' element={<Contactos />} />

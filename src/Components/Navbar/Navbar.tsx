@@ -11,8 +11,9 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ theme, setTheme }) => {
-  // Estado para el menú móvil
   const [menuOpen, setMenuOpen] = useState(false);
+  // Nuevo estado para el submenú de Alquiler
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle_mode = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light')
@@ -29,14 +30,12 @@ const Navbar: React.FC<NavbarProps> = ({ theme, setTheme }) => {
         <img src={logo_smart} alt="logo" className='logo' />
       </Link>
 
-      {/* Ícono de hamburguesa (solo visible en móvil) */}
       <div className={`menu-toggle ${menuOpen ? 'open' : ''}`} onClick={toggle_menu}>
         <span></span>
         <span></span>
         <span></span>
       </div>
 
-      {/* Menú de navegación */}
       <ul className={menuOpen ? 'nav-links active' : 'nav-links'}>
         <li onClick={() => setMenuOpen(false)}>
           <NavLink to="/" end>Quienes Somos</NavLink>
@@ -50,9 +49,34 @@ const Navbar: React.FC<NavbarProps> = ({ theme, setTheme }) => {
         <li onClick={() => setMenuOpen(false)}>
           <NavLink to="/Vehiculos">Vehiculos</NavLink>
         </li>
-        <li onClick={() => setMenuOpen(false)}>
-          <NavLink to="/Alquiler">Alquiler</NavLink>
+
+        {/* --- MODIFICACIÓN: SUBMENÚ ALQUILER --- */}
+        <li 
+          className="nav-item-dropdown"
+          onMouseEnter={() => setDropdownOpen(true)}
+          onMouseLeave={() => setDropdownOpen(false)}
+        >
+          <NavLink to="/Alquiler" onClick={() => setMenuOpen(false)}>
+            Alquiler <span className="arrow">▾</span>
+          </NavLink>
+          
+          <ul className={`submenu ${dropdownOpen ? 'show' : ''}`}>
+            <li onClick={() => {setMenuOpen(false); setDropdownOpen(false);}}>
+              <Link to="/Alquiler/Nexus">Nexus</Link>
+            </li>
+            <li onClick={() => {setMenuOpen(false); setDropdownOpen(false);}}>
+              <Link to="/Alquiler/Trooper">Trooper</Link>
+            </li>
+            <li onClick={() => {setMenuOpen(false); setDropdownOpen(false);}}>
+              <Link to="/Alquiler/MPV">MPV</Link>
+            </li>
+            <li onClick={() => {setMenuOpen(false); setDropdownOpen(false);}}>
+              <Link to="/Alquiler/Mate">Mate</Link>
+            </li>
+          </ul>
         </li>
+        
+
         <li onClick={() => setMenuOpen(false)}>
           <NavLink to="/Calculadora">Calculadora</NavLink>
         </li>

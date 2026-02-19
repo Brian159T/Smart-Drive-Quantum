@@ -36,6 +36,7 @@
 
 .nav-links li {
     margin: 0 15px;
+    position: relative; /* Importante para el submenú */
 }
 
 .nav-links a {
@@ -65,6 +66,79 @@
     width: 100%;
 }
 
+/* ================= ESTILOS DEL SUBMENÚ (NUEVO) ================= */
+
+.nav-item-dropdown {
+    cursor: pointer;
+}
+
+.arrow {
+    font-size: 0.7rem;
+    margin-left: 2px;
+    display: inline-block;
+    transition: transform 0.3s;
+}
+
+.nav-item-dropdown:hover .arrow {
+    transform: rotate(180deg);
+}
+
+.submenu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: #fff;
+    min-width: 160px;
+    list-style: none;
+    padding: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+/* Tema oscuro para el submenú */
+.dark .submenu {
+    background: #111;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Mostrar submenú */
+.nav-item-dropdown:hover .submenu,
+.submenu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.submenu li {
+    margin: 0 !important;
+    width: 100%;
+}
+
+.submenu li a {
+    padding: 10px 20px;
+    display: block;
+    font-size: 12px;
+    text-transform: none; /* Se ve más profesional en minúsculas */
+    font-weight: 400;
+}
+
+.submenu li a::after {
+    display: none; /* Quitar la línea inferior en el submenú */
+}
+
+.submenu li a:hover {
+    background: rgba(0, 255, 136, 0.1);
+    color: #00ff88;
+}
+
+/* ================= FIN SUBMENÚ ================= */
+
 .nav-right {
     display: flex;
     align-items: center;
@@ -78,7 +152,6 @@
 
 /* ================= RESPONSIVE (Móvil) ================= */
 
-/* Botón Hamburguesa */
 .menu-toggle {
     display: none;
     flex-direction: column;
@@ -114,11 +187,10 @@
         order: 1;
     }
 
-    /* Menú lateral / Overlap */
     .nav-links {
         position: fixed;
         top: 0;
-        right: -100%; /* Oculto */
+        right: -100%;
         width: 70%;
         height: 100vh;
         background: #fff;
@@ -127,6 +199,7 @@
         align-items: center;
         box-shadow: -10px 0 20px rgba(0,0,0,0.1);
         z-index: 1000;
+        overflow-y: auto; /* Por si el submenú es largo */
     }
 
     .dark .nav-links {
@@ -134,18 +207,37 @@
     }
 
     .nav-links.active {
-        right: 0; /* Mostrar */
+        right: 0;
     }
 
     .nav-links li {
-        margin: 20px 0;
+        margin: 15px 0;
+        width: 100%; /* Para que el submenú ocupe el ancho en móvil */
+    }
+
+    /* Ajuste submenú en móvil */
+    .submenu {
+        position: static;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        box-shadow: none;
+        background: transparent !important;
+        display: none; /* Oculto por defecto en móvil */
+        text-align: center;
+        padding: 0;
+    }
+
+    .nav-item-dropdown:hover .submenu,
+    .submenu.show {
+        display: block;
+        transform: none;
     }
 
     .nav-links a {
         font-size: 18px;
     }
 
-    /* Animación hamburguesa a X */
     .menu-toggle.open span:nth-child(1) {
         transform: rotate(45deg) translate(5px, 6px);
     }
