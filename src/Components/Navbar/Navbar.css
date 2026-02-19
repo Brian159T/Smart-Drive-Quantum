@@ -1,4 +1,4 @@
-/* Configuración General */
+/* ================= CONFIGURACIÓN GENERAL ================= */
 .navbar {
     width: 100%;
     display: flex;
@@ -24,7 +24,7 @@
     cursor: pointer;
 }
 
-/* Lista de Navegación */
+/* ================= LISTA DE NAVEGACIÓN ================= */
 .nav-links {
     flex: 1;
     list-style: none;
@@ -36,10 +36,12 @@
 
 .nav-links li {
     margin: 0 15px;
-    position: relative; /* Importante para el submenú */
+    position: relative;
 }
 
-.nav-links a {
+/* Estilo unificado para Enlaces (a) y el Disparador de Alquiler (span) */
+.nav-links a, 
+.nav-link-placeholder {
     text-decoration: none;
     color: inherit;
     font-size: 13px;
@@ -48,26 +50,32 @@
     position: relative;
     padding-bottom: 5px;
     transition: 0.3s;
+    cursor: pointer;
+    user-select: none;
+    display: inline-block;
 }
 
-.nav-links a::after {
+/* Línea animada inferior (Efecto Hover/Active) */
+.nav-links a::after,
+.nav-link-placeholder::after {
     content: "";
     position: absolute;
     left: 0;
     bottom: 0;
     width: 0%;
     height: 2px;
-    background: #00ff88; /* Color acento */
+    background: #00ff88;
     transition: 0.3s;
 }
 
 .nav-links a:hover::after, 
-.nav-links a.active::after {
+.nav-links a.active::after,
+.nav-link-placeholder:hover::after,
+.nav-link-placeholder.active::after {
     width: 100%;
 }
 
-/* ================= ESTILOS DEL SUBMENÚ (NUEVO) ================= */
-
+/* ================= ESTILOS DEL SUBMENÚ ================= */
 .nav-item-dropdown {
     cursor: pointer;
 }
@@ -124,12 +132,12 @@
     padding: 10px 20px;
     display: block;
     font-size: 12px;
-    text-transform: none; /* Se ve más profesional en minúsculas */
+    text-transform: none;
     font-weight: 400;
 }
 
 .submenu li a::after {
-    display: none; /* Quitar la línea inferior en el submenú */
+    display: none; /* Sin línea verde en los ítems internos */
 }
 
 .submenu li a:hover {
@@ -137,8 +145,7 @@
     color: #00ff88;
 }
 
-/* ================= FIN SUBMENÚ ================= */
-
+/* ================= INTERFAZ DERECHA (TOGGLE) ================= */
 .nav-right {
     display: flex;
     align-items: center;
@@ -151,7 +158,6 @@
 }
 
 /* ================= RESPONSIVE (Móvil) ================= */
-
 .menu-toggle {
     display: none;
     flex-direction: column;
@@ -191,7 +197,7 @@
         position: fixed;
         top: 0;
         right: -100%;
-        width: 70%;
+        width: 75%;
         height: 100vh;
         background: #fff;
         flex-direction: column;
@@ -199,7 +205,7 @@
         align-items: center;
         box-shadow: -10px 0 20px rgba(0,0,0,0.1);
         z-index: 1000;
-        overflow-y: auto; /* Por si el submenú es largo */
+        overflow-y: auto;
     }
 
     .dark .nav-links {
@@ -212,10 +218,17 @@
 
     .nav-links li {
         margin: 15px 0;
-        width: 100%; /* Para que el submenú ocupe el ancho en móvil */
+        width: 100%;
+        text-align: center;
     }
 
-    /* Ajuste submenú en móvil */
+    /* Ajuste específico de enlaces en móvil */
+    .nav-links a, 
+    .nav-link-placeholder {
+        font-size: 18px;
+    }
+
+    /* Submenú en móvil (estilo acordeón) */
     .submenu {
         position: static;
         transform: none;
@@ -223,9 +236,9 @@
         visibility: visible;
         box-shadow: none;
         background: transparent !important;
-        display: none; /* Oculto por defecto en móvil */
+        display: none; 
         text-align: center;
-        padding: 0;
+        padding: 10px 0;
     }
 
     .nav-item-dropdown:hover .submenu,
@@ -234,10 +247,7 @@
         transform: none;
     }
 
-    .nav-links a {
-        font-size: 18px;
-    }
-
+    /* Animación hamburguesa */
     .menu-toggle.open span:nth-child(1) {
         transform: rotate(45deg) translate(5px, 6px);
     }

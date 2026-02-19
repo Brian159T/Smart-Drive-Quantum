@@ -12,7 +12,6 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ theme, setTheme }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  // Nuevo estado para el submenú de Alquiler
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle_mode = () => {
@@ -21,12 +20,13 @@ const Navbar: React.FC<NavbarProps> = ({ theme, setTheme }) => {
 
   const toggle_menu = () => {
     setMenuOpen(!menuOpen);
+    setDropdownOpen(false);
   }
 
   return (
     <nav className={`navbar ${theme}`}>
       
-      <Link to="/" className='logo-container'>
+      <Link to="/" className='logo-container' onClick={() => setMenuOpen(false)}>
         <img src={logo_smart} alt="logo" className='logo' />
       </Link>
 
@@ -50,15 +50,18 @@ const Navbar: React.FC<NavbarProps> = ({ theme, setTheme }) => {
           <NavLink to="/Vehiculos">Vehiculos</NavLink>
         </li>
 
-        {/* --- MODIFICACIÓN: SUBMENÚ ALQUILER --- */}
+        {/* --- ALQUILER: SOLO DISPARADOR --- */}
         <li 
           className="nav-item-dropdown"
           onMouseEnter={() => setDropdownOpen(true)}
           onMouseLeave={() => setDropdownOpen(false)}
         >
-          <NavLink to="/Alquiler" onClick={() => setMenuOpen(false)}>
+          <span 
+            className={`nav-link-placeholder ${dropdownOpen ? 'active' : ''}`} 
+            onClick={() => setDropdownOpen(!dropdownOpen)}
+          >
             Alquiler <span className="arrow">▾</span>
-          </NavLink>
+          </span>
           
           <ul className={`submenu ${dropdownOpen ? 'show' : ''}`}>
             <li onClick={() => {setMenuOpen(false); setDropdownOpen(false);}}>
@@ -75,7 +78,6 @@ const Navbar: React.FC<NavbarProps> = ({ theme, setTheme }) => {
             </li>
           </ul>
         </li>
-        
 
         <li onClick={() => setMenuOpen(false)}>
           <NavLink to="/Calculadora">Calculadora</NavLink>
