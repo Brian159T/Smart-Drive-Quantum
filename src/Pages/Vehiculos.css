@@ -23,9 +23,11 @@
   font-weight: 700;
 }
 
-.v-highlight { color: #00ff88; }
+.v-highlight {
+  color: #00ff88;
+}
 
-/* GRILLA */
+/* GRID */
 .v-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -33,11 +35,11 @@
   padding-bottom: 80px;
 }
 
-/* TARJETA SIN BORDES BLANCOS */
+/* CARD */
 .glass {
-  background: rgba(255, 255, 255, 0.02); /* Fondo casi invisible */
+  background: rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 255, 136, 0.1); /* Borde sutil verde */
+  border: 1px solid rgba(0, 255, 136, 0.1);
   border-radius: 24px;
   overflow: hidden;
   transition: all 0.4s ease;
@@ -46,7 +48,7 @@
 .glass:hover {
   transform: translateY(-10px);
   border-color: #00ff88;
-  box-shadow: 0 20px 40px rgba(0, 255, 136, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 255, 136, 0.15);
 }
 
 .v-card-header {
@@ -57,14 +59,20 @@
 .v-card-header h3 {
   font-size: 1.5rem;
   margin: 5px 0 0;
-  color: #fff;
+  color: #ffffff;
 }
 
-/* CONTENEDOR DE IMAGEN TRANSPARENTE */
+.v-tag {
+  font-size: 0.8rem;
+  color: #00ff88;
+  font-weight: 600;
+}
+
+/* IMAGE */
 .v-image-container {
   position: relative;
-  background: transparent; /* QUITADO EL BLANCO */
-  padding: 0 15px 25px; /* Espaciado sutil */
+  background: transparent;
+  padding: 0 15px 25px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,11 +84,11 @@
   height: auto;
   display: block;
   border-radius: 12px;
-  /* Si la imagen original tiene fondo gris/blanco, esto ayuda a integrarla: */
-  mix-blend-mode: lighten; 
+  mix-blend-mode: lighten;
   filter: brightness(1.1);
 }
 
+/* OVERLAY */
 .v-overlay {
   position: absolute;
   inset: 0;
@@ -106,9 +114,14 @@
   font-weight: 800;
   cursor: pointer;
   box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
+  transition: 0.3s ease;
 }
 
-/* MODAL / LIGHTBOX */
+.v-btn-zoom:hover {
+  transform: scale(1.05);
+}
+
+/* LIGHTBOX */
 .v-lightbox-overlay {
   position: fixed;
   inset: 0;
@@ -150,6 +163,7 @@
   .v-grid {
     grid-template-columns: 1fr;
   }
+
   .v-image-container {
     min-height: auto;
   }
