@@ -65,15 +65,7 @@ const Comofunciona: React.FC = () => {
       </section>
 
       {/* CTA INTERMEDIO */}
-      <section className="how-final-cta">
-        <div className="how-container">
-          <div className="how-cta-card">
-            <h2>¿Listo para el cambio?</h2>
-            <p>Únete a la revolución de la movilidad eléctrica y empieza a construir tu patrimonio.</p>
-            <button className="how-btn-main">Postular Ahora</button>
-          </div>
-        </div>
-      </section>
+      
 
       {/* FOOTER PROFESIONAL UNIFICADO */}
       <footer className="site-footer">

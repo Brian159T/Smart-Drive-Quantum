@@ -2,11 +2,11 @@
   background-color: #020c1b;
   color: #e6f1ff;
   min-height: 100vh;
-  width: 100%; /* Asegura que ocupe todo el ancho */
+  width: 100%; 
   font-family: 'Inter', sans-serif;
 }
 
-/* Contenedor centralizado que NO rompe el ancho total */
+
 .contactos-container {
   width: 90%;
   max-width: 1200px;
@@ -32,7 +32,6 @@
 .contactos-main {
   padding-bottom: 80px;
 }
-
 .contactos-grid {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
