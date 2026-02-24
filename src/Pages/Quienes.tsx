@@ -11,6 +11,10 @@ import imgTienda from '../assets/Tienda.jpg';
 import client1 from '../assets/Clientes/Clientes-Nexus.webp';
 import client2 from '../assets/Clientes/clientes2.jpg';
 import client3 from '../assets/Clientes/clientes4.png';
+import { FaWhatsapp } from "react-icons/fa";
+
+import { PiMotorcycleFill } from "react-icons/pi";
+import { FaCar } from "react-icons/fa";
 
 const HERO_IMAGES = [imgHero1, imgHero2, imgHero3];
 const CLIENT_IMAGES = [client1, client2, client3];
@@ -99,7 +103,7 @@ const Quienes: React.FC = () => {
               No solo ofrecemos movilidad, ofrecemos crecimiento. Nuestro modelo crea estabilidad financiera, 
               fomenta compromiso y garantiza sostenibilidad a largo plazo.
             </p>
-            <button className="cta-button">Explorar Planes</button>
+            
           </div>
         </section>
 
@@ -115,13 +119,33 @@ const Quienes: React.FC = () => {
               Ven a visitarnos en nuestro showroom físico. Contamos con tecnología de punta y asesores 
               listos para ayudarte a elegir el vehículo que impulsará tu independencia financiera.
             </p>
-            <div className="location-info">📍 Santa Cruz, Bolivia</div>
+            
+          </div>
+        </section>
+
+        <section className="contact-block">
+          <div className="contact-card">
+            <div className="contact-content">
+              <h2>¿LISTO PARA COMENZAR?</h2>
+              <p>Hablemos sobre tu próximo gran paso en la movilidad eléctrica.</p>
+            </div>
+            
+            
+            <a
+  href="https://wa.me/50361766862"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="professional-contact-btn"
+>
+  CONTACTANOS
+  <FaWhatsapp size={25} color="#bad8ca" />
+</a>
           </div>
         </section>
 
         {/* BLOQUE 4: CLIENTES */}
         <section className="clients-section">
-          <div className="kicker center">Comunidad</div>
+          
           <h2 className="center-title">CLIENTES SATISFECHOS</h2>
           
           <div className="client-carousel">
@@ -200,17 +224,30 @@ const Quienes: React.FC = () => {
 
         {/* BLOQUE 5: CONTACTO */}
         <section className="contact-block">
-          <div className="contact-card">
-            <div className="contact-content">
-              <h2>¿LISTO PARA COMENZAR?</h2>
-              <p>Hablemos sobre tu próximo gran paso en la movilidad eléctrica.</p>
-            </div>
-            <button className="professional-contact-btn">
-              CONTÁCTANOS
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </button>
+          <div className="contact-card2">
+            <h2>¿LISTO PARA SER SMART? <br />
+              REGÍSTRATE AHORA
+            
+            </h2>
+            <a
+  href="https://forms.gle/RtRsECQq7MRtGurn8"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="professional-contact-btn"
+>
+  REGISTRO MOTOCICLETAS
+  <PiMotorcycleFill size={30} color="#bad8ca" />
+</a>
+            
+            <a
+  href="https://forms.gle/txb5JQ4tJm3pArB17"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="professional-contact-btn"
+>
+  REGISTRO VEHÍCULOS
+  <FaCar size={25} color="#bad8ca" />
+</a>
           </div>
         </section>
       </main>

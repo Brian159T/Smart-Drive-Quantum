@@ -1,6 +1,7 @@
 import React from 'react';
 import './Alquilertrooper.css';
 import trooperImg from '../assets/Trooper.png';
+import { FaWhatsapp } from "react-icons/fa";
 
 const Alquilertrooper: React.FC = () => {
   return (
@@ -47,7 +48,15 @@ const Alquilertrooper: React.FC = () => {
                 <li><strong>Legales:</strong> Antecedentes Penales y Hoja de Vida</li>
                 <li><strong>Prueba:</strong> Agenda tu prueba de manejo hoy mismo</li>
               </ul>
-              <button className="btn-contact">Contactanos</button>
+                     <a
+                href="https://wa.me/50361766862"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-contactt"
+              >
+                Contactanos
+                <FaWhatsapp size={25} color="#00ff88" />
+              </a>
             </div>
           </div>
 

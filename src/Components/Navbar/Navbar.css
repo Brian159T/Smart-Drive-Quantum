@@ -39,7 +39,6 @@
     position: relative;
 }
 
-/* Estilo unificado para Enlaces (a) y el Disparador de Alquiler (span) */
 .nav-links a, 
 .nav-link-placeholder {
     text-decoration: none;
@@ -55,7 +54,6 @@
     display: inline-block;
 }
 
-/* Línea animada inferior (Efecto Hover/Active) */
 .nav-links a::after,
 .nav-link-placeholder::after {
     content: "";
@@ -70,16 +68,11 @@
 
 .nav-links a:hover::after, 
 .nav-links a.active::after,
-.nav-link-placeholder:hover::after,
 .nav-link-placeholder.active::after {
     width: 100%;
 }
 
-/* ================= ESTILOS DEL SUBMENÚ ================= */
-.nav-item-dropdown {
-    cursor: pointer;
-}
-
+/* ================= SUBMENÚ (ESCRITORIO) ================= */
 .arrow {
     font-size: 0.7rem;
     margin-left: 2px;
@@ -87,7 +80,7 @@
     transition: transform 0.3s;
 }
 
-.nav-item-dropdown:hover .arrow {
+.nav-link-placeholder.active .arrow {
     transform: rotate(180deg);
 }
 
@@ -108,15 +101,11 @@
     text-align: left;
 }
 
-/* Tema oscuro para el submenú */
 .dark .submenu {
     background: #111;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
     border: 1px solid rgba(255,255,255,0.05);
 }
 
-/* Mostrar submenú */
-.nav-item-dropdown:hover .submenu,
 .submenu.show {
     opacity: 1;
     visibility: visible;
@@ -125,7 +114,6 @@
 
 .submenu li {
     margin: 0 !important;
-    width: 100%;
 }
 
 .submenu li a {
@@ -133,11 +121,6 @@
     display: block;
     font-size: 12px;
     text-transform: none;
-    font-weight: 400;
-}
-
-.submenu li a::after {
-    display: none; /* Sin línea verde en los ítems internos */
 }
 
 .submenu li a:hover {
@@ -145,7 +128,7 @@
     color: #00ff88;
 }
 
-/* ================= INTERFAZ DERECHA (TOGGLE) ================= */
+/* ================= INTERFAZ DERECHA ================= */
 .nav-right {
     display: flex;
     align-items: center;
@@ -161,8 +144,8 @@
 .menu-toggle {
     display: none;
     flex-direction: column;
-    cursor: pointer;
     gap: 5px;
+    cursor: pointer;
     z-index: 1001;
 }
 
@@ -171,27 +154,12 @@
     height: 3px;
     background: currentColor;
     border-radius: 5px;
-    transition: 0.3s;
 }
 
 @media (max-width: 1050px) {
-    .navbar {
-        padding: 15px 5%;
-    }
-
-    .menu-toggle {
-        display: flex;
-        order: 2;
-    }
-
-    .nav-right {
-        order: 3;
-        margin-left: 20px;
-    }
-
-    .logo-container {
-        order: 1;
-    }
+    .menu-toggle { display: flex; order: 2; }
+    .nav-right { order: 3; }
+    .logo-container { order: 1; }
 
     .nav-links {
         position: fixed;
@@ -201,60 +169,50 @@
         height: 100vh;
         background: #fff;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start; /* Cambio a flex-start para scroll */
+        padding-top: 100px;
         align-items: center;
-        box-shadow: -10px 0 20px rgba(0,0,0,0.1);
         z-index: 1000;
         overflow-y: auto;
     }
 
-    .dark .nav-links {
-        background: #111;
-    }
-
-    .nav-links.active {
-        right: 0;
-    }
+    .dark .nav-links { background: #111; }
+    .nav-links.active { right: 0; }
 
     .nav-links li {
-        margin: 15px 0;
         width: 100%;
-        text-align: center;
+        margin: 10px 0;
     }
 
-    /* Ajuste específico de enlaces en móvil */
-    .nav-links a, 
-    .nav-link-placeholder {
-        font-size: 18px;
-    }
+    .nav-links a, .nav-link-placeholder { font-size: 18px; }
 
-    /* Submenú en móvil (estilo acordeón) */
+    /* ACORDEÓN MÓVIL */
     .submenu {
-        position: static;
+        position: relative; /* Cambia de absoluto a relativo */
+        left: 0;
+        top: 0;
         transform: none;
+        box-shadow: none;
+        background: rgba(0, 255, 136, 0.05) !important;
+        display: none; /* Oculto por defecto */
+        width: 100%;
         opacity: 1;
         visibility: visible;
-        box-shadow: none;
-        background: transparent !important;
-        display: none; 
-        text-align: center;
-        padding: 10px 0;
+        padding: 0;
     }
 
-    .nav-item-dropdown:hover .submenu,
     .submenu.show {
-        display: block;
-        transform: none;
+        display: block; /* Se muestra al hacer click */
     }
 
-    /* Animación hamburguesa */
-    .menu-toggle.open span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 6px);
+    .submenu li a {
+        text-align: center;
+        font-size: 16px;
+        padding: 15px;
     }
-    .menu-toggle.open span:nth-child(2) {
-        opacity: 0;
-    }
-    .menu-toggle.open span:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -6px);
-    }
+
+    /* Animación Hamburguesa */
+    .menu-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+    .menu-toggle.open span:nth-child(2) { opacity: 0; }
+    .menu-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
 }

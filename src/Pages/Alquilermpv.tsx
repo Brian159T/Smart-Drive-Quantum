@@ -1,6 +1,7 @@
 import React from 'react';
 import './Alquilermpv.css';
 import mpvImg from '../assets/MPV.png';
+import { FaWhatsapp } from "react-icons/fa";
 
 const Alquilermpv: React.FC = () => {
   return (
@@ -49,7 +50,17 @@ const Alquilermpv: React.FC = () => {
                 <li><strong>Legales:</strong> Antecedentes Penales y Hoja de Vida</li>
                 <li><strong>Disponibilidad:</strong> Agenda tu prueba de manejo hoy</li>
               </ul>
-              <button className="btn-contact">Contactanos</button>
+              <a
+                              href="https://wa.me/50361766862"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="btn-contactm"
+                            >
+                              Contactanos
+                              <FaWhatsapp size={25} color="#00ff88" />
+                            </a>
+
+                
             </div>
           </div>
 

@@ -147,23 +147,35 @@
   margin-right: 12px;
 }
 
-.btn-contact {
+.btn-contactmate {
   width: 100%;
   padding: 18px;
-  background: var(--primary-green);
-  color: var(--dark-bg);
-  border: none;
+  background: linear-gradient(to bottom, #17e232, #052b05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  
+  color: #bad8ca;
+  
   font-weight: 800;
   text-transform: uppercase;
+  letter-spacing: 1.5px;
   cursor: pointer;
   margin-top: 30px;
   border-radius: 12px;
   transition: 0.3s;
+  text-decoration: none;
 }
 
-.btn-contact:hover {
-  box-shadow: 0 12px 24px rgba(0, 255, 136, 0.35);
+.btn-contactmate:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 25px rgba(0, 255, 136, 0.4);
+  border-style: solid;
+  border-color: #00ff88;
 }
+
 
 /* --- FOOTER --- */
 .site-footer {

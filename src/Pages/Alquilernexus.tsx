@@ -1,6 +1,7 @@
 import React from 'react';
 import './Alquilernexus.css';
 import nexusImg from '../assets/nexus-1.webp';
+import { FaWhatsapp } from "react-icons/fa";
 
 const Alquilernexus: React.FC = () => {
   return (
@@ -42,7 +43,15 @@ const Alquilernexus: React.FC = () => {
                 <li><i className="check-icon">✓</i> Antecedentes Penales</li>
                 <li><i className="check-icon">✓</i> Hoja de Vida</li>
               </ul>
-              <button className="btn-contact">Contactanos ahora</button>
+             <a
+  href="https://wa.me/50361766862"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="btn-contactn"
+>
+  Contactanos
+  <FaWhatsapp size={25} color="#00ff88" />
+</a>
             </div>
           </div>
         </div>

@@ -145,22 +145,33 @@
   margin-right: 10px;
 }
 
-.btn-contact {
+.btn-contactt {
   width: 100%;
-  padding: 16px;
-  background: var(--primary-green);
-  color: var(--dark-bg);
-  border: none;
+  padding: 18px;
+  background: linear-gradient(to bottom, #17e232, #052b05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  
+  color: #bad8ca;
+  
   font-weight: 800;
   text-transform: uppercase;
+  letter-spacing: 1.5px;
   cursor: pointer;
-  margin-top: 25px;
-  border-radius: 10px;
+  margin-top: 30px;
+  border-radius: 12px;
   transition: 0.3s;
+  text-decoration: none ;
 }
 
-.btn-contact:hover {
-  box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
+.btn-contactt:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 25px rgba(0, 255, 136, 0.4);
+  border-style: solid;
+  border-color: #00ff88;
 }
 
 /* --- FOOTER --- */
