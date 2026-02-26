@@ -71,12 +71,17 @@
 /* IMAGE */
 .v-image-container {
   position: relative;
-  background: transparent;
   padding: 0 15px 25px;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 350px;
+}
+
+.v-image-container picture {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .v-technical-sheet {

@@ -122,26 +122,27 @@ const Quienes: React.FC = () => {
             
           </div>
         </section>
+{/* BLOQUE CONTACTO 1 */}
+<section className="contact-block symmetric-section">
+  <div className="contact-card">
+    <div className="contact-content">
+      <h2>¿LISTO PARA COMENZAR?</h2>
+      <p>
+        Hablemos sobre tu próximo gran paso en la movilidad eléctrica.
+      </p>
+    </div>
 
-        <section className="contact-block">
-          <div className="contact-card">
-            <div className="contact-content">
-              <h2>¿LISTO PARA COMENZAR?</h2>
-              <p>Hablemos sobre tu próximo gran paso en la movilidad eléctrica.</p>
-            </div>
-            
-            
-            <a
-  href="https://wa.me/50361766862"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="professional-contact-btn"
->
-  CONTACTANOS
-  <FaWhatsapp size={25} color="#bad8ca" />
-</a>
-          </div>
-        </section>
+    <a
+      href="https://wa.me/50361766862"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="professional-contact-btn"
+    >
+      CONTACTANOS
+      <FaWhatsapp size={25} color="#bad8ca" />
+    </a>
+  </div>
+</section>
 
         {/* BLOQUE 4: CLIENTES */}
         <section className="clients-section">
@@ -233,7 +234,7 @@ const Quienes: React.FC = () => {
   href="https://forms.gle/RtRsECQq7MRtGurn8"
   target="_blank"
   rel="noopener noreferrer"
-  className="professional-contact-btn"
+  className="professional-contact-btn2"
 >
   REGISTRO MOTOCICLETAS
   <PiMotorcycleFill size={30} color="#bad8ca" />
@@ -243,7 +244,7 @@ const Quienes: React.FC = () => {
   href="https://forms.gle/txb5JQ4tJm3pArB17"
   target="_blank"
   rel="noopener noreferrer"
-  className="professional-contact-btn"
+  className="professional-contact-btn2"
 >
   REGISTRO VEHÍCULOS
   <FaCar size={25} color="#bad8ca" />

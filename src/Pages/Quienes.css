@@ -297,7 +297,37 @@
 
 .professional-contact-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 25px rgba(0, 255, 136, 0.4);
+  border-style: solid;
+  border-color: #00ff88;
+}
+
+
+
+
+.professional-contact-btn2 {
+  background: linear-gradient(to bottom, #38adb1, #0a1127);
+  text-decoration: none;
+
+  
+  color: #bad8ca;
+  border: 3px double rgb(35, 90, 92);
+  padding: 20px 40px;
+  font-weight: 800;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.professional-contact-btn2:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(89, 206, 221, 0.4);
+  border-style: solid;
+  border-color: #25e7ee;
 }
 
 /* --- FOOTER UNIFICADO --- */
@@ -332,6 +362,31 @@
   padding-top: 40px; 
   color: #444; 
   font-size: 0.9rem; 
+}
+
+/* --- ESPACIADO SIMÉTRICO ENTRE SECCIONES --- */
+.symmetric-section {
+  margin: 150px 0; /* mismo espacio arriba y abajo */
+}
+
+/* Ajuste interno para que el contenido quede perfectamente centrado */
+.contact-card {
+  background: linear-gradient(to bottom , #2a696b, #0c2124);
+  border: 1px solid #222;
+  padding: 80px 60px; /* más aire vertical */
+  border-radius: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: border-color 0.4s ease, transform 0.4s ease;
+}
+
+/* Centramos mejor el texto */
+.contact-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
 }
 
 /* --- RESPONSIVE --- */
