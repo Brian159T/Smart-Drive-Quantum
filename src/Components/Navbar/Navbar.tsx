@@ -20,11 +20,9 @@ const Navbar: React.FC<NavbarProps> = ({ theme, setTheme }) => {
 
   const toggle_menu = () => {
     setMenuOpen(!menuOpen);
-    // Al cerrar el menú principal, también reseteamos el dropdown
     if (menuOpen) setDropdownOpen(false);
   }
 
-  // Función para cerrar todo al elegir una opción final
   const closeAll = () => {
     setMenuOpen(false);
     setDropdownOpen(false);
@@ -37,33 +35,42 @@ const Navbar: React.FC<NavbarProps> = ({ theme, setTheme }) => {
         <img src={logo_smart} alt="logo" className='logo' />
       </Link>
 
-      <div className={`menu-toggle ${menuOpen ? 'open' : ''}`} onClick={toggle_menu}>
+      <div 
+        className={`menu-toggle ${menuOpen ? 'open' : ''}`} 
+        onClick={toggle_menu}
+      >
         <span></span>
         <span></span>
         <span></span>
       </div>
 
       <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
+
         <li onClick={closeAll}>
           <NavLink to="/" end>Quienes Somos</NavLink>
         </li>
+
         <li onClick={closeAll}>
           <NavLink to="/ComoFunciona">Como Funciona</NavLink>
         </li>
+
         <li onClick={closeAll}>
           <NavLink to="/Empresa">Empresa</NavLink>
         </li>
+
         <li onClick={closeAll}>
           <NavLink to="/Vehiculos">Vehiculos</NavLink>
         </li>
 
-        {/* --- DROPDOWN DE ALQUILER --- */}
+        {/* DROPDOWN */}
         <li className="nav-item-dropdown">
           <span 
             className={`nav-link-placeholder ${dropdownOpen ? 'active' : ''}`} 
             onClick={(e) => {
-              e.stopPropagation(); // IMPORTANTE: Evita que el click cierre el nav-links
-              setDropdownOpen(!dropdownOpen);
+              if (window.innerWidth <= 1050) {
+                e.stopPropagation();
+                setDropdownOpen(!dropdownOpen);
+              }
             }}
           >
             Alquiler <span className="arrow">▾</span>
@@ -77,12 +84,10 @@ const Navbar: React.FC<NavbarProps> = ({ theme, setTheme }) => {
           </ul>
         </li>
 
-        {/* <li onClick={closeAll}>
-          <NavLink to="/Calculadora">Calculadora</NavLink>
-        </li> */}
         <li onClick={closeAll}>
           <NavLink to="/Contactos">Contactos</NavLink>
         </li>
+
       </ul>
 
       <div className="nav-right">
@@ -93,6 +98,7 @@ const Navbar: React.FC<NavbarProps> = ({ theme, setTheme }) => {
           className='toggle-icon'
         />
       </div>
+
     </nav>
   )
 }

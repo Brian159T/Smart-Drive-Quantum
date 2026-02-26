@@ -24,7 +24,7 @@
     cursor: pointer;
 }
 
-/* ================= LISTA DE NAVEGACIÓN ================= */
+/* ================= NAV LINKS ================= */
 .nav-links {
     flex: 1;
     list-style: none;
@@ -48,12 +48,10 @@
     text-transform: uppercase;
     position: relative;
     padding-bottom: 5px;
-    transition: 0.3s;
     cursor: pointer;
-    user-select: none;
-    display: inline-block;
 }
 
+/* underline animation */
 .nav-links a::after,
 .nav-link-placeholder::after {
     content: "";
@@ -72,16 +70,12 @@
     width: 100%;
 }
 
-/* ================= SUBMENÚ (ESCRITORIO) ================= */
+/* ================= SUBMENU DESKTOP ================= */
+
 .arrow {
     font-size: 0.7rem;
-    margin-left: 2px;
-    display: inline-block;
+    margin-left: 4px;
     transition: transform 0.3s;
-}
-
-.nav-link-placeholder.active .arrow {
-    transform: rotate(180deg);
 }
 
 .submenu {
@@ -90,15 +84,14 @@
     left: 50%;
     transform: translateX(-50%) translateY(10px);
     background: #fff;
-    min-width: 160px;
+    min-width: 180px;
     list-style: none;
     padding: 10px 0;
-    border-radius: 8px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
-    text-align: left;
 }
 
 .dark .submenu {
@@ -106,29 +99,36 @@
     border: 1px solid rgba(255,255,255,0.05);
 }
 
-.submenu.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
-}
-
 .submenu li {
-    margin: 0 !important;
+    margin: 0;
 }
 
 .submenu li a {
     padding: 10px 20px;
     display: block;
-    font-size: 12px;
+    font-size: 13px;
     text-transform: none;
 }
 
 .submenu li a:hover {
-    background: rgba(0, 255, 136, 0.1);
+    background: rgba(0,255,136,0.1);
     color: #00ff88;
 }
 
-/* ================= INTERFAZ DERECHA ================= */
+/* HOVER SOLO DESKTOP */
+@media (min-width: 1051px) {
+    .nav-item-dropdown:hover .submenu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    .nav-item-dropdown:hover .arrow {
+        transform: rotate(180deg);
+    }
+}
+
+/* ================= RIGHT ================= */
 .nav-right {
     display: flex;
     align-items: center;
@@ -140,7 +140,7 @@
     margin-left: 20px;
 }
 
-/* ================= RESPONSIVE (Móvil) ================= */
+/* ================= HAMBURGUESA ================= */
 .menu-toggle {
     display: none;
     flex-direction: column;
@@ -154,9 +154,12 @@
     height: 3px;
     background: currentColor;
     border-radius: 5px;
+    transition: 0.3s;
 }
 
+/* ================= MOBILE ================= */
 @media (max-width: 1050px) {
+
     .menu-toggle { display: flex; order: 2; }
     .nav-right { order: 3; }
     .logo-container { order: 1; }
@@ -169,50 +172,63 @@
         height: 100vh;
         background: #fff;
         flex-direction: column;
-        justify-content: flex-start; /* Cambio a flex-start para scroll */
         padding-top: 100px;
         align-items: center;
-        z-index: 1000;
         overflow-y: auto;
     }
 
     .dark .nav-links { background: #111; }
+
     .nav-links.active { right: 0; }
 
     .nav-links li {
         width: 100%;
         margin: 10px 0;
+        text-align: center;
     }
 
-    .nav-links a, .nav-link-placeholder { font-size: 18px; }
+    .nav-links a,
+    .nav-link-placeholder {
+        font-size: 18px;
+    }
 
-    /* ACORDEÓN MÓVIL */
+    /* SUBMENU MOBILE */
     .submenu {
-        position: relative; /* Cambia de absoluto a relativo */
-        left: 0;
+        position: relative;
         top: 0;
+        left: 0;
         transform: none;
         box-shadow: none;
-        background: rgba(0, 255, 136, 0.05) !important;
-        display: none; /* Oculto por defecto */
+        background: rgba(0,255,136,0.05) !important;
+        display: none;
         width: 100%;
         opacity: 1;
         visibility: visible;
-        padding: 0;
+        text-align: center;
+        border-radius: 0;
     }
 
     .submenu.show {
-        display: block; /* Se muestra al hacer click */
+        display: block;
     }
 
     .submenu li a {
-        text-align: center;
+        padding: 15px 0;
         font-size: 16px;
-        padding: 15px;
+        width: 100%;
+        display: block;
     }
 
-    /* Animación Hamburguesa */
-    .menu-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
-    .menu-toggle.open span:nth-child(2) { opacity: 0; }
-    .menu-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+    /* Animación hamburguesa */
+    .menu-toggle.open span:nth-child(1) { 
+        transform: rotate(45deg) translate(5px, 6px); 
+    }
+
+    .menu-toggle.open span:nth-child(2) { 
+        opacity: 0; 
+    }
+
+    .menu-toggle.open span:nth-child(3) { 
+        transform: rotate(-45deg) translate(5px, -6px); 
+    }
 }
