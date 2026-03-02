@@ -2,28 +2,28 @@ import React from 'react';
 import './Comofunciona.css';
 
 // Assets
-import imgStep1 from '../assets/nexus-1.webp';
-import imgStep2 from '../assets/Tropper financiero.png';
-import imgStep3 from '../assets/Auto verde co logo Q.png';
+import Postulacion from '../assets/Como funciona/postulación y registro.png';
+import Plan from '../assets/Como funciona/plan a tu medida.png';
+import Conduce from '../assets/Como funciona/conduce y se dueño.png';
 
 const STEPS = [
   {
     id: '01',
     title: 'Postulación y Registro',
     description: 'Regístrate en nuestra plataforma. Evaluamos tu perfil de conductor de aplicaciones para integrarte a nuestra flota eléctrica de última generación.',
-    image: imgStep1
+    image: Postulacion
   },
   {
     id: '02',
     title: 'Plan a tu Medida',
     description: 'Eliges un plan de arrendamiento flexible sin inversión inicial elevada. Nosotros nos encargamos del mantenimiento preventivo y soporte técnico.',
-    image: imgStep2
+    image: Plan
   },
   {
     id: '03',
     title: 'Conduce y Sé Dueño',
     description: 'Al completar el periodo del contrato, el vehículo pasa a ser legalmente tuyo. Transforma tu gasto diario en una inversión patrimonial real.',
-    image: imgStep3
+    image: Conduce
   }
 ];
 
@@ -52,7 +52,7 @@ const Comofunciona: React.FC = () => {
                   <span>✓ Proceso 100% Digital</span>
                   <span>✓ Soporte 24/7</span>
                 </div>
-                <button className="how-btn-outline">Ver requisitos</button>
+                
               </div>
               <div className="how-step-visual">
                 <div className="how-img-frame">

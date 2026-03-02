@@ -1,6 +1,6 @@
 import React from 'react';
 import './Alquilertrooper.css';
-import trooperImg from '../assets/Trooper.png';
+import trooperImg from '../assets/Alquiler/Tomas trooper/portada troopper.png';
 import { FaWhatsapp } from "react-icons/fa";
 
 const Alquilertrooper: React.FC = () => {

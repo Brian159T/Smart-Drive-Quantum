@@ -4,19 +4,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #fff;
+    background: #000000;
+    color: #ffffff; /* 👈 TEXTO BLANCO */
     padding: 15px 7%;
     position: sticky;
     top: 0;
     z-index: 1000;
     transition: 0.5s;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.dark.navbar {
-    background: #000;
-    color: #fff;
-    box-shadow: 0 2px 10px rgba(255,255,255,0.05);
+    box-shadow: 0 2px 15px rgba(0,0,0,0.6);
 }
 
 .logo {
@@ -42,7 +37,7 @@
 .nav-links a, 
 .nav-link-placeholder {
     text-decoration: none;
-    color: inherit;
+    color: #ffffff; /* 👈 FORZAMOS BLANCO */
     font-size: 13px;
     font-weight: 500;
     text-transform: uppercase;
@@ -76,6 +71,7 @@
     font-size: 0.7rem;
     margin-left: 4px;
     transition: transform 0.3s;
+    color: #ffffff;
 }
 
 .submenu {
@@ -83,20 +79,15 @@
     top: 100%;
     left: 50%;
     transform: translateX(-50%) translateY(10px);
-    background: #fff;
+    background: #111; /* 👈 oscuro */
     min-width: 180px;
     list-style: none;
     padding: 10px 0;
     border-radius: 10px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
-}
-
-.dark .submenu {
-    background: #111;
-    border: 1px solid rgba(255,255,255,0.05);
 }
 
 .submenu li {
@@ -108,10 +99,11 @@
     display: block;
     font-size: 13px;
     text-transform: none;
+    color: #ffffff;
 }
 
 .submenu li a:hover {
-    background: rgba(0,255,136,0.1);
+    background: rgba(0,255,136,0.15);
     color: #00ff88;
 }
 
@@ -128,18 +120,6 @@
     }
 }
 
-/* ================= RIGHT ================= */
-.nav-right {
-    display: flex;
-    align-items: center;
-}
-
-.toggle-icon {
-    width: 40px;
-    cursor: pointer;
-    margin-left: 20px;
-}
-
 /* ================= HAMBURGUESA ================= */
 .menu-toggle {
     display: none;
@@ -152,7 +132,7 @@
 .menu-toggle span {
     width: 25px;
     height: 3px;
-    background: currentColor;
+    background: #ffffff; /* 👈 blanco */
     border-radius: 5px;
     transition: 0.3s;
 }
@@ -160,9 +140,7 @@
 /* ================= MOBILE ================= */
 @media (max-width: 1050px) {
 
-    .menu-toggle { display: flex; order: 2; }
-    .nav-right { order: 3; }
-    .logo-container { order: 1; }
+    .menu-toggle { display: flex; }
 
     .nav-links {
         position: fixed;
@@ -170,14 +148,12 @@
         right: -100%;
         width: 75%;
         height: 100vh;
-        background: #fff;
+        background: #000; /* 👈 negro */
         flex-direction: column;
         padding-top: 100px;
         align-items: center;
         overflow-y: auto;
     }
-
-    .dark .nav-links { background: #111; }
 
     .nav-links.active { right: 0; }
 
@@ -190,16 +166,16 @@
     .nav-links a,
     .nav-link-placeholder {
         font-size: 18px;
+        color: #ffffff;
     }
 
-    /* SUBMENU MOBILE */
     .submenu {
         position: relative;
         top: 0;
         left: 0;
         transform: none;
         box-shadow: none;
-        background: rgba(0,255,136,0.05) !important;
+        background: #111;
         display: none;
         width: 100%;
         opacity: 1;
@@ -217,6 +193,12 @@
         font-size: 16px;
         width: 100%;
         display: block;
+        color: #ffffff;
+    }
+
+    .submenu li a:hover {
+        background: rgba(0,255,136,0.15);
+        color: #00ff88;
     }
 
     /* Animación hamburguesa */

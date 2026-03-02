@@ -1,22 +1,11 @@
 import React, { useState } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import './Navbar.css'
-import toogle_light from '../../assets/night.png'
-import toogle_dark from '../../assets/day.png'
 import logo_smart from '../../assets/Logos/LOGO SMART DRIVE.png'
 
-interface NavbarProps {
-  theme: string
-  setTheme: React.Dispatch<React.SetStateAction<string>>
-}
-
-const Navbar: React.FC<NavbarProps> = ({ theme, setTheme }) => {
+const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  const toggle_mode = () => {
-    theme === 'light' ? setTheme('dark') : setTheme('light')
-  }
 
   const toggle_menu = () => {
     setMenuOpen(!menuOpen);
@@ -29,7 +18,7 @@ const Navbar: React.FC<NavbarProps> = ({ theme, setTheme }) => {
   }
 
   return (
-    <nav className={`navbar ${theme}`}>
+    <nav className="navbar">
       
       <Link to="/" className='logo-container' onClick={closeAll}>
         <img src={logo_smart} alt="logo" className='logo' />
@@ -89,15 +78,6 @@ const Navbar: React.FC<NavbarProps> = ({ theme, setTheme }) => {
         </li>
 
       </ul>
-
-      <div className="nav-right">
-        <img
-          onClick={toggle_mode}
-          src={theme === 'light' ? toogle_light : toogle_dark}
-          alt="toggle theme"
-          className='toggle-icon'
-        />
-      </div>
 
     </nav>
   )

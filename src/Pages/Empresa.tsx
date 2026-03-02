@@ -2,9 +2,9 @@ import React from 'react';
 import './Empresa.css';
 
 // Assets (Asegúrate de que las rutas coincidan con tu estructura de carpetas)
-import imgHero from '../assets/Entrega-de-premios-sorteo-Fexco.jpg';
-import imgMision from '../assets/nexus-1.webp';
-import imgEcosistema from '../assets/Auto verde co logo Q.png';
+import Vision from '../assets/Empresa/Visión.png';
+import mision_propuesta from '../assets/Empresa/mision-propuesta.png';
+import Ecosistema from '../assets/Empresa/ecosistema quantum.png';
 
 
 const Empresa: React.FC = () => {
@@ -14,7 +14,7 @@ const Empresa: React.FC = () => {
       {/* SECCIÓN 1: VISIÓN (Hero Split) */}
       <section className="section-vision">
         <div className="vision-image">
-          <img src={imgHero} alt="Visión Smart Drive" />
+          <img src={Vision} alt="Visión Smart Drive" />
         </div>
         <div className="vision-content">
           <div className="glass-card">
@@ -31,7 +31,7 @@ const Empresa: React.FC = () => {
       {/* SECCIÓN 2: MISIÓN Y PROPUESTA (Banner con imagen de fondo) */}
       <section 
         className="section-impact" 
-        style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url(${imgMision})` }}
+        style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url(${mision_propuesta })` }}
       >
         <div className="impact-grid">
           <div className="impact-item">
@@ -78,7 +78,7 @@ const Empresa: React.FC = () => {
             </div>
           </div>
           <div className="ecosystem-image">
-            <img src={imgEcosistema} alt="Auto Quantum" className="floating-img" />
+            <img src={Ecosistema} alt="Auto Quantum" className="floating-img" />
           </div>
         </div>
       </section>

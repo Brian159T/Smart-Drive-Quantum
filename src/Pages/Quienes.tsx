@@ -2,15 +2,17 @@ import React, { useEffect, useState, useCallback } from 'react';
 import './Quienes.css';
 
 // Assets Principales
-import imgHero1 from '../assets/Portada/Portada web Smart drive.jpg.jpeg';
-import imgHero2 from '../assets/2.webp';
-import imgHero3 from '../assets/nexus-1.webp';
-import imgTienda from '../assets/Tienda.jpg';
+import imgHero1 from '../assets/Portada/Portada Nexus.jpg.jpeg';
+import imgHero2 from '../assets/Portada/Portada web Smart drive.jpg.jpeg';
+import imgHero3 from '../assets/Portada/Portada Trooper.jpg.jpeg';
+import finalquiler from '../assets/Quienes somos/fin del alquiler eterno.png';
+import modelodiferente from '../assets/Quienes somos/mejora - un modelo diferente.png';
+import imgTienda from '../assets/Quienes somos/tienda.png';
 
 // Assets Clientes
-import client1 from '../assets/Clientes/Clientes-Nexus.webp';
-import client2 from '../assets/Clientes/clientes2.jpg';
-import client3 from '../assets/Clientes/clientes4.png';
+import client1 from '../assets/Quienes somos/Cliente3.png';
+import client2 from '../assets/Quienes somos/Cliente2.png';
+import client3 from '../assets/Quienes somos/Cliente1.png';
 import { FaWhatsapp } from "react-icons/fa";
 
 import { PiMotorcycleFill } from "react-icons/pi";
@@ -75,7 +77,7 @@ const Quienes: React.FC = () => {
         {/* BLOQUE 1: MISIÓN */}
         <section className="feature-grid">
           <div className="feature-image">
-            <img src={imgHero2} alt="Misión Smart Drive" />
+            <img src={finalquiler} alt="fin del alquiler" />
           </div>
           <div className="feature-text">
             <div className="kicker">Misión 2026</div>
@@ -94,7 +96,7 @@ const Quienes: React.FC = () => {
         {/* BLOQUE 2: VISIÓN */}
         <section className="feature-grid reverse">
           <div className="feature-image">
-            <img src={imgHero3} alt="Visión de Negocio" />
+            <img src={modelodiferente} alt="Modelo Diferente Smart Drive" />
           </div>
           <div className="feature-text">
             <div className="kicker">Visión de Negocio</div>
@@ -181,25 +183,46 @@ const Quienes: React.FC = () => {
             <div className="calc-body">
               <div className="calc-inputs">
                 <div className="input-group">
-                  <label>Pago diario promedio (Bs.)</label>
+                  <label>¿Cuántos kilómetros recorres en una semana promedio? (KM)</label>
                   <input 
-                    type="range" 
-                    min="50" 
-                    max="300" 
-                    step="10" 
+                    type="number" 
+                    
                     value={pagoDiario} 
                     onChange={(e) => setPagoDiario(Number(e.target.value))}
                   />
-                  <div className="value-display">{pagoDiario} Bs.</div>
+                  <div className="value-display">{pagoDiario} km.</div>
+                </div>
+
+                <div className="input-group">
+                  <label>¿Cuánto dinero gastas en gasolina a la semana? ($)</label>
+                  <input 
+                    type="number" 
+                    
+                    
+                    value={meses} 
+                    onChange={(e) => setMeses(Number(e.target.value))}
+                  />
+                  <div className="value-display">{meses} $</div>
                 </div>
 
                 <div className="input-group">
                   <label>Tiempo de contrato (Meses)</label>
                   <input 
-                    type="range" 
-                    min="12" 
-                    max="48" 
-                    step="6" 
+                    type="number" 
+                    
+                    
+                    value={meses} 
+                    onChange={(e) => setMeses(Number(e.target.value))}
+                  />
+                  <div className="value-display">{meses} meses</div>
+                </div>
+
+                <div className="input-group">
+                  <label>Tiempo de contrato (Meses)</label>
+                  <input 
+                    type="number" 
+                    
+                    
                     value={meses} 
                     onChange={(e) => setMeses(Number(e.target.value))}
                   />

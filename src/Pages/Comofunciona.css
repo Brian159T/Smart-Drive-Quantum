@@ -18,7 +18,7 @@
 }
 
 .how-kicker {
-  color: #00ff88;
+  color: #00eeff;
   text-transform: uppercase;
   letter-spacing: 3px;
   font-weight: 700;
@@ -31,7 +31,7 @@
   line-height: 1.1;
 }
 
-.how-highlight { color: #00ff88; }
+.how-highlight { color: #00eeff; }
 
 .how-lead {
   color: #a8b2d1;
