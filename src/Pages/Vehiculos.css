@@ -163,8 +163,11 @@
   justify-content: center;
 }
 
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
+
+  
   .v-grid {
     grid-template-columns: 1fr;
   }
