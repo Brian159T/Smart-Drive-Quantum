@@ -43,9 +43,7 @@ const Navbar: React.FC = () => {
           <NavLink to="/ComoFunciona">Como Funciona</NavLink>
         </li>
 
-        <li onClick={closeAll}>
-          <NavLink to="/Empresa">Empresa</NavLink>
-        </li>
+        
 
         <li onClick={closeAll}>
           <NavLink to="/Vehiculos">Vehiculos</NavLink>
@@ -70,6 +68,7 @@ const Navbar: React.FC = () => {
             <li onClick={closeAll}><Link to="/Alquiler/Trooper">Trooper</Link></li>
             <li onClick={closeAll}><Link to="/Alquiler/MPV">MPV</Link></li>
             <li onClick={closeAll}><Link to="/Alquiler/Mate">Mate</Link></li>
+            <li onClick={closeAll}><Link to="Alquiler/Urban">Urban</Link></li>
           </ul>
         </li>
 

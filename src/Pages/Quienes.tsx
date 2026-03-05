@@ -5,7 +5,7 @@ import './Quienes.css';
 import imgHero1 from '../assets/Portada/Portada Nexus.jpg.jpeg';
 import imgHero2 from '../assets/Portada/Portada web Smart drive.jpg.jpeg';
 import imgHero3 from '../assets/Portada/Portada Trooper.jpg.jpeg';
-import finalquiler from '../assets/Quienes somos/fin del alquiler eterno.png';
+import modena from '../assets/Quienes somos/moneda.webp'
 import modelodiferente from '../assets/Quienes somos/mejora - un modelo diferente.png';
 import imgTienda from '../assets/Quienes somos/tienda.png';
 
@@ -13,6 +13,9 @@ import trooperImgquienes from '../assets/Alquiler/Tomas trooper/portada troopper
 import nexusImgquienes from '../assets/nexus-1.webp'; 
 import imgMateDesktop from '../assets/Fchas tecnicas c/mate.png'; 
 import imgMVPDesktop from '../assets/Fchas tecnicas c/baw.png';
+import Vision from '../assets/Empresa/Visión.png';
+import mision_propuesta from '../assets/Empresa/mision-propuesta.png';
+import Ecosistema from '../assets/Empresa/ecosistema quantum.png';
 
 // Assets Clientes
 import client1 from '../assets/Quienes somos/Cliente3.png';
@@ -31,11 +34,11 @@ const Quienes: React.FC = () => {
   const [currentFeature, setCurrentFeature] = useState(0); // Nuevo estado para el carrusel principal
 
   // Estados para la Calculadora
-  const [pagoDiario, setPagoDiario] = useState<number>(100);
-  const [meses, setMeses] = useState<number>(24);
+  // const [pagoDiario, setPagoDiario] = useState<number>(100);
+  // const [meses, setMeses] = useState<number>(24);
 
-  const totalAlquiler = pagoDiario * 30 * meses;
-  const ahorroEstimado = totalAlquiler * 0.45;
+  // const totalAlquiler = pagoDiario * 30 * meses;
+  // const ahorroEstimado = totalAlquiler * 0.45;
 
   const nextHero = useCallback(() => {
     setCurrentHero((prev) => (prev + 1) % HERO_IMAGES.length);
@@ -131,6 +134,100 @@ const Quienes: React.FC = () => {
         </div>
       </section>
 
+      <section className="clients-section">
+          <h2 className="center-title">CLIENTES SATISFECHOS</h2>
+          <div className="client-carousel">
+            {CLIENT_IMAGES.map((img, index) => (
+              <div key={index} className={`client-slide ${currentClient === index ? 'active' : ''}`}>
+                <div className="client-img-wrapper">
+                  <img src={img} alt={`Cliente Satisfecho ${index + 1}`} />
+                  <div className="client-overlay">
+                    <p className="client-quote">"Gracias a Smart Drive, hoy soy dueño de mi propio futuro."</p>
+                    <span className="client-name">Socio Conductor Certificado</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+            <div className="client-dots">
+              {CLIENT_IMAGES.map((_, i) => (
+                <span key={i} className={`dot ${currentClient === i ? 'active' : ''}`} onClick={() => setCurrentClient(i)} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+         {/* SECCIÓN 1: VISIÓN (Hero Split) */}
+      <section className="section-vision">
+        <div className="vision-image">
+          <img src={Vision} alt="Visión Smart Drive" />
+        </div>
+        <div className="vision-content">
+          <div className="glass-card">
+            <span className="kicker">Hacia el futuro</span>
+            <h2>Visión</h2>
+            <p>
+              Ser la empresa referente en movilidad eléctrica para conductores de aplicaciones en Latinoamérica, 
+              liderando la transición hacia un transporte sostenible, accesible y rentable.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* SECCIÓN 2: MISIÓN Y PROPUESTA (Banner con imagen de fondo) */}
+      <section 
+        className="section-impact" 
+        style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url(${mision_propuesta })` }}
+      >
+        <div className="impact-grid">
+          <div className="impact-item">
+            <h3>Nuestra Misión</h3>
+            <p>
+              Facilitar el acceso a vehículos eléctricos a conductores de plataformas de movilidad y delivery, 
+              mediante soluciones de arrendamiento flexibles con opción a compra, brindando ingresos sostenibles 
+              y promoviendo una movilidad urbana eficiente y ambientalmente responsable.
+            </p>
+          </div>
+          <div className="impact-divider"></div>
+          <div className="impact-item">
+            <h3>Propuesta de Valor</h3>
+            <p>
+              Smart Drive permite a los conductores de aplicaciones acceder a vehículos eléctricos sin inversión inicial elevada, 
+              reduciendo costos operativos y ofreciendo una ruta clara hacia la propiedad del vehículo.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* SECCIÓN 3: ECOSISTEMA */}
+      <section className="section-ecosystem">
+        <div className="ecosystem-container">
+          <div className="ecosystem-text">
+            <span className="kicker">Sinergia Industrial</span>
+            <h2>Ecosistema Quantum-SmartDrive</h2>
+            <p className="highlight-p">
+              La unión de la capacidad industrial y la innovación financiera.
+            </p>
+            <p>
+              Somos la vía más eficiente para que los conductores de aplicaciones móviles accedan y sean dueños de vehículos eléctricos, 
+              eliminando las barreras de entrada tradicionales del mercado automotriz.
+            </p>
+            <div className="eco-stats">
+              <div className="stat">
+                <h4>100%</h4>
+                <span>Eléctrico</span>
+              </div>
+              <div className="stat">
+                <h4>0%</h4>
+                <span>Inversión Inicial</span>
+              </div>
+            </div>
+          </div>
+          <div className="ecosystem-image">
+            <img src={Ecosistema} alt="Auto Quantum" className="floating-img" />
+          </div>
+        </div>
+      </section>
+
       <main className="main-content">
         {/* CARRUSEL DE INFORMACIÓN (MISIÓN, VISIÓN, TIENDA) */}
         <section className="info-carousel-section">
@@ -140,7 +237,7 @@ const Quienes: React.FC = () => {
             <div className={`info-slide ${currentFeature === 0 ? 'active' : ''}`}>
               <section className="feature-grid">
                 <div className="feature-image">
-                  <img src={finalquiler} alt="fin del alquiler" />
+                  <img src={modena} alt="fin del alquiler" />
                 </div>
                 <div className="feature-text">
                   <div className="kicker">Misión 2026</div>
@@ -192,6 +289,9 @@ const Quienes: React.FC = () => {
             </div>
           </div>
 
+
+          
+
           <div className="info-dots">
             {[0, 1, 2].map((i) => (
               <span 
@@ -216,69 +316,103 @@ const Quienes: React.FC = () => {
           </div>
         </section>
 
-        {/* BLOQUE 4: CLIENTES */}
-        <section className="clients-section">
-          <h2 className="center-title">CLIENTES SATISFECHOS</h2>
-          <div className="client-carousel">
-            {CLIENT_IMAGES.map((img, index) => (
-              <div key={index} className={`client-slide ${currentClient === index ? 'active' : ''}`}>
-                <div className="client-img-wrapper">
-                  <img src={img} alt={`Cliente Satisfecho ${index + 1}`} />
-                  <div className="client-overlay">
-                    <p className="client-quote">"Gracias a Smart Drive, hoy soy dueño de mi propio futuro."</p>
-                    <span className="client-name">Socio Conductor Certificado</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-            <div className="client-dots">
-              {CLIENT_IMAGES.map((_, i) => (
-                <span key={i} className={`dot ${currentClient === i ? 'active' : ''}`} onClick={() => setCurrentClient(i)} />
-              ))}
-            </div>
-          </div>
-        </section>
+      
+        <section className="Seccion-calculadora">
+  <h2 className="titulo-calculadora">CALCULADORA DE AHORRO</h2>
+  <p className="descripcion">
+    Compara tu gasto actual con el modelo Smart Drive y descubre el potencial de tu inversión.
+  </p>
 
-        {/* CALCULADORA */}
-        <section className="calculator-section">
-          <div className="calculator-container">
-            <div className="calc-header">
-              <div className="kicker">Simulador Financiero</div>
-              <h2>Calcula tu <span className="text-primary">Independencia</span></h2>
-              <p>Compara el costo de un alquiler tradicional frente a la propiedad con Smart Drive.</p>
-            </div>
-            <div className="calc-body">
-              <div className="calc-inputs">
-                <div className="input-group">
-                  <label>Kilómetros semanales (KM)</label>
-                  <input type="number" value={pagoDiario} onChange={(e) => setPagoDiario(Number(e.target.value))} />
-                  <div className="value-display">{pagoDiario} km.</div>
-                </div>
-                <div className="input-group">
-                  <label>Gasto en gasolina semanal ($)</label>
-                  <input type="number" value={meses} onChange={(e) => setMeses(Number(e.target.value))} />
-                  <div className="value-display">{meses} $</div>
-                </div>
-                <div className="input-group">
-                  <label>Tiempo de contrato (Meses)</label>
-                  <input type="number" value={meses} onChange={(e) => setMeses(Number(e.target.value))} />
-                  <div className="value-display">{meses} meses</div>
-                </div>
-              </div>
-              <div className="calc-results">
-                <div className="result-item">
-                  <span>Gasto en Alquiler Tradicional</span>
-                  <div className="price-total">{totalAlquiler.toLocaleString()} Bs.</div>
-                </div>
-                <div className="result-item highlight">
-                  <span>Ahorro Proyectado Smart Drive</span>
-                  <div className="price-savings">{ahorroEstimado.toLocaleString()} Bs.*</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+  <div className="cuerpo-calculadora">
+    {/* COLUMNA IZQUIERDA: DATOS DE ENTRADA */}
+    <div className="entradas">
+      <div className="input-group">
+        <label className="etiquetas" htmlFor="km-semanales">¿Cuántos Km recorres en una semana promedio?</label>
+        <input className="entrada" type="number" id="km-semanales" placeholder="0" />
+      </div>
 
+      <div className="input-group">
+        <label className="etiquetas" htmlFor="$-semanales">¿Cuánto dinero gastas de gasolina a la semana? ($)</label>
+        <input className="entrada" type="number" id="$-semanales" placeholder="0" />
+      </div>
+
+      <div className="input-group">
+        <label className="etiquetas" htmlFor="gastos-mensuales">Gasto mensual en aceite, frenos y reparaciones ($)</label>
+        <input className="entrada" type="number" id="gastos-mensuales" placeholder="0" />
+      </div>
+
+      <div className="input-group">
+        <label className="etiquetas" htmlFor="pago-semanal">Si alquilas, ¿cuánto pagas semanalmente? ($)</label>
+        <input className="entrada" type="number" id="pago-semanal" placeholder="0" />
+      </div>
+      <button className="btn-ahorro">Calcular</button>
+    </div>
+
+    {/* COLUMNA DERECHA: RESULTADOS Y COMPARATIVA */}
+    <div className="salidas">
+      
+      {/* VEHÍCULO ACTUAL */}
+      <div className="vehiculo-actual-card">
+        <h3 color='red' className='titulo-estado-actual'>ESTADO ACTUAL</h3>
+        <div className="resultado-item">
+          <span className="res-label">Costo operativo semanal:</span>
+          <span className="res-valor primary-text">$ 0.00</span>
+        </div>
+        <div className="resultado-item">
+          <span className="res-label">Costo por KM:</span>
+          <span className="res-valor">$ 0.00</span>
+        </div>
+
+        
+      </div>
+
+      {/* NUEVO SMART DRIVE */}
+      <div className="nuevo-sd-card">
+        <h3 className='titulo-estado-actual'>CON SMART DRIVE</h3>
+        <div className="resultado-grid">
+          <div className="resultado-item">
+            <span className="res-label">Cuota fija (Seguro + Mant.):</span>
+            <span className="res-valor">$ 0.00</span>
+          </div>
+          <div className="resultado-item">
+            <span className="res-label">Carga eléctrica:</span>
+            <span className="res-valor">$ 0.00</span>
+          </div>
+          <div className="resultado-item">
+            <span className="res-label">Mantenimiento y seguro:</span>
+            <span className="res-valor">Incluido</span>
+          </div>
+          <div className="resultado-item">
+            <span className="res-label">Costo por Km:</span>
+            <span className="res-valor highlight-text">$ 0.00</span>
+          </div>
+        </div>
+      </div>
+
+      {/* VISUALIZADOR DE AHORRO FINAL */}
+      <div className="visualizador">
+        <p className="congrats-text">¡Felicidades! Al pasarte a Smart Drive tu bolsillo respira</p>
+        <div className="ahorro-container">
+          <div className="ahorro-block">
+            <span className="ahorro-label">AHORRO SEMANAL</span>
+            <span className="ahorro-monto">$ 0.00</span>
+          </div>
+          <div className="ahorro-block">
+            <span className="ahorro-label">AHORRO MENSUAL</span>
+            <span className="ahorro-monto">$ 0.00</span>
+          </div>
+          <div className="ahorro-block total">
+            <span className="ahorro-label">AHORRO ANUAL</span>
+            <span className="ahorro-monto">$ 0.00</span>
+          </div>
+
+          
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
         {/* BLOQUE 5: REGISTRO */}
         <section className="contact-block">
           <div className="contact-card2">
@@ -293,6 +427,9 @@ const Quienes: React.FC = () => {
             </div>
           </div>
         </section>
+
+
+       
       </main>
 
       <footer className="site-footer">
