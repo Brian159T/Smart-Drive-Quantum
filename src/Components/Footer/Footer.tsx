@@ -1,7 +1,7 @@
 import { FaInstagram, FaFacebookSquare, FaWhatsapp } from "react-icons/fa";
 import { MdOutlineEmail, MdOutlinePhone, MdOutlineLocationOn } from "react-icons/md";
 import logo_smart from '../../assets/Logos/LOGO SMART DRIVE.png';
-import './footer.css';
+import './Footer.css';
 
 const Footer = () => {
   return (
