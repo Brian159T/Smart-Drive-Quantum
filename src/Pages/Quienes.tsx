@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import Footer from '../Components/Footer/Footer'
 import './Quienes.css';
 
 // Assets Principales
@@ -28,17 +29,60 @@ import { FaCar } from "react-icons/fa";
 const HERO_IMAGES = [imgHero1, imgHero2, imgHero3];
 const CLIENT_IMAGES = [client1, client2, client3];
 
+// Cuotas fijas por modelo
+const MODELOS: { label: string; cf: number }[] = [
+  { label: 'Trooper', cf: 130 },
+  { label: 'Urban',   cf: 203 },
+  { label: 'Nexus',   cf: 302 },
+  { label: 'Mate',    cf: 150 },
+  { label: 'MPV',     cf: 340 },
+];
+
 const Quienes: React.FC = () => {
   const [currentHero, setCurrentHero] = useState(0);
   const [currentClient, setCurrentClient] = useState(0);
-  const [currentFeature, setCurrentFeature] = useState(0); // Nuevo estado para el carrusel principal
+  const [currentFeature, setCurrentFeature] = useState(0);
 
-  // Estados para la Calculadora
-  // const [pagoDiario, setPagoDiario] = useState<number>(100);
-  // const [meses, setMeses] = useState<number>(24);
+  // --- ENTRADAS DE LA CALCULADORA ---
+  const [kmSemanales, setKmSemanales] = useState<number>(0);
+  const [D, setD] = useState<number>(0);       // Gasto gasolina semanal
+  const [PM, setPM] = useState<number>(0);     // Mantenimiento mensual
+  const [PS, setPS] = useState<number>(0);     // Pago semanal de alquiler
+  const [modeloSeleccionado, setModeloSeleccionado] = useState<string>('Trooper');
 
-  // const totalAlquiler = pagoDiario * 30 * meses;
-  // const ahorroEstimado = totalAlquiler * 0.45;
+  // CF dinámico según modelo seleccionado
+  const CF = MODELOS.find((m) => m.label === modeloSeleccionado)?.cf ?? 130;
+
+  // --- RESULTADOS DE LA CALCULADORA ---
+  const [CO, setCO] = useState<number>(0);
+  const [COK, setCOK] = useState<number>(0);
+  const [CE, setCE] = useState<number>(0);
+  const [COKE, setCOKE] = useState<number>(0);
+  const [AS, setAS] = useState<number>(0);
+  const [AM, setAM] = useState<number>(0);
+  const [AN, setAN] = useState<number>(0);
+  const [calculado, setCalculado] = useState<boolean>(false);
+
+  function calcular() {
+    if (kmSemanales <= 0) return;
+
+    const costoOperativoSemanal = D + (PM / 4) + PS;
+    const costoPorKm = costoOperativoSemanal / kmSemanales;
+    const cargaElectrica = D * 0.12;
+    const costoKmElectrico = (CF + cargaElectrica) / kmSemanales;
+    const ahorroSemanal = costoOperativoSemanal - (CF + cargaElectrica);
+    const ahorroMensual = ahorroSemanal * 4;
+    const ahorroAnual = ahorroMensual * 12;
+
+    setCO(costoOperativoSemanal);
+    setCOK(costoPorKm);
+    setCE(cargaElectrica);
+    setCOKE(costoKmElectrico);
+    setAS(ahorroSemanal);
+    setAM(ahorroMensual);
+    setAN(ahorroAnual);
+    setCalculado(true);
+  }
 
   const nextHero = useCallback(() => {
     setCurrentHero((prev) => (prev + 1) % HERO_IMAGES.length);
@@ -55,7 +99,7 @@ const Quienes: React.FC = () => {
   useEffect(() => {
     const heroInterval = setInterval(nextHero, 5000);
     const clientInterval = setInterval(nextClient, 4000);
-    const featureInterval = setInterval(nextFeature, 7000); // Cambio cada 7 segundos
+    const featureInterval = setInterval(nextFeature, 7000);
     return () => {
       clearInterval(heroInterval);
       clearInterval(clientInterval);
@@ -66,27 +110,6 @@ const Quienes: React.FC = () => {
   return (
     <div className="quienes-page">
       {/* BLOQUE 0: HERO */}
-      <section className="hero-carousel">
-        {HERO_IMAGES.map((img, index) => (
-          <div
-            key={index}
-            className={`slide ${currentHero === index ? 'active' : ''}`}
-            style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${img})` }}
-          >
-            <div className="slide-content">
-              <span className="light-text">Smart Drive Mobility</span>
-              <h1 className="hero-title">Liderando el Cambio</h1>
-            </div>
-          </div>
-        ))}
-        <div className="indicators">
-          {HERO_IMAGES.map((_, i) => (
-            <div key={i} className={`indicator-bar ${currentHero === i ? 'active' : ''}`} />
-          ))}
-        </div>
-      </section>
-
-
       <section className="hero-carousel">
         {HERO_IMAGES.map((img, index) => (
           <div
@@ -135,28 +158,28 @@ const Quienes: React.FC = () => {
       </section>
 
       <section className="clients-section">
-          <h2 className="center-title">CLIENTES SATISFECHOS</h2>
-          <div className="client-carousel">
-            {CLIENT_IMAGES.map((img, index) => (
-              <div key={index} className={`client-slide ${currentClient === index ? 'active' : ''}`}>
-                <div className="client-img-wrapper">
-                  <img src={img} alt={`Cliente Satisfecho ${index + 1}`} />
-                  <div className="client-overlay">
-                    <p className="client-quote">"Gracias a Smart Drive, hoy soy dueño de mi propio futuro."</p>
-                    <span className="client-name">Socio Conductor Certificado</span>
-                  </div>
+        <h2 className="center-title">CLIENTES SATISFECHOS</h2>
+        <div className="client-carousel">
+          {CLIENT_IMAGES.map((img, index) => (
+            <div key={index} className={`client-slide ${currentClient === index ? 'active' : ''}`}>
+              <div className="client-img-wrapper">
+                <img src={img} alt={`Cliente Satisfecho ${index + 1}`} />
+                <div className="client-overlay">
+                  <p className="client-quote">"Gracias a Smart Drive, hoy soy dueño de mi propio futuro."</p>
+                  <span className="client-name">Socio Conductor Certificado</span>
                 </div>
               </div>
-            ))}
-            <div className="client-dots">
-              {CLIENT_IMAGES.map((_, i) => (
-                <span key={i} className={`dot ${currentClient === i ? 'active' : ''}`} onClick={() => setCurrentClient(i)} />
-              ))}
             </div>
+          ))}
+          <div className="client-dots">
+            {CLIENT_IMAGES.map((_, i) => (
+              <span key={i} className={`dot ${currentClient === i ? 'active' : ''}`} onClick={() => setCurrentClient(i)} />
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-         {/* SECCIÓN 1: VISIÓN (Hero Split) */}
+      {/* SECCIÓN 1: VISIÓN */}
       <section className="section-vision">
         <div className="vision-image">
           <img src={Vision} alt="Visión Smart Drive" />
@@ -173,10 +196,10 @@ const Quienes: React.FC = () => {
         </div>
       </section>
 
-      {/* SECCIÓN 2: MISIÓN Y PROPUESTA (Banner con imagen de fondo) */}
+      {/* SECCIÓN 2: MISIÓN Y PROPUESTA */}
       <section 
         className="section-impact" 
-        style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url(${mision_propuesta })` }}
+        style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url(${mision_propuesta})` }}
       >
         <div className="impact-grid">
           <div className="impact-item">
@@ -229,11 +252,10 @@ const Quienes: React.FC = () => {
       </section>
 
       <main className="main-content">
-        {/* CARRUSEL DE INFORMACIÓN (MISIÓN, VISIÓN, TIENDA) */}
+        {/* CARRUSEL DE INFORMACIÓN */}
         <section className="info-carousel-section">
           <div className="info-carousel-wrapper">
             
-            {/* Slide 1: MISIÓN */}
             <div className={`info-slide ${currentFeature === 0 ? 'active' : ''}`}>
               <section className="feature-grid">
                 <div className="feature-image">
@@ -254,7 +276,6 @@ const Quienes: React.FC = () => {
               </section>
             </div>
 
-            {/* Slide 2: VISIÓN */}
             <div className={`info-slide ${currentFeature === 1 ? 'active' : ''}`}>
               <section className="feature-grid reverse">
                 <div className="feature-image">
@@ -271,7 +292,6 @@ const Quienes: React.FC = () => {
               </section>
             </div>
 
-            {/* Slide 3: LA TIENDA */}
             <div className={`info-slide ${currentFeature === 2 ? 'active' : ''}`}>
               <section className="feature-grid">
                 <div className="feature-image">
@@ -289,9 +309,6 @@ const Quienes: React.FC = () => {
             </div>
           </div>
 
-
-          
-
           <div className="info-dots">
             {[0, 1, 2].map((i) => (
               <span 
@@ -303,7 +320,7 @@ const Quienes: React.FC = () => {
           </div>
         </section>
 
-        {/* BLOQUE CONTACTO 1 */}
+        {/* BLOQUE CONTACTO */}
         <section className="contact-block symmetric-section">
           <div className="contact-card">
             <div className="contact-content">
@@ -316,104 +333,159 @@ const Quienes: React.FC = () => {
           </div>
         </section>
 
-      
+        {/* CALCULADORA DE AHORRO */}
         <section className="Seccion-calculadora">
-  <h2 className="titulo-calculadora">CALCULADORA DE AHORRO</h2>
-  <p className="descripcion">
-    Compara tu gasto actual con el modelo Smart Drive y descubre el potencial de tu inversión.
-  </p>
+          <h2 className="titulo-calculadora">CALCULADORA DE AHORRO</h2>
+          <p className="descripcion">
+            Compara tu gasto actual con el modelo Smart Drive y descubre el potencial de tu inversión.
+          </p>
 
-  <div className="cuerpo-calculadora">
-    {/* COLUMNA IZQUIERDA: DATOS DE ENTRADA */}
-    <div className="entradas">
-      <div className="input-group">
-        <label className="etiquetas" htmlFor="km-semanales">¿Cuántos Km recorres en una semana promedio?</label>
-        <input className="entrada" type="number" id="km-semanales" placeholder="0" />
-      </div>
+          <div className="cuerpo-calculadora">
+            {/* COLUMNA IZQUIERDA: DATOS DE ENTRADA */}
+            <div className="entradas">
 
-      <div className="input-group">
-        <label className="etiquetas" htmlFor="$-semanales">¿Cuánto dinero gastas de gasolina a la semana? ($)</label>
-        <input className="entrada" type="number" id="$-semanales" placeholder="0" />
-      </div>
+              {/* COMBOBOX DE MODELO */}
+              <div className="input-group">
+                <label className="etiquetas" htmlFor="modelo-vehiculo">Selecciona el modelo Smart Drive</label>
+                <select
+                  className="entrada"
+                  id="modelo-vehiculo"
+                  value={modeloSeleccionado}
+                  onChange={(e) => {
+                    setModeloSeleccionado(e.target.value);
+                    setCalculado(false); // Resetea resultados al cambiar modelo
+                  }}
+                >
+                  {MODELOS.map((m) => (
+                    <option key={m.label} value={m.label}>
+                      {m.label} — Cuota fija: ${m.cf}/sem
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-      <div className="input-group">
-        <label className="etiquetas" htmlFor="gastos-mensuales">Gasto mensual en aceite, frenos y reparaciones ($)</label>
-        <input className="entrada" type="number" id="gastos-mensuales" placeholder="0" />
-      </div>
+              <div className="input-group">
+                <label className="etiquetas" htmlFor="km-semanales">¿Cuántos Km recorres en una semana promedio?</label>
+                <input
+                  className="entrada"
+                  type="number"
+                  id="km-semanales"
+                  placeholder="0"
+                  value={kmSemanales || ''}
+                  onChange={(e) => setKmSemanales(Number(e.target.value))}
+                />
+              </div>
 
-      <div className="input-group">
-        <label className="etiquetas" htmlFor="pago-semanal">Si alquilas, ¿cuánto pagas semanalmente? ($)</label>
-        <input className="entrada" type="number" id="pago-semanal" placeholder="0" />
-      </div>
-      <button className="btn-ahorro">Calcular</button>
-    </div>
+              <div className="input-group">
+                <label className="etiquetas" htmlFor="gasto-gasolina">¿Cuánto dinero gastas de gasolina a la semana? ($)</label>
+                <input
+                  className="entrada"
+                  type="number"
+                  id="gasto-gasolina"
+                  placeholder="0"
+                  value={D || ''}
+                  onChange={(e) => setD(Number(e.target.value))}
+                />
+              </div>
 
-    {/* COLUMNA DERECHA: RESULTADOS Y COMPARATIVA */}
-    <div className="salidas">
-      
-      {/* VEHÍCULO ACTUAL */}
-      <div className="vehiculo-actual-card">
-        <h3 color='red' className='titulo-estado-actual'>ESTADO ACTUAL</h3>
-        <div className="resultado-item">
-          <span className="res-label">Costo operativo semanal:</span>
-          <span className="res-valor primary-text">$ 0.00</span>
-        </div>
-        <div className="resultado-item">
-          <span className="res-label">Costo por KM:</span>
-          <span className="res-valor">$ 0.00</span>
-        </div>
+              <div className="input-group">
+                <label className="etiquetas" htmlFor="gastos-mensuales">Gasto mensual en aceite, frenos y reparaciones ($)</label>
+                <input
+                  className="entrada"
+                  type="number"
+                  id="gastos-mensuales"
+                  placeholder="0"
+                  value={PM || ''}
+                  onChange={(e) => setPM(Number(e.target.value))}
+                />
+              </div>
 
-        
-      </div>
+              <div className="input-group">
+                <label className="etiquetas" htmlFor="pago-semanal">Si alquilas, ¿cuánto pagas semanalmente? ($)</label>
+                <input
+                  className="entrada"
+                  type="number"
+                  id="pago-semanal"
+                  placeholder="0"
+                  value={PS || ''}
+                  onChange={(e) => setPS(Number(e.target.value))}
+                />
+              </div>
 
-      {/* NUEVO SMART DRIVE */}
-      <div className="nuevo-sd-card">
-        <h3 className='titulo-estado-actual'>CON SMART DRIVE</h3>
-        <div className="resultado-grid">
-          <div className="resultado-item">
-            <span className="res-label">Cuota fija (Seguro + Mant.):</span>
-            <span className="res-valor">$ 0.00</span>
+              <button className="btn-ahorro" onClick={calcular}>
+                Calcular
+              </button>
+            </div>
+
+            {/* COLUMNA DERECHA: RESULTADOS */}
+            <div className="salidas">
+
+              {/* VEHÍCULO ACTUAL */}
+              <div className="vehiculo-actual-card">
+                <h3 className="titulo-estado-actual">ESTADO ACTUAL</h3>
+                <div className="resultado-item">
+                  <span className="res-label">Costo operativo semanal:</span>
+                  <span className="res-valor primary-text">$ {CO.toFixed(2)}</span>
+                </div>
+                <div className="resultado-item">
+                  <span className="res-label">Costo por KM:</span>
+                  <span className="res-valor">$ {COK.toFixed(2)}</span>
+                </div>
+              </div>
+
+              {/* CON SMART DRIVE */}
+              <div className="nuevo-sd-card">
+                <h3 className="titulo-estado-actual">CON SMART DRIVE — {modeloSeleccionado}</h3>
+                <div className="resultado-grid">
+                  <div className="resultado-item">
+                    <span className="res-label">Cuota fija (Seguro + Mant.):</span>
+                    <span className="res-valor">$ {CF.toFixed(2)}</span>
+                  </div>
+                  <div className="resultado-item">
+                    <span className="res-label">Carga eléctrica semanal:</span>
+                    <span className="res-valor">$ {CE.toFixed(2)}</span>
+                  </div>
+                  <div className="resultado-item">
+                    <span className="res-label">Mantenimiento y seguro:</span>
+                    <span className="res-valor">Incluido</span>
+                  </div>
+                  <div className="resultado-item">
+                    <span className="res-label">Costo por Km:</span>
+                    <span className="res-valor highlight-text">$ {COKE.toFixed(2)}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* VISUALIZADOR DE AHORRO — solo visible tras calcular */}
+              {calculado && (
+                <div className="visualizador">
+                  <p className="congrats-text">
+                    {AS >= 0
+                      ? '¡Felicidades! Al pasarte a Smart Drive tu bolsillo respira'
+                      : 'Con Smart Drive optimizas tu movilidad y cuidas el medio ambiente'}
+                  </p>
+                  <div className="ahorro-container">
+                    <div className="ahorro-block">
+                      <span className="ahorro-label">AHORRO SEMANAL</span>
+                      <span className="ahorro-monto">$ {AS.toFixed(2)}</span>
+                    </div>
+                    <div className="ahorro-block">
+                      <span className="ahorro-label">AHORRO MENSUAL</span>
+                      <span className="ahorro-monto">$ {AM.toFixed(2)}</span>
+                    </div>
+                    <div className="ahorro-block total">
+                      <span className="ahorro-label">AHORRO ANUAL</span>
+                      <span className="ahorro-monto">$ {AN.toFixed(2)}</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+            </div>
           </div>
-          <div className="resultado-item">
-            <span className="res-label">Carga eléctrica:</span>
-            <span className="res-valor">$ 0.00</span>
-          </div>
-          <div className="resultado-item">
-            <span className="res-label">Mantenimiento y seguro:</span>
-            <span className="res-valor">Incluido</span>
-          </div>
-          <div className="resultado-item">
-            <span className="res-label">Costo por Km:</span>
-            <span className="res-valor highlight-text">$ 0.00</span>
-          </div>
-        </div>
-      </div>
+        </section>
 
-      {/* VISUALIZADOR DE AHORRO FINAL */}
-      <div className="visualizador">
-        <p className="congrats-text">¡Felicidades! Al pasarte a Smart Drive tu bolsillo respira</p>
-        <div className="ahorro-container">
-          <div className="ahorro-block">
-            <span className="ahorro-label">AHORRO SEMANAL</span>
-            <span className="ahorro-monto">$ 0.00</span>
-          </div>
-          <div className="ahorro-block">
-            <span className="ahorro-label">AHORRO MENSUAL</span>
-            <span className="ahorro-monto">$ 0.00</span>
-          </div>
-          <div className="ahorro-block total">
-            <span className="ahorro-label">AHORRO ANUAL</span>
-            <span className="ahorro-monto">$ 0.00</span>
-          </div>
-
-          
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-        {/* BLOQUE 5: REGISTRO */}
+        {/* BLOQUE REGISTRO */}
         <section className="contact-block">
           <div className="contact-card2">
             <h2>¿LISTO PARA SER SMART? <br /> REGÍSTRATE AHORA</h2>
@@ -427,37 +499,9 @@ const Quienes: React.FC = () => {
             </div>
           </div>
         </section>
-
-
-       
       </main>
 
-      <footer className="site-footer">
-        <div className="footer-top">
-          <div className="footer-info">
-            <h3>SMART DRIVE</h3>
-            <p>Transformando la logística urbana mediante tecnología eléctrica y propiedad compartida.</p>
-          </div>
-          <div className="footer-nav">
-            <h4>Navegación</h4>
-            <ul>
-              <li><a href="#inicio">Inicio</a></li>
-              <li><a href="#vehiculos">Vehículos</a></li>
-              <li><a href="#planes">Planes</a></li>
-              <li><a href="#contacto">Contacto</a></li>
-            </ul>
-          </div>
-          <div className="footer-contact">
-            <h4>Contacto</h4>
-            <p>info@smartdrive.com</p>
-            <p>+591 70000000</p>
-            <p>Santa Cruz, Bolivia</p>
-          </div>
-        </div>
-        <div className="footer-bottom">
-          <p>© 2026 Smart Drive. Todos los derechos reservados.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Vehiculos.css';
+import Footer from '../Components/Footer/Footer';
 
 import imgMateDesktop from '../assets/Fchas tecnicas c/mate.png';
 import imgMVPDesktop from '../assets/Fchas tecnicas c/baw.png';
@@ -135,6 +136,8 @@ const Vehiculos: React.FC = () => {
           </div>
         </div>
       )}
+
+      <Footer />
 
     </div>
   );

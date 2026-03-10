@@ -2,6 +2,7 @@ import React from 'react';
 import './Alquilermpv.css';
 import mpvImg from '../assets/MPV.png';
 import { FaWhatsapp } from "react-icons/fa";
+import Footer from '../Components/Footer/Footer'
 
 const Alquilermpv: React.FC = () => {
   return (
@@ -66,33 +67,10 @@ const Alquilermpv: React.FC = () => {
 
         </div>
       </section>
+      <Footer />
 
-      {/* FOOTER PROFESIONAL UNIFICADO */}
-      <footer className="site-footer">
-        <div className="footer-top">
-          <div className="footer-info">
-            <h3>SMART DRIVE</h3>
-            <p>Liderando la transición hacia la movilidad eléctrica empresarial y familiar.</p>
-          </div>
-          <div className="footer-nav">
-            <h4>Navegación</h4>
-            <ul>
-              <li><a href="/">Inicio</a></li>
-              <li><a href="/Vehiculos">Vehículos</a></li>
-              <li><a href="/Alquiler">Alquiler</a></li>
-              <li><a href="/Contactos">Contacto</a></li>
-            </ul>
-          </div>
-          <div className="footer-contact">
-            <h4>Contacto</h4>
-            <p>info@smartdrive.com</p>
-            <p>Santa Cruz, Bolivia</p>
-          </div>
-        </div>
-        <div className="footer-bottom">
-          <p>© 2026 Smart Drive. Todos los derechos reservados.</p>
-        </div>
-      </footer>
+
+      
     </div>
   );
 };

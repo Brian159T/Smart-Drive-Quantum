@@ -1,7 +1,7 @@
 import React from 'react';
 import './Contactos.css';
-import { FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
-
+import { FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaInstagram, FaFacebook } from "react-icons/fa";
+import Footer from '../Components/Footer/Footer'
 const Contactos: React.FC = () => {
   return (
     <div className="contactos-view">
@@ -27,8 +27,8 @@ const Contactos: React.FC = () => {
               <div className="contactos-item">
                 <div className="icon-box"><FaMapMarkerAlt /></div>
                 <div>
-                  <h4>Oficina Principal</h4>
-                  <p>Av. América Oeste #123, Cochabamba, Bolivia</p>
+                  <h4>Direccion</h4>
+                  <p>Calle y colonia La Mascota no.316, San Salvador, CP1101</p>
                 </div>
               </div>
 
@@ -36,7 +36,7 @@ const Contactos: React.FC = () => {
                 <div className="icon-box"><FaWhatsapp /></div>
                 <div>
                   <h4>WhatsApp Corporativo</h4>
-                  <p>+591 70000000</p>
+                  <p>+503 6176 6862</p>
                 </div>
               </div>
 
@@ -51,9 +51,9 @@ const Contactos: React.FC = () => {
               <div className="social-connect">
                 <span>Síguenos:</span>
                 <div className="social-icons">
-                  <a href="#"><FaLinkedin /></a>
-                  <a href="#"><FaInstagram /></a>
-                  <a href="#"><FaFacebook /></a>
+                  
+                  <a href="https://www.instagram.com/smartdrive_elsalvador/"><FaInstagram /></a>
+                  <a href="https://www.facebook.com/people/Smart-Drive-El-Salvador/61579925104197/"><FaFacebook /></a>
                 </div>
               </div>
             </div>
@@ -61,18 +61,18 @@ const Contactos: React.FC = () => {
 
           {/* COLUMNA DERECHA: MAPA INTERACTIVO */}
           <div className="contact-map-side">
-            <div className="map-container">
-              <iframe 
-                title="Ubicación Smart Drive"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15227.425983832442!2d-66.1666!3d-17.3895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e37401349f7e4f%3A0x66f64c679a9f4c34!2sCochabamba!5e0!3m2!1ses!2sbo!4v1700000000000!5m2!1ses!2sbo" 
-                width="100%" 
-                height="100%" 
-                style={{ border: 0 }} 
-                allowFullScreen={true} 
-                loading="lazy" 
-              ></iframe>
-            </div>
-          </div>
+  <div className="map-container">
+    <iframe
+      title="Ubicación Smart Drive"
+      src="https://www.google.com/maps?q=Calle+y+colonia+La+Mascota+no.316,+San+Salvador,+CP1101&z=16&output=embed"
+      width="100%"
+      height="100%"
+      style={{ border: 0 }}
+      allowFullScreen
+      loading="lazy"
+    ></iframe>
+  </div>
+</div>
 
         </div>
       </section>
@@ -80,45 +80,22 @@ const Contactos: React.FC = () => {
       {/* SECCIÓN EXTRA: FAQ RÁPIDA (Aumenta el profesionalismo) */}
       <section className="faq-preview">
         <div className="contactos-container">
-          <h2 className="section-title">Preguntas Comunes</h2>
+          <h2 className="section-title">Preguntas Frecuentes</h2>
           <div className="faq-grid">
             <div className="faq-item">
-              <h5>¿Tienen showroom?</h5>
-              <p>Sí, puedes agendar una prueba de manejo de lunes a viernes en nuestra sede central.</p>
+              <h5 className='subtitulo'>¿Solo pueden aplicar Drivers?</h5>
+              <p>No. Aunque muchos de nuestros clientes sean conductores de plataforma, el programa está abierto a 
+                cualquier persona que quiera acceder a un vehículo bajo el modelo Rent to Own.</p>
             </div>
             <div className="faq-item">
-              <h5>¿Hay financiamiento?</h5>
-              <p>Contamos con planes de propiedad compartida adaptados a socios conductores.</p>
+              <h5 className='subtitulo'>¿Que tipo de seguro incluye tu cuota semanal?</h5>
+              <p>Tu cuota incluye seguro contra accidentes y daños al vehículo para que conduzcas con más confianza.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="site-footer">
-        <div className="footer-top">
-          <div className="footer-info">
-            <h3>SMART DRIVE</h3>
-            <p>Transformando la logística urbana mediante tecnología eléctrica.</p>
-          </div>
-          <div className="footer-nav">
-            <h4>Navegación</h4>
-            <ul>
-              <li><a href="#inicio">Inicio</a></li>
-              <li><a href="#vehiculos">Vehículos</a></li>
-              <li><a href="#contacto">Contacto</a></li>
-            </ul>
-          </div>
-          <div className="footer-contact">
-            <h4>Contacto</h4>
-            <p>info@smartdrive.com</p>
-            <p>Cochabamba, Bolivia</p>
-          </div>
-        </div>
-        <div className="footer-bottom">
-          <p>© 2026 Smart Drive. Todos los derechos reservados.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

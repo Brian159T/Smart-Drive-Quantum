@@ -1,5 +1,6 @@
 import React from 'react';
 import './Comofunciona.css';
+import Footer from '../Components/Footer/Footer'
 
 // Assets
 import Postulacion from '../assets/Como funciona/postulación y registro.png';
@@ -67,33 +68,7 @@ const Comofunciona: React.FC = () => {
       {/* CTA INTERMEDIO */}
       
 
-      {/* FOOTER PROFESIONAL UNIFICADO */}
-      <footer className="site-footer">
-        <div className="footer-top">
-          <div className="footer-info">
-            <h3>SMART DRIVE</h3>
-            <p>Transformando la logística urbana mediante tecnología eléctrica y propiedad compartida.</p>
-          </div>
-          <div className="footer-nav">
-            <h4>Navegación</h4>
-            <ul>
-              <li><a href="#inicio">Inicio</a></li>
-              <li><a href="#vehiculos">Vehículos</a></li>
-              <li><a href="#planes">Planes</a></li>
-              <li><a href="#contacto">Contacto</a></li>
-            </ul>
-          </div>
-          <div className="footer-contact">
-            <h4>Contacto</h4>
-            <p>info@smartdrive.com</p>
-            <p>+591 70000000</p>
-            <p>Santa Cruz, Bolivia</p>
-          </div>
-        </div>
-        <div className="footer-bottom">
-          <p>© 2026 Smart Drive. Todos los derechos reservados.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

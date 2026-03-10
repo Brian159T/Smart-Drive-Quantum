@@ -2,6 +2,7 @@ import React from 'react';
 import './Alquilertrooper.css';
 import trooperImg from '../assets/Alquiler/Tomas trooper/portada troopper.png';
 import { FaWhatsapp } from "react-icons/fa";
+import Footer from '../Components/Footer/Footer'
 
 const Alquilertrooper: React.FC = () => {
   return (
@@ -63,33 +64,7 @@ const Alquilertrooper: React.FC = () => {
         </div>
       </section>
 
-      {/* FOOTER PROFESIONAL UNIFICADO */}
-      <footer className="site-footer">
-        <div className="footer-top">
-          <div className="footer-info">
-            <h3>SMART DRIVE</h3>
-            <p>Transformando la logística urbana mediante tecnología eléctrica y propiedad compartida.</p>
-          </div>
-          <div className="footer-nav">
-            <h4>Navegación</h4>
-            <ul>
-              <li><a href="/">Inicio</a></li>
-              <li><a href="/Vehiculos">Vehículos</a></li>
-              <li><a href="/Alquiler">Alquiler</a></li>
-              <li><a href="/Contactos">Contacto</a></li>
-            </ul>
-          </div>
-          <div className="footer-contact">
-            <h4>Contacto</h4>
-            <p>info@smartdrive.com</p>
-            <p>+591 70000000</p>
-            <p>Santa Cruz, Bolivia</p>
-          </div>
-        </div>
-        <div className="footer-bottom">
-          <p>© 2026 Smart Drive. Todos los derechos reservados.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
