@@ -9,14 +9,16 @@ import imgHero3 from '../assets/Portada/Portada Trooper.jpg.jpeg';
 import modena from '../assets/Quienes somos/moneda.webp'
 import modelodiferente from '../assets/Quienes somos/mejora - un modelo diferente.png';
 import imgTienda from '../assets/Quienes somos/tienda.png';
-
+import urban from '../assets/Galeria/Urbanm.png';
 import trooperImgquienes from '../assets/Alquiler/Tomas trooper/portada troopper.png'; 
-import nexusImgquienes from '../assets/nexus-1.webp'; 
-import imgMateDesktop from '../assets/Fchas tecnicas c/mate.png'; 
+
+import NexusG from '../assets/Galeria/DSC_8915-Edit.jpg.jpeg'
 import imgMVPDesktop from '../assets/Fchas tecnicas c/baw.png';
 import Vision from '../assets/Empresa/Visión.png';
 import mision_propuesta from '../assets/Empresa/mision-propuesta.png';
 import Ecosistema from '../assets/Empresa/ecosistema quantum.png';
+import Mate from '../assets/Galeria/mate.png';
+import nuxus2 from '../assets/Galeria/DSC_6390.jpg.jpeg'
 
 // Assets Clientes
 import client1 from '../assets/Quienes somos/Cliente3.png';
@@ -133,14 +135,14 @@ const Quienes: React.FC = () => {
       <section className="fullscreen-grid">
         <div className="grid-item">
           <img src={trooperImgquienes} alt="Trooper" />
-          <div className="overlay"><h2>TROOPER</h2></div>
+          <div className="overlay"><h2 className='titulo_modelo'>TROOPER</h2></div>
         </div>
         <div className="grid-item">
-          <img src={nexusImgquienes} alt="Nexus" />
+          <img src={NexusG } alt="Nexus" />
           <div className="overlay"><h2>NEXUS</h2></div>
         </div>
         <div className="grid-item">
-          <img src={imgMateDesktop} alt="Mate" />
+          <img src={Mate } alt="Mate" />
           <div className="overlay"><h2>MATE</h2></div>
         </div>
         <div className="grid-item">
@@ -148,12 +150,12 @@ const Quienes: React.FC = () => {
           <div className="overlay"><h2>MVP</h2></div>
         </div>
         <div className="grid-item">
-          <img src={imgMVPDesktop} alt="Urban" />
+          <img src={urban} alt="Urban" />
           <div className="overlay"><h2>URBAN</h2></div>
         </div>
         <div className="grid-item">
-          <img src={imgMVPDesktop} alt="Urban 2" />
-          <div className="overlay"><h2>URBAN 2</h2></div>
+          <img src={nuxus2} alt="Nexus" />
+          <div className="overlay"><h2>NEXUS</h2></div>
         </div>
       </section>
 

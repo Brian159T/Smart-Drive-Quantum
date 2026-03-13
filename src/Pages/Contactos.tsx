@@ -77,7 +77,7 @@ const Contactos: React.FC = () => {
         </div>
       </section>
 
-      {/* SECCIÓN EXTRA: FAQ RÁPIDA (Aumenta el profesionalismo) */}
+      
       <section className="faq-preview">
         <div className="contactos-container">
           <h2 className="section-title">Preguntas Frecuentes</h2>
@@ -91,6 +91,27 @@ const Contactos: React.FC = () => {
               <h5 className='subtitulo'>¿Que tipo de seguro incluye tu cuota semanal?</h5>
               <p>Tu cuota incluye seguro contra accidentes y daños al vehículo para que conduzcas con más confianza.</p>
             </div>
+
+            <div className="faq-item">
+              <h5 className='subtitulo'>¿Cuánto tiempo tarda la carga completa?</h5>
+              <p>Entre 6 y 7 horas en autos, y entre 2,5 y 3 horas en motos.</p>
+            </div>
+            <div className="faq-item">
+              <h5 className='subtitulo'>¿Los puntos de carga donde se encuentran?</h5>
+              <p>Alrededor de toda la ciudad </p>
+            </div>
+
+            <div className="faq-item">
+              <h5 className='subtitulo'>¿Se puede instalar punto de carga en domicilio?</h5>
+              <p>Sí, y no tiene ningún costo adicional.</p>
+            </div>
+
+            <div className="faq-item">
+              <h5 className='subtitulo'>¿El cargador viene incluido?</h5>
+              <p>Sí, viene incluido.</p>
+            </div>
+
+            
           </div>
         </div>
       </section>

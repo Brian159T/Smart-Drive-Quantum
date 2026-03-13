@@ -12,6 +12,7 @@ import Alquilertrooper from './Pages/Alquilertrooper';
 import Alquilermate from './Pages/Alquilermate';
 import Alquiler from './Pages/Alquiler';
 import Alquilerurban from './Pages/Alquilerurban';
+import ScrollToTop from './Components/ScrollToTop';
 
 const App = () => {
 
@@ -19,6 +20,7 @@ const App = () => {
     <div className="container">
 
       <Navbar />
+      <ScrollToTop />
 
       <Routes>
         <Route path='/' element={<Quienes />} />

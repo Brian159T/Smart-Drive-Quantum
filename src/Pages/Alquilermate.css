@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
 :root {
   --primary-green: #00ff88;
   --dark-bg: #020c1b;
@@ -177,24 +179,164 @@
 }
 
 
-/* --- FOOTER --- */
-.site-footer {
-  background: var(--dark-deep);
-  padding: 80px 7% 40px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+.carrusel{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:visible; /* ← CAMBIA ESTO */
+    width:100%;
+    min-height:70vh;
+    gap:40px;
+    position:relative;
+    margin-top:80px;
+}
+.imagenes{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    width:100%;
 }
 
-.footer-top {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 50px;
-  max-width: 1200px;
-  margin: 0 auto 50px;
+/* IMAGEN */
+
+.img{
+    box-shadow:0px 10px 40px rgba(0,0,0,0.85);
+    width:90%;
+    max-width:1100px;
+    height:auto;
+    border-radius:15px;
+    object-fit:cover;
+    filter:saturate(175%);
+    transition:opacity 0.6s ease, transform 0.6s ease;
 }
 
-.footer-info h3 { color: var(--primary-green); margin-bottom: 20px; }
-.footer-nav a { color: var(--text-muted); text-decoration: none; display: block; padding: 6px 0; }
-.footer-bottom { text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 30px; color: #444; }
+/* EFECTO */
+
+.img:hover{
+    transform:scale(1.02);
+}
+
+/* BOTONES */
+
+.atras img,
+.adelante img{
+    width:10px;
+    transition:0.3s;
+    filter: brightness(0) invert(1);
+    cursor: pointer;
+}
+
+.atras{
+    left:30px;
+}
+
+.adelante{
+    right:30px;
+}
+
+.atras img,
+.adelante img{
+    width:50px;
+    transition:0.3s;
+}
+
+.atras img:hover,
+.adelante img:hover{
+    transform:scale(1.1);
+}
+
+/* PUNTOS */
+
+.puntos{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    margin-top:20px;
+}
+
+.puntos p{
+    font-size:40px;
+    font-weight:500;
+    color:#555;
+    transition:0.3s;
+}
+
+.puntos .bold{
+    font-weight:700;
+    color:#5E17EB;
+    transform:scale(1.4);
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+/* tablets */
+
+@media (max-width:1024px){
+
+.img{
+    width:95%;
+}
+
+.atras img,
+.adelante img{
+    width:50px;
+}
+
+}
+
+/* celulares */
+
+@media (max-width:768px){
+
+.carrusel{
+    min-height:50vh;
+}
+
+.img{
+    width:100%;
+}
+
+.atras{
+    left:10px;
+}
+
+.adelante{
+    right:10px;
+}
+
+.atras img,
+.adelante img{
+    width:40px;
+}
+
+.puntos p{
+    font-size:30px;
+}
+
+}
+
+/* celulares pequeños */
+
+@media (max-width:480px){
+
+.carrusel{
+    min-height:40vh;
+}
+
+.atras img,
+.adelante img{
+    width:32px;
+}
+
+.puntos p{
+    font-size:24px;
+}
+
+}
+
 
 /* --- RESPONSIVE --- */
 @media (max-width: 1050px) {

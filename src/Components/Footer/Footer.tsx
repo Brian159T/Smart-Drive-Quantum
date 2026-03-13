@@ -7,12 +7,12 @@ const Footer = () => {
   return (
     <footer className="site-footer">
 
-      {/* BANDA SUPERIOR DECORATIVA */}
+      
       <div className="footer-accent-bar" />
 
       <div className="footer-inner">
 
-        {/* ── COLUMNA 1: LOGO + DESCRIPCIÓN ── */}
+        
         <div className="footer-brand">
           <div className="footer-logo-wrap">
             <img src={logo_smart} alt="Smart Drive Logo" className="footer-logo" />
@@ -26,10 +26,10 @@ const Footer = () => {
           </span>
         </div>
 
-        {/* ── DIVISOR ── */}
+        
         <div className="footer-divider-v" />
 
-        {/* ── COLUMNA 2: SÍGUENOS ── */}
+        
         <div className="footer-social">
           <h4 className="footer-col-title">Síguenos</h4>
           <ul className="social-list">
@@ -57,10 +57,10 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* ── DIVISOR ── */}
+        
         <div className="footer-divider-v" />
 
-        {/* ── COLUMNA 3: CONTACTO ── */}
+        
         <div className="footer-contact">
           <h4 className="footer-col-title">Contacto</h4>
           <ul className="contact-list">
@@ -81,7 +81,7 @@ const Footer = () => {
 
       </div>
 
-      {/* ── FOOTER BOTTOM ── */}
+      
       <div className="footer-bottom">
         <span className="footer-copy">© 2026 Smart Drive. Todos los derechos reservados.</span>
         <span className="footer-bottom-tag">EV · 100% Eléctrico · Movilidad Sostenible</span>
