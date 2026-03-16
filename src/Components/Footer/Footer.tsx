@@ -1,5 +1,5 @@
 import { FaInstagram, FaFacebookSquare, FaWhatsapp } from "react-icons/fa";
-import { MdOutlineEmail, MdOutlinePhone, MdOutlineLocationOn } from "react-icons/md";
+import { MdOutlineEmail, MdOutlineLocationOn } from "react-icons/md";
 import logo_smart from '../../assets/Logos/LOGO SMART DRIVE.png';
 import './Footer.css';
 
@@ -47,13 +47,7 @@ const Footer = () => {
                 <span className="social-arrow">↗</span>
               </a>
             </li>
-            <li>
-              <a href="https://wa.me/50361766862" target="_blank" rel="noopener noreferrer" className="social-link whatsapp">
-                <span className="social-icon-wrap"><FaWhatsapp /></span>
-                <span>WhatsApp</span>
-                <span className="social-arrow">↗</span>
-              </a>
-            </li>
+            
           </ul>
         </div>
 
@@ -69,8 +63,11 @@ const Footer = () => {
               <span>social@tusmartdrive.com</span>
             </li>
             <li>
-              <MdOutlinePhone className="contact-icon" />
-              <span>+503 6176 6862</span>
+              <a href="https://wa.me/50361766862" target="_blank" rel="noopener noreferrer" className="social-link whatsapp">
+                <span className="social-icon-wrap"><FaWhatsapp /></span>
+                <span>WhatsApp</span>
+                <span className="social-arrow">↗</span>
+              </a>
             </li>
             <li>
               <MdOutlineLocationOn className="contact-icon" />

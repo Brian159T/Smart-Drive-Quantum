@@ -40,7 +40,7 @@ const Navbar: React.FC = () => {
         </li>
 
         <li onClick={closeAll}>
-          <NavLink to="/ComoFunciona">Como Funciona</NavLink>
+          <NavLink to="/ComoFunciona">Cómo ser parte de S.D</NavLink>
         </li>
 
         

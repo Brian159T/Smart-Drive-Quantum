@@ -2,35 +2,38 @@ import React, { useState } from 'react';
 import './Vehiculos.css';
 import Footer from '../Components/Footer/Footer';
 
-import imgMateDesktop from '../assets/Fchas tecnicas c/mate.png';
-import imgMVPDesktop from '../assets/Fchas tecnicas c/baw.png';
-import imgNexusDesktop from '../assets/Fchas tecnicas c/nexus.png';
+import imgMateDesktop   from '../assets/Fchas tecnicas c/mate.png';
+import imgMVPDesktop    from '../assets/Fchas tecnicas c/baw.png';
+import imgNexusDesktop  from '../assets/Fchas tecnicas c/nexus.png';
 import imgTrooperDesktop from '../assets/Fchas tecnicas c/Trooper.png';
-import imgUrbanDesktop from '../assets/Fchas tecnicas c/Urban.png';
+import imgUrbanDesktop  from '../assets/Fchas tecnicas c/Urban.png';
 
-import imgMateMobile from '../assets/Fichas tecnicas/Mate.png';
-import imgMVPMobile from '../assets/Fichas tecnicas/Baw.png';
-import imgNexusMobile from '../assets/Fichas tecnicas/Nexus.png';
+import imgMateMobile    from '../assets/Fichas tecnicas/Mate.png';
+import imgMVPMobile     from '../assets/Fichas tecnicas/Baw.png';
+import imgNexusMobile   from '../assets/Fichas tecnicas/Nexus.png';
 import imgTrooperMobile from '../assets/Fichas tecnicas/Trooper.png';
-import imgUrbanMobile from '../assets/Fichas tecnicas/Urban.png';
+import imgUrbanMobile   from '../assets/Fichas tecnicas/Urban.png';
 
 const VEHICULOS_DATA = [
   {
-    id: 2,
+    id: 1,
+    label: '01',
     name: 'Quantum Trooper',
     category: 'Motocicleta',
     imageDesktop: imgTrooperDesktop,
     imageMobile: imgTrooperMobile,
   },
   {
-    id: 5,
+    id: 2,
+    label: '02',
     name: 'Quantum Urban',
     category: 'Solución Urbana',
     imageDesktop: imgUrbanDesktop,
     imageMobile: imgUrbanMobile,
   },
   {
-    id: 1,
+    id: 3,
+    label: '03',
     name: 'Quantum Nexus Plus',
     category: 'Automóvil',
     imageDesktop: imgNexusDesktop,
@@ -38,13 +41,15 @@ const VEHICULOS_DATA = [
   },
   {
     id: 4,
+    label: '04',
     name: 'Quantum Mate',
     category: 'Solución Urbana',
     imageDesktop: imgMateDesktop,
     imageMobile: imgMateMobile,
   },
   {
-    id: 3,
+    id: 5,
+    label: '05',
     name: 'Quantum MPV EV',
     category: 'Van Industrial',
     imageDesktop: imgMVPDesktop,
@@ -73,7 +78,8 @@ const Vehiculos: React.FC = () => {
         <div className="v-container">
           <span className="v-kicker">Nuestra Flota Eléctrica</span>
           <h1>
-            Movilidad de <span className="v-highlight">Nueva Generación</span>
+            Movilidad de{' '}
+            <span className="v-highlight">Nueva Generación</span>
           </h1>
         </div>
       </section>
@@ -83,20 +89,17 @@ const Vehiculos: React.FC = () => {
           <div className="v-grid">
             {VEHICULOS_DATA.map((v) => (
               <div key={v.id} className="v-card-wrapper">
-                <div className="v-card glass">
+                {/* data-id alimenta el número decorativo de ::after */}
+                <div className="v-card" data-id={v.label}>
 
                   <div className="v-card-header">
-                    <span className="v-tag">{v.category}</span>
                     <h3>{v.name}</h3>
+                    <span className="v-tag">{v.category}</span>
                   </div>
 
                   <div className="v-image-container">
-
                     <picture>
-                      <source
-                        media="(max-width: 768px)"
-                        srcSet={v.imageMobile}
-                      />
+                      <source media="(max-width: 768px)" srcSet={v.imageMobile} />
                       <img
                         src={v.imageDesktop}
                         alt={v.name}
@@ -113,7 +116,6 @@ const Vehiculos: React.FC = () => {
                         Ver Ficha Completa
                       </button>
                     </div>
-
                   </div>
 
                 </div>
@@ -138,7 +140,6 @@ const Vehiculos: React.FC = () => {
       )}
 
       <Footer />
-
     </div>
   );
 };

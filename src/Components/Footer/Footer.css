@@ -338,3 +338,51 @@
     text-align: center;
   }
 }
+
+.contact-list .social-link {
+  padding: 0;
+  border: none;
+  background: transparent;
+  gap: 0.65rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.contact-list .social-link::before {
+  display: none;
+}
+
+.contact-list .social-link .social-icon-wrap {
+  background: transparent;
+  width: auto;
+  height: auto;
+  font-size: 1rem;
+  color: var(--f-accent);
+}
+
+.contact-list .social-link:hover {
+  border-color: transparent;
+  color: var(--f-white);
+}
+
+.contact-list .social-link .social-arrow {
+  display: none;
+}
+
+/* ── WhatsApp clickable — contorno visible ── */
+.contact-list .social-link.whatsapp {
+  padding: 0.45rem 0.75rem;
+  border: 1px solid rgba(37, 211, 102, 0.35);
+  border-radius: var(--f-radius);
+  width: fit-content;
+  transition: border-color 0.22s ease, background 0.22s ease;
+}
+
+.contact-list .social-link.whatsapp:hover {
+  border-color: #25d366;
+  background: rgba(37, 211, 102, 0.08);
+}
+
+.contact-list .social-link.whatsapp .social-arrow {
+  display: inline;
+}
