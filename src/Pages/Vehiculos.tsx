@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Vehiculos.css';
 import Footer from '../Components/Footer/Footer';
+import { Helmet } from 'react-helmet-async';
 
 import imgMateDesktop   from '../assets/Fchas tecnicas c/mate.png';
 import imgMVPDesktop    from '../assets/Fchas tecnicas c/baw.png';
@@ -72,75 +73,84 @@ const Vehiculos: React.FC = () => {
   };
 
   return (
-    <div className="vehiculos-page">
+    <>
+      <Helmet>
+        <title>Vehículos eléctricos | Smart Drive</title>
+        <meta
+          name="description"
+          content="Descubre la flota de vehículos eléctricos de Smart Drive: autos, motos y soluciones urbanas diseñadas para movilidad eficiente y sostenible."
+        />
+      </Helmet>
 
-      <section className="vehiculos-hero">
-        <div className="v-container">
-          <span className="v-kicker">Nuestra Flota Eléctrica</span>
-          <h1>
-            Movilidad de{' '}
-            <span className="v-highlight">Nueva Generación</span>
-          </h1>
-        </div>
-      </section>
+      <div className="vehiculos-page">
 
-      <section className="vehiculos-grid-section">
-        <div className="v-container">
-          <div className="v-grid">
-            {VEHICULOS_DATA.map((v) => (
-              <div key={v.id} className="v-card-wrapper">
-                {/* data-id alimenta el número decorativo de ::after */}
-                <div className="v-card" data-id={v.label}>
+        <section className="vehiculos-hero">
+          <div className="v-container">
+            <span className="v-kicker">Nuestra Flota Eléctrica</span>
+            <h1>
+              Movilidad de{' '}
+              <span className="v-highlight">Nueva Generación</span>
+            </h1>
+          </div>
+        </section>
 
-                  <div className="v-card-header">
-                    <h3>{v.name}</h3>
-                    <span className="v-tag">{v.category}</span>
-                  </div>
+        <section className="vehiculos-grid-section">
+          <div className="v-container">
+            <div className="v-grid">
+              {VEHICULOS_DATA.map((v) => (
+                <div key={v.id} className="v-card-wrapper">
+                  <div className="v-card" data-id={v.label}>
 
-                  <div className="v-image-container">
-                    <picture>
-                      <source media="(max-width: 768px)" srcSet={v.imageMobile} />
-                      <img
-                        src={v.imageDesktop}
-                        alt={v.name}
-                        className="v-technical-sheet"
-                        loading="lazy"
-                      />
-                    </picture>
-
-                    <div className="v-overlay">
-                      <button
-                        className="v-btn-zoom"
-                        onClick={() => openModal(v.imageDesktop, v.imageMobile)}
-                      >
-                        Ver Ficha Completa
-                      </button>
+                    <div className="v-card-header">
+                      <h3>{v.name}</h3>
+                      <span className="v-tag">{v.category}</span>
                     </div>
+
+                    <div className="v-image-container">
+                      <picture>
+                        <source media="(max-width: 768px)" srcSet={v.imageMobile} />
+                        <img
+                          src={v.imageDesktop}
+                          alt={v.name}
+                          className="v-technical-sheet"
+                          loading="lazy"
+                        />
+                      </picture>
+
+                      <div className="v-overlay">
+                        <button
+                          className="v-btn-zoom"
+                          onClick={() => openModal(v.imageDesktop, v.imageMobile)}
+                        >
+                          Ver Ficha Completa
+                        </button>
+                      </div>
+                    </div>
+
                   </div>
-
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {modalImage && (
-        <div className="v-lightbox-overlay" onClick={closeModal}>
-          <button className="v-close-button" onClick={closeModal}>
-            &times;
-          </button>
-          <div
-            className="v-lightbox-content"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <img src={modalImage} alt="Ficha técnica ampliada" />
+        {modalImage && (
+          <div className="v-lightbox-overlay" onClick={closeModal}>
+            <button className="v-close-button" onClick={closeModal}>
+              &times;
+            </button>
+            <div
+              className="v-lightbox-content"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img src={modalImage} alt="Ficha técnica ampliada" />
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </>
   );
 };
 

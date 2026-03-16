@@ -12,6 +12,7 @@ import atras from '../assets/img/atras.svg';
 
 import { FaWhatsapp } from 'react-icons/fa';
 import Footer from '../Components/Footer/Footer';
+import { Helmet } from 'react-helmet-async';
 
 const Alquilertrooper: React.FC = () => {
   const imagenes = [
@@ -53,101 +54,110 @@ const Alquilertrooper: React.FC = () => {
   };
 
   return (
-    <div className="alquiler-page">
+    <>
+      <Helmet>
+        <title>Alquiler Quantum Trooper | Smart Drive</title>
+        <meta
+          name="description"
+          content="Descubre el programa Rent to Own de Smart Drive para la moto eléctrica Quantum Trooper. Conduce hoy y conviértete en propietario en pocos años."
+        />
+      </Helmet>
 
-      {/* HERO SPLIT */}
-      <section className="hero-split">
-        <div className="hero-visual">
-          <img src={trooperImg} alt="Quantum Trooper" className="vehicle-image" />
-          <div className="image-glow"></div>
-        </div>
+      <div className="alquiler-page">
 
-        <div className="hero-text-side">
-          <span className="badge">Smart Drive Mobility</span>
-          <h1>¡MUÉVETE AL <span className="text-green">FUTURO!</span></h1>
-          <p className="hero-subtitle">
-            Conoce tu futura moto hoy y transforma tu transporte urbano.
-          </p>
-        </div>
-      </section>
+        {/* HERO SPLIT */}
+        <section className="hero-split">
+          <div className="hero-visual">
+            <img src={trooperImg} alt="Quantum Trooper" className="vehicle-image" />
+            <div className="image-glow"></div>
+          </div>
 
-      {/* CONTENIDO */}
-      <section className="main-content-container">
+          <div className="hero-text-side">
+            <span className="badge">Smart Drive Mobility</span>
+            <h1>¡MUÉVETE AL <span className="text-green">FUTURO!</span></h1>
+            <p className="hero-subtitle">
+              Conoce tu futura moto hoy y transforma tu transporte urbano.
+            </p>
+          </div>
+        </section>
 
-        <div className="grid-container">
+        {/* CONTENIDO */}
+        <section className="main-content-container">
 
-          <div className="info-card glass">
-            <h3 className="card-title">
-              PROGRAMA <br /><span className="text-green">RENT TO OWN</span>
-            </h3>
-            <div className="card-body">
-              <p className="highlight-text">
-                Conduce hoy, sé propietario en 2 años y medio.
-              </p>
-              <ul className="details-list">
-                <li><span className="check-icon">⚡</span> <strong>Cuota Semanal:</strong> $ 52</li>
-                <li><span className="check-icon">⚡</span> <strong>Ahorro:</strong> 90% en Combustible</li>
-                <li><span className="check-icon">⚡</span> <strong>Autonomía:</strong> 140 Km</li>
-                <li><span className="check-icon">⚡</span> <strong>Servicios:</strong> Soporte técnico, Seguro y Mantenimiento incluido</li>
-              </ul>
+          <div className="grid-container">
+
+            <div className="info-card glass">
+              <h3 className="card-title">
+                PROGRAMA <br /><span className="text-green">RENT TO OWN</span>
+              </h3>
+              <div className="card-body">
+                <p className="highlight-text">
+                  Conduce hoy, sé propietario en 2 años y medio.
+                </p>
+                <ul className="details-list">
+                  <li><span className="check-icon">⚡</span> <strong>Cuota Semanal:</strong> $ 52</li>
+                  <li><span className="check-icon">⚡</span> <strong>Ahorro:</strong> 90% en Combustible</li>
+                  <li><span className="check-icon">⚡</span> <strong>Autonomía:</strong> 140 Km</li>
+                  <li><span className="check-icon">⚡</span> <strong>Servicios:</strong> Soporte técnico, Seguro y Mantenimiento incluido</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="info-card glass">
+              <h3 className="card-title">
+                REQUISITOS <br /><span className="text-green">PARA MOTOCICLETA</span>
+              </h3>
+              <div className="card-body">
+                <ul className="req-list">
+                  <li><strong>Pago Inicial:</strong> $ 200</li>
+                  <li><strong>Documentación:</strong> Licencia de Conducir vigente,DUI</li>
+                  <li><strong>Legales:</strong> Antecedentes Penales y Hoja de Vida</li>
+                </ul>
+                <a
+                  href="https://wa.me/50361766862"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-contactt"
+                >
+                  Contactanos
+                  <FaWhatsapp size={25} color="#00ff88" />
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          {/* CARRUSEL */}
+          <div className="carrusel">
+            <div className="atras" onClick={anterior}>
+              <img src={atras} alt="atras" />
+            </div>
+            <div className="imagenes">
+              <img
+                className="img"
+                src={imagenes[actual].url}
+                alt="vehiculo"
+                loading="lazy"
+              />
+            </div>
+            <div className="adelante" onClick={siguiente}>
+              <img src={adelante} alt="adelante" />
             </div>
           </div>
 
-          <div className="info-card glass">
-            <h3 className="card-title">
-              REQUISITOS <br /><span className="text-green">PARA MOTOCICLETA</span>
-            </h3>
-            <div className="card-body">
-              <ul className="req-list">
-                <li><strong>Pago Inicial:</strong> $ 200</li>
-                <li><strong>Documentación:</strong> Licencia de Conducir vigente,DUI</li>
-                <li><strong>Legales:</strong> Antecedentes Penales y Hoja de Vida</li>
-                
-              </ul>
-              <a
-                href="https://wa.me/50361766862"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-contactt"
-              >
-                Contactanos
-                <FaWhatsapp size={25} color="#00ff88" />
-              </a>
-            </div>
+          {/* PUNTOS */}
+          <div className="puntos">
+            {imagenes.map((_, i) => (
+              <p key={i} className={i === actual ? 'bold' : ''}>.</p>
+            ))}
           </div>
 
-        </div>
+        </section>
 
-        {/* CARRUSEL */}
-        <div className="carrusel">
-          <div className="atras" onClick={anterior}>
-            <img src={atras} alt="atras" />
-          </div>
-          <div className="imagenes">
-            <img
-              className="img"
-              src={imagenes[actual].url}
-              alt="vehiculo"
-              loading="lazy"
-            />
-          </div>
-          <div className="adelante" onClick={siguiente}>
-            <img src={adelante} alt="adelante" />
-          </div>
-        </div>
+        <Footer />
 
-        {/* PUNTOS */}
-        <div className="puntos">
-          {imagenes.map((_, i) => (
-            <p key={i} className={i === actual ? 'bold' : ''}>.</p>
-          ))}
-        </div>
-
-      </section>
-
-      <Footer />
-
-    </div>
+      </div>
+    </>
   );
 };
 

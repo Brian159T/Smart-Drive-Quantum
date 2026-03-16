@@ -36,11 +36,11 @@ const CLIENT_IMAGES = [client1, client2, client3];
 
 // Cuotas fijas por modelo
 const MODELOS: { label: string; cf: number }[] = [
-  { label: 'Trooper', cf: 130 },
-  { label: 'Urban',   cf: 203 },
-  { label: 'Nexus',   cf: 302 },
-  { label: 'Mate',    cf: 150 },
-  { label: 'MPV',     cf: 340 },
+  { label: 'Trooper', cf: 52 },
+  { label: 'Urban',   cf: 48 },
+  { label: 'Nexus',   cf: 130 },
+  { label: 'Mate',    cf: 177 },
+  { label: 'MPV',     cf: 280 },
 ];
 
 // ─── Seguridad de inputs numéricos ───────────────────────────────────────────
@@ -298,12 +298,9 @@ const Quienes: React.FC = () => {
           </div>
           <div className="impact-divider"></div>
           <div className="impact-item">
-            <h3>Propuesta de Valor</h3>
+            <h3>Propuesta </h3>
             <p>
-              Smart Drive permite a los conductores de aplicaciones acceder a
-              vehículos eléctricos sin inversión inicial elevada, reduciendo
-              costos operativos y ofreciendo una ruta clara hacia la propiedad
-              del vehículo.
+              Convertir el sueño de tener un vehículo eléctrico propio en una realidad económica
             </p>
           </div>
         </div>
@@ -316,23 +313,24 @@ const Quienes: React.FC = () => {
             <span className="kicker">Sinergia Industrial</span>
             <h2>Ecosistema Quantum-SmartDrive</h2>
             <p className="highlight-p">
-              La unión de la capacidad industrial y la innovación financiera.
+              La unión de la movilidad eléctrica y la innovación financiera.
             </p>
-            <p>
-              Somos la vía más eficiente para que los conductores de aplicaciones
-              móviles accedan y sean dueños de vehículos eléctricos, eliminando
-              las barreras de entrada tradicionales del mercado automotriz.
-            </p>
-            <div className="eco-stats">
-              <div className="stat">
-                <h4>100%</h4>
-                <span>Eléctrico</span>
-              </div>
-              <div className="stat">
-                <h4>0%</h4>
-                <span>Inversión Inicial</span>
-              </div>
-            </div>
+            <p className="ecosystem-description">
+  <strong className="ecosystem-subtitle">SMART DRIVE</strong> permite a los conductores de aplicaciones acceder a vehículos eléctricos sin inversión inicial elevada, reduciendo costos operativos y ofreciendo una ruta clara hacia la propiedad del vehículo. Se basa en tres pilares:
+
+  <br /><br />
+
+  <strong className="ecosystem-subtitle">INCLUSIÓN FINANCIERA:</strong> Acceso a activos productivos para personas sin historial crediticio bancario.
+
+  <br /><br />
+
+  <strong className="ecosystem-subtitle">EFICIENCIA ENERGÉTICA:</strong> Reducción del 80% en costos de combustible mediante electromovilidad.
+
+  <br /><br />
+
+  <strong className="ecosystem-subtitle">CAPITALIZACIÓN DEL DRIVER:</strong> Al finalizar el contrato en cualquiera de sus formatos Sedan, Motos o VAN, la propiedad del vehículo se transfiere al conductor.
+</p>
+            
           </div>
           <div className="ecosystem-image">
             <img src={Ecosistema} alt="Auto Quantum" className="floating-img" />
@@ -361,10 +359,9 @@ const Quienes: React.FC = () => {
                   <div className="kicker">Misión 2026</div>
                   <h2>EL FIN DEL ALQUILER ETERNO</h2>
                   <p>
-                    Mientras que la competencia basa su rentabilidad en mantener
-                    al conductor pagando indefinidamente,{' '}
-                    <strong>SMART DRIVE</strong> basa su éxito en convertir al
-                    conductor en dueño.
+                    Mientras que la competencia (rentadoras tradicionales y flotas privadas) basa su rentabilidad en mantener al conductor pagando indefinidamente, SMART DRIVE basa su éxito en convertir al conductor en dueño. Esto elimina la rotación de personal (churn), 
+                    asegura el cuido extremo del activo por parte del driver y crea una barrera de salida casi imposible de romper para la competencia{' '}
+                    
                   </p>
                   <div className="stats-badges">
                     <span>+ Retención</span>
@@ -383,9 +380,9 @@ const Quienes: React.FC = () => {
                   <div className="kicker">Visión de Negocio</div>
                   <h2>UN MODELO DIFERENTE</h2>
                   <p>
-                    No solo ofrecemos movilidad, ofrecemos crecimiento. Nuestro
-                    modelo crea estabilidad financiera, fomenta compromiso y
-                    garantiza sostenibilidad a largo plazo.
+                    SMART DRIVE es una plataforma de movilidad que resuelve la brecha de capital para los trabajadores del sector de servicio de transporte en El Salvador. 
+                    A través de un <strong>modelo </strong>híbrido de Leasing Operativo con Opción a Compra (Rent-to-Own), transformamos un gasto operativo (alquiler) en una inversión patrimonial para el conductor, 
+                    utilizando vehículos 100% eléctricos de alta eficiencia.
                   </p>
                 </div>
               </section>

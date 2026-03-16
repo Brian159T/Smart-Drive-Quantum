@@ -667,8 +667,26 @@
   font-size: 0.8rem;
 }
 
-.ecosystem-text h2 { font-size: 2.8rem; margin-bottom: 20px; }
-.ecosystem-text h2 { font-size: 2.8rem; margin-bottom: 20px; }
+.ecosystem-description{
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #d6d6d6;
+  max-width: 650px;
+  text-align: justify;
+  letter-spacing: 0.3px;
+}
+
+.ecosystem-subtitle{
+  color: #57e1e6;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.ecosystem-text h2 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+}
 
 .highlight-p {
   font-size: 1.3rem;

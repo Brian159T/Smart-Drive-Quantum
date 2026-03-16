@@ -1,6 +1,7 @@
 import React from 'react';
 import './Comofunciona.css';
 import Footer from '../Components/Footer/Footer';
+import { Helmet } from 'react-helmet-async';
 
 // Assets
 import Postulacion from '../assets/Como funciona/postulación y registro.png';
@@ -36,66 +37,76 @@ const STEPS = [
 
 const Comofunciona: React.FC = () => {
   return (
-    <div className="how-page-wrapper">
+    <>
+      <Helmet>
+        <title>Cómo funciona Smart Drive | Rent to Own</title>
+        <meta
+          name="description"
+          content="Descubre cómo funciona el programa Smart Drive Rent to Own para acceder a vehículos eléctricos y convertir tu trabajo en una inversión."
+        />
+      </Helmet>
 
-      {/* HERO */}
-      <header className="how-hero">
-        <div className="how-container">
-          <span className="how-kicker">Tu camino a la propiedad</span>
-          <h1>
-            ¿Cómo ser parte de<br />
-            <span className="how-highlight">Smart Drive?</span>
-          </h1>
-          <p className="how-lead">
-            Un proceso transparente y tecnológico diseñado para potenciar
-            tu crecimiento financiero y profesional.
-          </p>
-        </div>
-      </header>
+      <div className="how-page-wrapper">
 
-      {/* PASOS — TIMELINE */}
-      <section className="how-steps">
-        <div className="how-container" style={{ position: 'relative' }}>
+        {/* HERO */}
+        <header className="how-hero">
+          <div className="how-container">
+            <span className="how-kicker">Tu camino a la propiedad</span>
+            <h1>
+              ¿Cómo ser parte de<br />
+              <span className="how-highlight">Smart Drive?</span>
+            </h1>
+            <p className="how-lead">
+              Un proceso transparente y tecnológico diseñado para potenciar
+              tu crecimiento financiero y profesional.
+            </p>
+          </div>
+        </header>
 
-          {/* línea vertical */}
-          <div className="how-timeline-line" />
+        {/* PASOS — TIMELINE */}
+        <section className="how-steps">
+          <div className="how-container" style={{ position: 'relative' }}>
 
-          {STEPS.map((step, index) => (
-            <div
-              key={step.id}
-              className={`how-step-row ${index % 2 !== 0 ? 'how-reverse' : ''}`}
-            >
-              {/* TEXTO */}
-              <div className="how-step-text">
-                <span className="how-step-num">{step.id}</span>
-                <h2>{step.title}</h2>
-                <p>{step.description}</p>
-                <div className="how-check-list">
-                  <span>✓ Proceso 100% Digital</span>
-                  <span>✓ Soporte 24/7</span>
+            {/* línea vertical */}
+            <div className="how-timeline-line" />
+
+            {STEPS.map((step, index) => (
+              <div
+                key={step.id}
+                className={`how-step-row ${index % 2 !== 0 ? 'how-reverse' : ''}`}
+              >
+                {/* TEXTO */}
+                <div className="how-step-text">
+                  <span className="how-step-num">{step.id}</span>
+                  <h2>{step.title}</h2>
+                  <p>{step.description}</p>
+                  <div className="how-check-list">
+                    <span>✓ Proceso 100% Digital</span>
+                    <span>✓ Soporte 24/7</span>
+                  </div>
+                </div>
+
+                {/* NODO CENTRAL */}
+                <div className="how-step-node">
+                  <div className="how-node-circle" />
+                </div>
+
+                {/* IMAGEN */}
+                <div className="how-step-visual">
+                  <div className="how-img-frame">
+                    <img src={step.image} alt={step.title} loading="lazy" />
+                    <span className="how-img-label">{step.label}</span>
+                  </div>
                 </div>
               </div>
+            ))}
 
-              {/* NODO CENTRAL */}
-              <div className="how-step-node">
-                <div className="how-node-circle" />
-              </div>
+          </div>
+        </section>
 
-              {/* IMAGEN */}
-              <div className="how-step-visual">
-                <div className="how-img-frame">
-                  <img src={step.image} alt={step.title} loading="lazy" />
-                  <span className="how-img-label">{step.label}</span>
-                </div>
-              </div>
-            </div>
-          ))}
-
-        </div>
-      </section>
-
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </>
   );
 };
 
