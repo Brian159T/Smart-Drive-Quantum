@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import './Alquilernexus.css';
+import './Alquilerurban.css';
 
-import im1 from '../assets/Fchas tecnicas c/Urban.png';
-import im2 from '../assets/MPV.png';
-import im3 from '../assets/mate.png';
-import im4 from '../assets/Ficha Tecnica Nexus.png';
+import im1 from '../assets/Detalle/Urban/Urban_delante.jpg';
+import im2 from '../assets/Detalle/Urban/Urban_delivery.png';
+import im3 from '../assets/Detalle/Urban/Urban_trasero.jpg';
+import im4 from '../assets/Detalle/Urban/Urban_luces.jpg';
 import urban from '../assets/Galeria/Urbanm.png';
 
 import adelante from '../assets/img/adelante.svg';

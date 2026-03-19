@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './Alquilermpv.css';
-import mpvImg from '../assets/MPV.png';
+import mpvImg from '../assets/Galeria/MVP.png';
+
+import './Alquilermpv.css';
 
 import im1 from '../assets/Imagenes tipo 2/un modelo diferente.png';
 import im2 from '../assets/MPV.png';

@@ -3,6 +3,7 @@ import './Contactos.css';
 import { FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaInstagram, FaFacebook } from 'react-icons/fa';
 import Footer from '../Components/Footer/Footer';
 import { Helmet } from 'react-helmet-async';
+import { MdOutlineElectricCar } from "react-icons/md";
 
 const FAQS = [
   {
@@ -125,7 +126,7 @@ const Contactos: React.FC = () => {
           <div className="contactos-container">
 
             <div className="faq-header">
-              <span className="faq-kicker">FAQ</span>
+              <span className="faq-kicker"><MdOutlineElectricCar /></span>
               <h2 className="section-title">Todo lo que necesitas saber</h2>
               <p className="faq-subtitle">
                 Resolvemos tus dudas antes de que des el paso hacia la movilidad eléctrica.

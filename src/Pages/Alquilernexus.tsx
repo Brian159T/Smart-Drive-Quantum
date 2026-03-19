@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './Alquilernexus.css';
 import nexusImg from '../assets/Galeria/DSC_8915-Edit.jpg.jpeg';
+import './Alquilernexus.css';
 
 import im1 from '../assets/Detalle/Nexus/DSC_6437.jpg';
 import im2 from '../assets/Detalle/Nexus/DSC_6448.jpg';

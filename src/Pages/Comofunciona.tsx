@@ -2,6 +2,7 @@ import React from 'react';
 import './Comofunciona.css';
 import Footer from '../Components/Footer/Footer';
 import { Helmet } from 'react-helmet-async';
+import './Comofunciona.css';
 
 // Assets
 import Postulacion from '../assets/Como funciona/postulación y registro.png';

@@ -4,7 +4,7 @@ import mateImg from '../assets/Galeria/mate.png';
 import { FaWhatsapp } from 'react-icons/fa';
 import Footer from '../Components/Footer/Footer';
 import { Helmet } from 'react-helmet-async';
-
+import './Alquilermate.css';
 import im1 from '../assets/Detalle/Mate/Volante.jpg';
 import im2 from '../assets/Detalle/Mate/Volante_lado.jpg';
 import im3 from '../assets/Detalle/Mate/Frente.jpg';

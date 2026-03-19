@@ -7,12 +7,15 @@ import im2 from '../assets/Detalle/Trooper/DSC_3831.jpg';
 import im3 from '../assets/Detalle/Trooper/DSC_3835.jpg';
 import im4 from '../assets/Detalle/Trooper/DSC_3848.jpg';
 
+import './Alquilertrooper.css';
+
 import adelante from '../assets/img/adelante.svg';
 import atras from '../assets/img/atras.svg';
 
 import { FaWhatsapp } from 'react-icons/fa';
 import Footer from '../Components/Footer/Footer';
 import { Helmet } from 'react-helmet-async';
+
 
 const Alquilertrooper: React.FC = () => {
   const imagenes = [
