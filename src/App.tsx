@@ -13,6 +13,8 @@ import Alquilermate from './Pages/Alquilermate';
 import Alquiler from './Pages/Alquiler';
 import Alquilerurban from './Pages/Alquilerurban';
 import ScrollToTop from './Components/ScrollToTop';
+import Inversiones from './Pages/Inversiones';
+import Estaciones from './Pages/Estaciones';
 
 const App = () => {
 
@@ -33,8 +35,10 @@ const App = () => {
         <Route path='/Calculadora' element={<Calculadora />} />
         <Route path='/ComoFunciona' element={<ComoFunciona />} />
         <Route path='/Contactos' element={<Contactos />} />
-        
         <Route path='/Vehiculos' element={<Vehiculos />} />
+        <Route path='/Inversiones' element={<Inversiones/>} />
+        <Route path='/Estaciones' element={<Estaciones/>} />
+
       </Routes>
 
     </div>

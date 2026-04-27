@@ -73,6 +73,14 @@ const Navbar: React.FC = () => {
         </li>
 
         <li onClick={closeAll}>
+          <NavLink to="/Inversiones">Inversiones</NavLink>
+        </li>
+
+        <li onClick={closeAll}>
+          <NavLink to="/Estaciones">Estaciones de carga</NavLink>
+        </li>
+
+        <li onClick={closeAll}>
           <NavLink to="/Contactos">Contactos</NavLink>
         </li>
 
