@@ -1,0 +1,698 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ─────────────────────────────────────────
+   TOKENS — mismo sistema que Comofunciona
+───────────────────────────────────────── */
+:root {
+  --green:    #00ff88;
+  --cyan:     #00eeff;
+  --bg:       #0d1b2a;
+  --bg2:      #0a1520;
+  --surface:  rgba(255,255,255,0.03);
+  --surface2: rgba(255,255,255,0.055);
+  --border:   rgba(255,255,255,0.07);
+  --border2:  rgba(255,255,255,0.12);
+  --muted:    #7a93b0;
+  --text:     #ddeaf5;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ─────────────────────────────────────────
+   BASE
+───────────────────────────────────────── */
+.mag-wrapper {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.mag-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ─────────────────────────────────────────
+   MASTHEAD
+───────────────────────────────────────── */
+.mag-masthead {
+  padding: 110px 0 0;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* rejilla decorativa */
+.mag-masthead::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,238,255,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,238,255,0.035) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(ellipse 85% 55% at 50% 0%, black 30%, transparent 100%);
+  pointer-events: none;
+}
+
+/* glow verde superior */
+.mag-masthead::after {
+  content: '';
+  position: absolute;
+  top: -60px; left: 50%;
+  transform: translateX(-50%);
+  width: 700px; height: 360px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(0,255,136,0.1) 0%, transparent 68%);
+  pointer-events: none;
+}
+
+/* línea + fecha */
+.mag-edition-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 32px;
+  animation: fadeUp 0.5s ease both;
+}
+
+.mag-edition-line {
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,238,255,0.3));
+}
+
+.mag-edition-bar .mag-edition-line:last-child {
+  background: linear-gradient(90deg, rgba(0,238,255,0.3), transparent);
+}
+
+.mag-edition-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+
+/* título principal */
+.mag-brand {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(3rem, 7.5vw, 6rem);
+  font-weight: 400;
+  line-height: 1;
+  color: #fff;
+  letter-spacing: -1px;
+  margin-bottom: 20px;
+  animation: fadeUp 0.55s 0.08s ease both;
+}
+
+.mag-brand em {
+  font-style: italic;
+  background: linear-gradient(100deg, var(--green) 0%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.mag-tagline {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 48px;
+  animation: fadeUp 0.55s 0.15s ease both;
+}
+
+/* ─────────────────────────────────────────
+   NAV STRIP (categorías)
+───────────────────────────────────────── */
+.mag-nav-strip {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: rgba(13,27,42,0.9);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0; /* ajusta si tu navbar es sticky */
+  z-index: 90;
+}
+
+.mag-nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.mag-nav-inner::-webkit-scrollbar { display: none; }
+
+.mag-nav-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 16px 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: color 0.22s, border-color 0.22s;
+}
+
+.mag-nav-btn:hover {
+  color: var(--text);
+}
+
+.mag-nav-btn.active {
+  color: var(--green);
+  border-bottom-color: var(--green);
+}
+
+/* ─────────────────────────────────────────
+   PORTADA — LAYOUT PRINCIPAL
+───────────────────────────────────────── */
+.mag-portada {
+  padding: 64px 0 0;
+}
+
+.mag-portada-grid {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  overflow: hidden;
+  animation: fadeUp 0.6s 0.2s ease both;
+}
+
+/* NOTA HÉROE */
+.mag-hero-story {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 52px 56px 52px 0;
+  border-right: 1px solid var(--border);
+}
+
+.mag-hero-accent {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--green) 0%, var(--cyan) 100%);
+  border-radius: 0 2px 2px 0;
+}
+
+.mag-hero-body {
+  padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+}
+
+.mag-hero-tags {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mag-hero-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.18;
+  letter-spacing: -0.3px;
+}
+
+.mag-hero-resumen {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.8;
+  font-weight: 300;
+  max-width: 520px;
+}
+
+.mag-byline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+.mag-byline--sm {
+  font-size: 0.7rem;
+}
+
+.mag-dot {
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: var(--muted);
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+.mag-hero-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  align-self: flex-start;
+  background: var(--green);
+  color: #0d1b2a;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  padding: 11px 24px;
+  border-radius: 100px;
+  margin-top: 8px;
+  transition: background 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+
+.mag-hero-btn:hover {
+  background: #00e87a;
+  box-shadow: 0 8px 28px rgba(0,255,136,0.3);
+  transform: translateY(-2px);
+}
+
+.mag-hero-btn span {
+  transition: transform 0.25s;
+}
+
+.mag-hero-btn:hover span {
+  transform: translateX(4px);
+}
+
+/* número decorativo hero */
+.mag-hero-number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 9rem;
+  color: rgba(0,255,136,0.05);
+  letter-spacing: -4px;
+  line-height: 1;
+  position: absolute;
+  bottom: 32px;
+  right: 40px;
+  user-select: none;
+  pointer-events: none;
+  transition: color 0.4s;
+}
+
+.mag-hero-story:hover .mag-hero-number {
+  color: rgba(0,255,136,0.1);
+}
+
+/* ─────────────────────────────────────────
+   ASIDE — historias secundarias
+───────────────────────────────────────── */
+.mag-aside {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+}
+
+.mag-aside-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  padding: 22px 28px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.mag-aside-card {
+  display: flex;
+  gap: 16px;
+  padding: 24px 28px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.25s;
+}
+
+.mag-aside-card:last-child {
+  border-bottom: none;
+  flex: 1;
+}
+
+.mag-aside-card:hover {
+  background: var(--surface2);
+}
+
+.mag-aside-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.4rem;
+  color: rgba(0,255,136,0.1);
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color 0.25s;
+}
+
+.mag-aside-card:hover .mag-aside-num {
+  color: rgba(0,255,136,0.2);
+}
+
+.mag-aside-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mag-aside-tags {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mag-aside-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.mag-aside-link {
+  color: var(--cyan);
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  transition: opacity 0.2s, letter-spacing 0.2s;
+}
+
+.mag-aside-link:hover {
+  opacity: 0.75;
+  letter-spacing: 1px;
+}
+
+/* ─────────────────────────────────────────
+   CATEGORÍAS (pills)
+───────────────────────────────────────── */
+.mag-cat {
+  display: inline-block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 100px;
+  border: 1px solid;
+  flex-shrink: 0;
+}
+
+.mag-cat--xs { font-size: 0.58rem; padding: 2px 8px; }
+
+.cat--flota { color: #00ff88; border-color: rgba(0,255,136,0.3);   background: rgba(0,255,136,0.08);   }
+.cat--tech  { color: #00eeff; border-color: rgba(0,238,255,0.3);   background: rgba(0,238,255,0.08);   }
+.cat--rto   { color: #ffb347; border-color: rgba(255,179,71,0.3);  background: rgba(255,179,71,0.08);  }
+.cat--est   { color: #a78bfa; border-color: rgba(167,139,250,0.3); background: rgba(167,139,250,0.08); }
+.cat--ali   { color: #f472b6; border-color: rgba(244,114,182,0.3); background: rgba(244,114,182,0.08); }
+.cat--eco   { color: #4ade80; border-color: rgba(74,222,128,0.3);  background: rgba(74,222,128,0.08);  }
+
+/* badge tipo EXCLUSIVA / REPORTAJE */
+.mag-badge {
+  display: inline-block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: #0d1b2a;
+  background: var(--green);
+  padding: 3px 10px;
+  border-radius: 100px;
+  flex-shrink: 0;
+}
+
+.mag-badge--xs { font-size: 0.54rem; padding: 2px 8px; }
+
+/* ─────────────────────────────────────────
+   RULE (divisor elegante)
+───────────────────────────────────────── */
+.mag-rule {
+  padding: 56px 0 40px;
+}
+
+.mag-rule-inner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.mag-rule-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.mag-rule-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ─────────────────────────────────────────
+   GRID DE TARJETAS
+───────────────────────────────────────── */
+.mag-grid-section {
+  padding-bottom: 120px;
+}
+
+.mag-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--border);
+}
+
+.mag-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--muted);
+  padding: 72px 0;
+  font-size: 0.95rem;
+  background: var(--bg);
+}
+
+/* TARJETA */
+.mag-card {
+  background: var(--bg);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.28s;
+  animation: fadeUp 0.55s ease both;
+}
+
+.mag-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0,255,136,0.4), transparent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s;
+}
+
+.mag-card:hover {
+  background: var(--surface2);
+}
+
+.mag-card:hover::after {
+  transform: scaleX(1);
+}
+
+.mag-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mag-card-index {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: rgba(0,255,136,0.07);
+  letter-spacing: -1px;
+  line-height: 1;
+  margin-left: auto;
+  transition: color 0.28s;
+}
+
+.mag-card:hover .mag-card-index {
+  color: rgba(0,255,136,0.15);
+}
+
+.mag-card-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.12rem;
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.3;
+  flex: 1;
+}
+
+.mag-card-resumen {
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.75;
+  font-weight: 300;
+  flex: 1;
+}
+
+.mag-card-foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+  margin-top: auto;
+  flex-wrap: wrap;
+}
+
+.mag-card-autor {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.mag-card-fecha {
+  font-size: 0.72rem;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+.mag-card-leer {
+  margin-left: auto;
+  color: var(--cyan);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: letter-spacing 0.22s, opacity 0.22s;
+}
+
+.mag-card-leer:hover {
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+
+/* ─────────────────────────────────────────
+   ANIMACIÓN
+───────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .mag-portada-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mag-aside {
+    border-top: 1px solid var(--border);
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .mag-aside-label {
+    width: 100%;
+    border-bottom: 1px solid var(--border);
+    border-right: none;
+  }
+
+  .mag-aside-card {
+    flex: 1;
+    min-width: 240px;
+    border-right: 1px solid var(--border);
+    border-bottom: none;
+  }
+
+  .mag-aside-card:last-child {
+    border-right: none;
+  }
+
+  .mag-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mag-hero-story {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 44px 40px 44px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .mag-brand { font-size: clamp(2.4rem, 10vw, 3.5rem); }
+
+  .mag-aside {
+    flex-direction: column;
+  }
+
+  .mag-aside-card {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .mag-hero-story {
+    padding: 36px 28px 36px 0;
+  }
+
+  .mag-hero-body {
+    padding-left: 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  .mag-masthead { padding-top: 80px; }
+
+  .mag-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mag-card { padding: 26px 22px; }
+
+  .mag-hero-story {
+    padding: 28px 20px 28px 0;
+  }
+
+  .mag-hero-body {
+    padding-left: 22px;
+  }
+
+  .mag-hero-number { display: none; }
+
+  .mag-nav-btn {
+    padding: 14px 14px;
+    font-size: 0.65rem;
+  }
+}

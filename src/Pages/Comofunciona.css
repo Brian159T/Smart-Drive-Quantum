@@ -98,6 +98,140 @@
   font-weight: 300;
 }
 
+/* ═══════════════════════════════════════════
+   ── REQUISITOS MÍNIMOS ──
+   (sección que faltaba completamente en el CSS)
+   ═══════════════════════════════════════════ */
+.how-requisitos {
+  padding: 80px 0 100px;
+  position: relative;
+}
+
+/* fondo sutil diferenciado */
+.how-requisitos::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0,255,136,0.03) 50%, transparent 100%);
+  pointer-events: none;
+}
+
+/* encabezado de la sección */
+.how-req-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.how-req-kicker {
+  display: inline-block;
+  color: var(--cyan);
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  border: 1px solid rgba(0,238,255,0.25);
+  padding: 6px 18px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+  background: rgba(0,238,255,0.05);
+}
+
+.how-req-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  letter-spacing: 2px;
+  color: #fff;
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.how-req-sub {
+  color: var(--muted);
+  font-size: 0.97rem;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* grid de 4 tarjetas */
+.how-req-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* tarjeta individual */
+.how-req-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 28px 32px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.35s, transform 0.35s, box-shadow 0.35s;
+}
+
+.how-req-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,255,136,0.4), transparent);
+  transition: opacity 0.35s;
+  opacity: 0;
+}
+
+.how-req-card:hover {
+  border-color: rgba(0,255,136,0.3);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 30px rgba(0,255,136,0.06);
+}
+
+.how-req-card:hover::before {
+  opacity: 1;
+}
+
+/* ícono */
+.how-req-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: rgba(0,255,136,0.07);
+  border: 1px solid rgba(0,255,136,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 22px;
+  color: var(--green);
+  transition: background 0.35s, box-shadow 0.35s;
+}
+
+.how-req-card:hover .how-req-icon {
+  background: rgba(0,255,136,0.13);
+  box-shadow: 0 0 20px rgba(0,255,136,0.15);
+}
+
+/* título de la tarjeta */
+.how-req-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.45rem;
+  letter-spacing: 1.5px;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+/* descripción */
+.how-req-desc {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
 /* ── TIMELINE CENTRAL ── */
 .how-steps {
   padding: 40px 0 140px;
@@ -321,6 +455,122 @@
   z-index: 2;
 }
 
+/* ── CTA SECTION ── */
+.how-cta-section {
+  padding: 0 0 120px;
+}
+
+.how-cta-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: 60px 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.how-cta-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,255,136,0.4), rgba(0,238,255,0.3), transparent);
+}
+
+.how-cta-card::after {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(0,255,136,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.how-cta-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.how-cta-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  letter-spacing: 2px;
+  color: #fff;
+  margin-bottom: 14px;
+  line-height: 1;
+}
+
+.how-cta-desc {
+  color: var(--muted);
+  font-size: 0.97rem;
+  line-height: 1.8;
+  font-weight: 300;
+  max-width: 440px;
+}
+
+.how-cta-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.how-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: transform 0.25s, box-shadow 0.25s, filter 0.25s;
+  white-space: nowrap;
+}
+
+.how-cta-btn:hover {
+  transform: translateY(-3px);
+}
+
+.how-cta-btn--moto {
+  background: linear-gradient(135deg, var(--green), #00cc6a);
+  color: #0d1b2a;
+  box-shadow: 0 4px 24px rgba(0,255,136,0.25);
+}
+
+.how-cta-btn--moto:hover {
+  box-shadow: 0 8px 32px rgba(0,255,136,0.4);
+  filter: brightness(1.08);
+}
+
+.how-cta-btn--car {
+  background: linear-gradient(135deg, var(--cyan), #0099cc);
+  color: #0d1b2a;
+  box-shadow: 0 4px 24px rgba(0,238,255,0.2);
+}
+
+.how-cta-btn--car:hover {
+  box-shadow: 0 8px 32px rgba(0,238,255,0.35);
+  filter: brightness(1.08);
+}
+
+.how-cta-btn--wa {
+  background: rgba(37,211,102,0.12);
+  color: #25d366;
+  border: 1px solid rgba(37,211,102,0.3);
+  box-shadow: 0 4px 20px rgba(37,211,102,0.08);
+}
+
+.how-cta-btn--wa:hover {
+  background: rgba(37,211,102,0.2);
+  box-shadow: 0 8px 28px rgba(37,211,102,0.2);
+}
+
 /* ── ANIMACIONES DE ENTRADA ── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(30px); }
@@ -331,11 +581,39 @@
 .how-hero h1           { animation: fadeUp 0.6s 0.1s ease both; }
 .how-hero .how-lead    { animation: fadeUp 0.6s 0.2s ease both; }
 
+.how-req-card:nth-child(1) { animation: fadeUp 0.6s 0.1s ease both; }
+.how-req-card:nth-child(2) { animation: fadeUp 0.6s 0.18s ease both; }
+.how-req-card:nth-child(3) { animation: fadeUp 0.6s 0.26s ease both; }
+.how-req-card:nth-child(4) { animation: fadeUp 0.6s 0.34s ease both; }
+
 .how-step-row:nth-child(1) .how-step-text { animation: fadeUp 0.7s 0.1s ease both; }
 .how-step-row:nth-child(2) .how-step-text { animation: fadeUp 0.7s 0.15s ease both; }
 .how-step-row:nth-child(3) .how-step-text { animation: fadeUp 0.7s 0.2s ease both; }
 
 /* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .how-req-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .how-cta-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 48px 36px;
+  }
+
+  .how-cta-desc {
+    max-width: 100%;
+  }
+
+  .how-cta-actions {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
 @media (max-width: 968px) {
   .how-timeline-line { display: none; }
 
@@ -371,4 +649,25 @@
   .how-hero { padding: 100px 0 70px; }
   .how-step-row { margin-bottom: 60px; }
   .how-step-num { font-size: 4rem; }
+
+  .how-req-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .how-req-card {
+    padding: 28px 22px;
+  }
+
+  .how-cta-card {
+    padding: 36px 24px;
+  }
+
+  .how-cta-actions {
+    flex-direction: column;
+  }
+
+  .how-cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
 }

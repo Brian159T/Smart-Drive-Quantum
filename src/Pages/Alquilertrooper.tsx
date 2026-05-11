@@ -5,7 +5,7 @@ import trooperImg from '../assets/Alquiler/Tomas trooper/portada troopper.png';
 import im1 from '../assets/Detalle/Trooper/DSC_3827.jpg';
 import im2 from '../assets/Detalle/Trooper/DSC_3831.jpg';
 import im3 from '../assets/Detalle/Trooper/DSC_3835.jpg';
-import im4 from '../assets/Detalle/Trooper/DSC_3848.jpg';
+import im4 from '../assets/Detalle/Trooper/DSC_5125.jpg';
 
 import './Alquilertrooper.css';
 
@@ -114,7 +114,7 @@ const Alquilertrooper: React.FC = () => {
                 <ul className="req-list">
                   <li><strong>Pago Inicial:</strong> $ 200</li>
                   <li><strong>Documentación:</strong> Licencia de Conducir vigente,DUI</li>
-                  <li><strong>Legales:</strong> Antecedentes Penales y Hoja de Vida</li>
+                  <li><strong>Legales:</strong> Antecedentes Penales y Croquis</li>
                 </ul>
                 <a
                   href="https://wa.me/50361766862"

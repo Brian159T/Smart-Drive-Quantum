@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './Alquilermpv.css';
-import mpvImg from '../assets/Galeria/MVP.png';
+import mpvImg from '../assets/Detalle/MVP/DSC_3926.jpg';
 
 import './Alquilermpv.css';
 
-import im1 from '../assets/Imagenes tipo 2/un modelo diferente.png';
-import im2 from '../assets/MPV.png';
-import im3 from '../assets/mate.png';
-import im4 from '../assets/Ficha Tecnica Nexus.png';
+import im1 from '../assets/Detalle/MVP/DSC_3928-Editar.jpg';
+import im2 from '../assets/Detalle/MVP/Copia de DSC_4335.jpg';
+import im3 from '../assets/Detalle/MVP/Copia de DSC_4402.jpg';
+import im4 from '../assets/Detalle/MVP/Copia de DSC_4308.jpg';
 
 import adelante from '../assets/img/adelante.svg';
 import atras from '../assets/img/atras.svg';
@@ -113,7 +113,7 @@ const Alquilermpv: React.FC = () => {
                 <ul className="req-list">
                   <li><strong>Pago Inicial:</strong> $ 900</li>
                   <li><strong>Documentación:</strong> DUI,Licencia de Conducir vigente</li>
-                  <li><strong>Legales:</strong> Antecedentes Penales y Hoja de Vida</li>
+                  <li><strong>Legales:</strong> Antecedentes Penales y Croquis</li>
                 </ul>
                 <a
                   href="https://wa.me/50361766862"

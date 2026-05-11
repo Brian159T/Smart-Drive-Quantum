@@ -43,6 +43,11 @@ const Navbar: React.FC = () => {
           <NavLink to="/ComoFunciona">Cómo ser parte de S.D</NavLink>
         </li>
 
+        <li onClick={closeAll}>
+          <NavLink to="/Noticias">Noticias</NavLink>
+        </li>
+
+
         
 
         <li onClick={closeAll}>
@@ -68,7 +73,9 @@ const Navbar: React.FC = () => {
             <li onClick={closeAll}><Link to="/Alquiler/Trooper">Trooper</Link></li>
             <li onClick={closeAll}><Link to="/Alquiler/MPV">MPV</Link></li>
             <li onClick={closeAll}><Link to="/Alquiler/Mate">Mate</Link></li>
-            <li onClick={closeAll}><Link to="Alquiler/Urban">Urban</Link></li>
+            <li onClick={closeAll}><Link to="/Alquiler/Urban">Urban</Link></li>
+            
+
           </ul>
         </li>
 
@@ -83,6 +90,8 @@ const Navbar: React.FC = () => {
         <li onClick={closeAll}>
           <NavLink to="/Contactos">Contactos</NavLink>
         </li>
+
+         
 
       </ul>
 

@@ -112,7 +112,7 @@ const Alquilernexus: React.FC = () => {
               <div className="card-body">
                 <ul className="req-list">
                   <li><i className="check-icon">✓</i> Licencia de Conducir vigente</li>
-                  <li><i className="check-icon">✓</i> Antecedentes Penales y Hoja de vida</li>
+                  <li><i className="check-icon">✓</i> Antecedentes Penales y Croquis</li>
                   <li><i className="check-icon">✓</i> Hoja de Vida</li>
                   <li><i className="check-icon">✓</i> DUI</li>
                   <li><i className="check-icon">✓</i> Pago inicial 500$</li>

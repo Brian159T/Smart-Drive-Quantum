@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import './Alquilerurban.css';
 
-import im1 from '../assets/Detalle/Urban/Urban_delante.jpg';
-import im2 from '../assets/Detalle/Urban/Urban_delivery.png';
-import im3 from '../assets/Detalle/Urban/Urban_trasero.jpg';
-import im4 from '../assets/Detalle/Urban/Urban_luces.jpg';
-import urban from '../assets/Galeria/Urbanm.png';
+import im1 from '../assets/Detalle/Urban/DSC_3886.jpg';
+import im2 from '../assets/Detalle/Urban/DSC_3907.jpg';
+import im3 from '../assets/Detalle/Urban/DSC_3910.jpg';
+import im4 from '../assets/Detalle/Urban/DSC_3913.jpg';
+import urban from '../assets/Detalle/Urban/DSC_3895.jpg';
 
 import adelante from '../assets/img/adelante.svg';
 import atras from '../assets/img/atras.svg';
@@ -114,7 +114,7 @@ const Alquilerurban: React.FC = () => {
                   <li><i className="check-icon">✓</i> DUI</li>
                   <li><i className="check-icon">✓</i> Pago inicial de $200</li>
                   <li><i className="check-icon">✓</i> Antecedentes Penales</li>
-                  <li><i className="check-icon">✓</i> Hoja de Vida</li>
+                  <li><i className="check-icon">✓</i> Croquis</li>
                 </ul>
                 <a
                   href="https://wa.me/50361766862"

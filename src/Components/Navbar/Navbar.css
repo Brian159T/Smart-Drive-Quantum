@@ -1,49 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap');
+
 /* ================= CONFIGURACIÓN GENERAL ================= */
 .navbar {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #000000;
-    color: #ffffff; /* 👈 TEXTO BLANCO */
-    padding: 15px 7%;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #ffffff;
+    padding: 12px 6%;
     position: sticky;
     top: 0;
     z-index: 1000;
-    transition: 0.5s;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.6);
+    transition: 0.4s;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
 }
 
 .logo {
-    width: 150px;
+    width: 130px;
     cursor: pointer;
+    display: block;
 }
 
 /* ================= NAV LINKS ================= */
 .nav-links {
     flex: 1;
     list-style: none;
-    text-align: center;
     display: flex;
     justify-content: center;
+    align-items: center;
+    gap: 4px;
     transition: 0.4s ease;
 }
 
 .nav-links li {
-    margin: 0 15px;
     position: relative;
 }
 
-.nav-links a, 
+.nav-links a,
 .nav-link-placeholder {
     text-decoration: none;
-    color: #ffffff; /* 👈 FORZAMOS BLANCO */
-    font-size: 13px;
+    color: rgba(255, 255, 255, 0.72);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.72rem;
     font-weight: 500;
+    letter-spacing: 1.4px;
     text-transform: uppercase;
     position: relative;
-    padding-bottom: 5px;
+    padding: 6px 10px;
+    border-radius: 6px;
     cursor: pointer;
+    transition: color 0.25s, background 0.25s;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    white-space: nowrap;
+}
+
+.nav-links a:hover,
+.nav-link-placeholder:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* estado activo */
+.nav-links a.active {
+    color: #00ff88;
 }
 
 /* underline animation */
@@ -51,43 +82,61 @@
 .nav-link-placeholder::after {
     content: "";
     position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0%;
-    height: 2px;
+    left: 10px;
+    right: 10px;
+    bottom: 2px;
+    height: 1.5px;
     background: #00ff88;
-    transition: 0.3s;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 2px;
 }
 
-.nav-links a:hover::after, 
+.nav-links a:hover::after,
 .nav-links a.active::after,
 .nav-link-placeholder.active::after {
-    width: 100%;
+    transform: scaleX(1);
+}
+
+/* ================= DROPDOWN ARROW ================= */
+.arrow {
+    font-size: 0.6rem;
+    margin-left: 2px;
+    opacity: 0.6;
+    transition: transform 0.28s ease, opacity 0.2s;
 }
 
 /* ================= SUBMENU DESKTOP ================= */
-
-.arrow {
-    font-size: 0.7rem;
-    margin-left: 4px;
-    transition: transform 0.3s;
-    color: #ffffff;
-}
-
 .submenu {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 10px);
     left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    background: #111; /* 👈 oscuro */
-    min-width: 180px;
+    transform: translateX(-50%) translateY(6px);
+    background: #0e0e0e;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    min-width: 160px;
     list-style: none;
-    padding: 10px 0;
-    border-radius: 10px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    padding: 8px 0;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(0,255,136,0.05);
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+}
+
+/* puntito conector arriba */
+.submenu::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 9px;
+    height: 9px;
+    background: #0e0e0e;
+    border-left: 1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid rgba(255,255,255,0.08);
 }
 
 .submenu li {
@@ -95,16 +144,26 @@
 }
 
 .submenu li a {
-    padding: 10px 20px;
+    padding: 9px 18px;
     display: block;
-    font-size: 13px;
-    text-transform: none;
-    color: #ffffff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
+    border-radius: 0;
+    transition: color 0.2s, background 0.2s, padding-left 0.2s;
+}
+
+.submenu li a::after {
+    display: none;
 }
 
 .submenu li a:hover {
-    background: rgba(0,255,136,0.15);
+    background: rgba(0, 255, 136, 0.08);
     color: #00ff88;
+    padding-left: 24px;
 }
 
 /* HOVER SOLO DESKTOP */
@@ -117,6 +176,7 @@
 
     .nav-item-dropdown:hover .arrow {
         transform: rotate(180deg);
+        opacity: 1;
     }
 }
 
@@ -127,18 +187,24 @@
     gap: 5px;
     cursor: pointer;
     z-index: 1001;
+    padding: 4px;
 }
 
 .menu-toggle span {
-    width: 25px;
-    height: 3px;
-    background: #ffffff; /* 👈 blanco */
-    border-radius: 5px;
-    transition: 0.3s;
+    width: 22px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 4px;
+    transition: 0.3s ease;
+    display: block;
 }
 
 /* ================= MOBILE ================= */
 @media (max-width: 1050px) {
+
+    .navbar {
+        padding: 12px 5%;
+    }
 
     .menu-toggle { display: flex; }
 
@@ -146,27 +212,53 @@
         position: fixed;
         top: 0;
         right: -100%;
-        width: 75%;
+        width: 72%;
+        max-width: 300px;
         height: 100vh;
-        background: #000; /* 👈 negro */
+        background: #080808;
+        border-left: 1px solid rgba(255, 255, 255, 0.07);
         flex-direction: column;
-        padding-top: 100px;
+        justify-content: flex-start;
+        padding-top: 90px;
         align-items: center;
         overflow-y: auto;
+        gap: 0;
+        transition: right 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: -20px 0 60px rgba(0,0,0,0.6);
     }
 
     .nav-links.active { right: 0; }
 
     .nav-links li {
         width: 100%;
-        margin: 10px 0;
         text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .nav-links li:last-child {
+        border-bottom: none;
     }
 
     .nav-links a,
     .nav-link-placeholder {
-        font-size: 18px;
-        color: #ffffff;
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+        color: rgba(255, 255, 255, 0.75);
+        padding: 16px 20px;
+        width: 100%;
+        justify-content: center;
+        border-radius: 0;
+    }
+
+    .nav-links a:hover,
+    .nav-link-placeholder:hover {
+        color: #00ff88;
+        background: rgba(0, 255, 136, 0.05);
+    }
+
+    .nav-links a::after,
+    .nav-link-placeholder::after {
+        display: none;
     }
 
     .submenu {
@@ -175,42 +267,52 @@
         left: 0;
         transform: none;
         box-shadow: none;
-        background: #111;
+        background: rgba(0, 255, 136, 0.03);
+        border: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.04);
         display: none;
         width: 100%;
         opacity: 1;
         visibility: visible;
-        text-align: center;
         border-radius: 0;
+        padding: 4px 0;
     }
+
+    .submenu::before { display: none; }
 
     .submenu.show {
         display: block;
     }
 
     .submenu li a {
-        padding: 15px 0;
-        font-size: 16px;
+        padding: 13px 0;
+        font-size: 0.68rem;
+        letter-spacing: 1.8px;
         width: 100%;
         display: block;
-        color: #ffffff;
+        color: rgba(255, 255, 255, 0.5);
+        text-align: center;
     }
 
     .submenu li a:hover {
-        background: rgba(0,255,136,0.15);
+        background: rgba(0, 255, 136, 0.07);
         color: #00ff88;
+        padding-left: 0;
     }
 
-    /* Animación hamburguesa */
-    .menu-toggle.open span:nth-child(1) { 
-        transform: rotate(45deg) translate(5px, 6px); 
+    /* Animación hamburguesa → X */
+    .menu-toggle.open span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+        background: #ffffff;
     }
 
-    .menu-toggle.open span:nth-child(2) { 
-        opacity: 0; 
+    .menu-toggle.open span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
     }
 
-    .menu-toggle.open span:nth-child(3) { 
-        transform: rotate(-45deg) translate(5px, -6px); 
+    .menu-toggle.open span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+        background: #ffffff;
     }
 }

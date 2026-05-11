@@ -108,7 +108,7 @@ const Alquilermate: React.FC = () => {
                 <ul className="req-list">
                   <li><strong>Pago Inicial:</strong> $ 650</li>
                   <li><strong>Documentación:</strong> DUI y Licencia de Conducir vigente</li>
-                  <li><strong>Legales:</strong> Antecedentes Penales y Hoja de Vida</li>
+                  <li><strong>Legales:</strong> Antecedentes Penales y Croquis</li>
                 </ul>
                 <a
                   href="https://wa.me/50361766862"

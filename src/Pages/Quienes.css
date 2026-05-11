@@ -699,6 +699,241 @@ video {
   50% { transform: translateY(-20px); }
 }
 
+/* ═══════════════════════════════════════════════════════════
+   SECCIÓN RESEÑAS DE DRIVERS
+═══════════════════════════════════════════════════════════ */
+.drivers-reviews-section {
+  padding: 90px 8%;
+  background: linear-gradient(180deg, #0a1520 0%, #071018 60%, #0a1520 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Línea decorativa superior */
+.drivers-reviews-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.4), transparent);
+}
+
+/* Línea decorativa inferior */
+.drivers-reviews-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.4), transparent);
+}
+
+/* ── Encabezado ── */
+.reviews-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.reviews-kicker {
+  display: inline-block;
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin-bottom: 14px;
+}
+
+.reviews-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin: 0 0 14px;
+  line-height: 1.1;
+}
+
+.reviews-title::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, #00ff88, #00eeff);
+  border-radius: 2px;
+  margin: 14px auto 0;
+}
+
+.reviews-subtitle {
+  color: #6a8fa8;
+  font-size: 0.95rem;
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
+/* ── Carrusel wrapper ── */
+.reviews-carousel-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── Track de tarjetas — visible en desktop, carrusel en móvil ── */
+.reviews-track {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* ── Tarjeta individual ── */
+.review-card {
+  background: linear-gradient(145deg, rgba(12, 28, 46, 0.9), rgba(7, 18, 30, 0.95));
+  border: 1px solid rgba(56, 173, 177, 0.18);
+  border-radius: 20px;
+  padding: 32px 28px 28px;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.review-card:hover,
+.review-card.active {
+  transform: translateY(-6px);
+  border-color: rgba(0, 255, 136, 0.45);
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(0, 255, 136, 0.08);
+}
+
+/* Comilla decorativa grande */
+.review-quote-mark {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  font-size: 5rem;
+  line-height: 1;
+  color: rgba(0, 255, 136, 0.08);
+  font-family: Georgia, serif;
+  font-weight: 900;
+  pointer-events: none;
+  user-select: none;
+  transition: color 0.35s ease;
+}
+
+.review-card:hover .review-quote-mark,
+.review-card.active .review-quote-mark {
+  color: rgba(0, 255, 136, 0.16);
+}
+
+/* Texto de la reseña */
+.review-text {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: #b8cfe0;
+  margin: 0;
+  flex: 1;
+  font-style: italic;
+}
+
+/* Pie de la tarjeta */
+.review-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Avatar con inicial */
+.review-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0f6e56, #38adb1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+  text-transform: uppercase;
+  border: 1.5px solid rgba(0, 255, 136, 0.3);
+}
+
+.review-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.review-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #e0eaf5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.review-vehicle {
+  font-size: 0.72rem;
+  color: #57e1e6;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+/* Estrellas */
+.review-stars {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.review-stars .star {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.15);
+  transition: color 0.2s ease;
+}
+
+.review-stars .star.filled {
+  color: #f5c518;
+  text-shadow: 0 0 8px rgba(245, 197, 24, 0.5);
+}
+
+/* ── Dots de navegación (visibles solo en móvil) ── */
+.reviews-dots {
+  display: none;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.reviews-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.reviews-dot.active {
+  background: var(--primary);
+  transform: scale(1.4);
+}
+
 /* =====================================================
    TABLETS GRANDES  ≤ 1200px
 ===================================================== */
@@ -706,6 +941,9 @@ video {
   .main-content { padding: 80px 30px; }
   .feature-text h2 { font-size: 2.2rem; }
   .client-carousel { height: 600px; }
+
+  .reviews-track { gap: 18px; }
+  .review-card { padding: 28px 22px 24px; }
 }
 
 /* =====================================================
@@ -785,6 +1023,20 @@ video {
     gap: 16px;
     margin-top: 24px;
   }
+
+  /* ── Reseñas tablet: 2 columnas ── */
+  .drivers-reviews-section { padding: 70px 5%; }
+
+  .reviews-track {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* La tercera tarjeta se centra si hay número impar */
+  .review-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-width: 480px;
+    justify-self: center;
+  }
 }
 
 /* =====================================================
@@ -848,8 +1100,122 @@ video {
     width: 16px;
     height: 16px;
   }
+
+  /* ── Reseñas móvil: carrusel de 1 en 1 ── */
+  .drivers-reviews-section { padding: 60px 5%; }
+
+  .reviews-track {
+    grid-template-columns: 1fr;
+    /* En móvil mostramos solo la activa */
+  }
+
+  .review-card {
+    display: none;
+  }
+
+  .review-card.active {
+    display: flex;
+    animation: fadeInUp 0.4s ease;
+  }
+
+  .reviews-dots {
+    display: flex;
+  }
+
+  /* Anula la regla del impar para móvil */
+  .review-card:last-child:nth-child(odd) {
+    grid-column: auto;
+    max-width: none;
+    justify-self: auto;
+  }
+}
+/* ── Botones Sí/No alquiler ── */
+.radio-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 6px;
 }
 
+.radio-btn {
+  flex: 1;
+  padding: 10px 16px;
+  border: 1px solid rgba(56, 173, 177, 0.25);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.35);
+  color: #7a9bb5;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
+}
+
+.radio-btn--active {
+  border-color: var(--primary);
+  background: rgba(0, 255, 136, 0.08);
+  color: var(--primary);
+}
+
+/* ── Nota de mantenimiento incluido ── */
+.calc-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: rgba(56, 173, 177, 0.06);
+  border-left: 3px solid rgba(56, 173, 177, 0.5);
+  border-radius: 0 8px 8px 0;
+  padding: 12px 14px;
+}
+
+.calc-note p {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: #7a9bb5;
+}
+
+.calc-note-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── Hints bajo los inputs ── */
+.input-hint {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.8rem;
+  color: rgba(0, 255, 136, 0.7);
+  line-height: 1.5;
+}
+
+.input-hint-small {
+  font-size: 0.73rem;
+  opacity: 0.7;
+}
+
+/* ── Botón deshabilitado ── */
+.btn-ahorro--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-ahorro--disabled:hover {
+  border-color: rgba(0, 255, 136, 0.3);
+  box-shadow: none;
+  transform: none;
+}
+
+/* ── Fila total en tarjeta actual ── */
+.resultado-item--total {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 6px;
+  padding-top: 10px;
+}
+
+.resultado-item--total .res-label {
+  color: #a8c5d8;
+}
 /* =====================================================
    MÓVILES PEQUEÑOS  ≤ 400px
 ===================================================== */
@@ -866,4 +1232,7 @@ video {
   .titulo-calculadora { font-size: 1.4rem; letter-spacing: 1.5px; }
   .ahorro-monto { font-size: 1rem; }
   .entrada { height: 42px; }
+
+  .reviews-title { font-size: 1.5rem; }
+  .review-text { font-size: 0.9rem; }
 }

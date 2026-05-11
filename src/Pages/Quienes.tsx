@@ -10,11 +10,11 @@ import imgHero3 from '../assets/Portada/Portada Trooper.jpg.jpeg';
 import modena from '../assets/Quienes somos/moneda.webp';
 import modelodiferente from '../assets/Quienes somos/mejora - un modelo diferente.png';
 import imgTienda from '../assets/Quienes somos/tienda.png';
-import urban from '../assets/Galeria/Urbanm.png';
+import urban from '../assets/Detalle/Urban/DSC_3895.jpg';
 import trooperImgquienes from '../assets/Alquiler/Tomas trooper/portada troopper.png';
 
 import NexusG from '../assets/Galeria/DSC_8915-Edit.jpg.jpeg';
-import MVP from '../assets/Galeria/MVP.png';
+import MVP from '../assets/Detalle/MVP/Copia de DSC_4278.jpg';
 import Vision from '../assets/Empresa/Visión.png';
 import mision_propuesta from '../assets/Empresa/mision-propuesta.png';
 import Ecosistema from '../assets/Empresa/ecosistema quantum.png';
@@ -30,11 +30,46 @@ import client1 from '../assets/Quienes somos/Cliente3.png';
 import client2 from '../assets/Quienes somos/Cliente2.png';
 import client3 from '../assets/Quienes somos/Cliente1.png';
 import { FaWhatsapp } from 'react-icons/fa';
-import { PiMotorcycleFill } from 'react-icons/pi';
-import { FaCar } from 'react-icons/fa';
+// import { PiMotorcycleFill } from 'react-icons/pi';
+// import { FaCar } from 'react-icons/fa';
 
 const HERO_IMAGES = [imgHero1, imgHero2, imgHero3];
 const CLIENT_IMAGES = [client1, client2, client3];
+
+// Promedios usados en el cálculo
+const COSTO_GASOLINA_POR_KM = 0.12;       // $0.12/km promedio gasolina
+const MANTENIMIENTO_SEMANAL_PROMEDIO = 25; // $25/sem promedio aceite, frenos, reparaciones
+const ALQUILER_SEMANAL_PROMEDIO = 80;      // $80/sem promedio alquiler de vehículo
+
+// ─── RESEÑAS DE DRIVERS ────────────────────────────────────────────────
+interface DriverReview {
+  name: string;
+  vehicle: string;
+  rating: number;
+  text: string;
+}
+
+const DRIVER_REVIEWS: DriverReview[] = [
+  {
+    name: 'Carlos M.',
+    vehicle: 'Trooper',
+    rating: 5,
+    text: 'Desde que empecé con Smart Drive mis gastos bajaron muchísimo. Ya no dependo de la gasolina y sé que al terminar el contrato el vehículo es mío. Es el mejor movimiento que he hecho en años.',
+  },
+  {
+    name: 'Jesica R.',
+    vehicle: 'Nexus',
+    rating: 5,
+    text: 'El mantenimiento lo incluyen todo. Antes gastaba una fortuna en aceite y reparaciones; ahora ese dinero se queda en mi bolsillo. 100% recomendado para cualquier compañero que trabaje en plataformas.',
+  },
+  {
+    name: 'Miguel A.',
+    vehicle: 'Urban',
+    rating: 4,
+    text: 'Lo que más me convenció fue no necesitar préstamos. Solo cumplí mi tiempo de alquiler y el proceso fue transparente desde el primer día. El equipo siempre resuelve mis dudas rápido.',
+  },
+];
+// ──────────────────────────────────────────────────────────────────────
 
 const MODELOS: { label: string; cf: number }[] = [
   { label: 'Trooper', cf: 52 },
@@ -61,38 +96,61 @@ const sanitize = (raw: string): number => {
   return n;
 };
 
+// Componente de estrellas
+const StarRating: React.FC<{ rating: number }> = ({ rating }) => (
+  <div className="review-stars" aria-label={`${rating} de 5 estrellas`}>
+    {[1, 2, 3, 4, 5].map((star) => (
+      <span key={star} className={star <= rating ? 'star filled' : 'star'}>★</span>
+    ))}
+  </div>
+);
+
 const Quienes: React.FC = () => {
   const [currentHero, setCurrentHero] = useState(0);
   const [currentClient, setCurrentClient] = useState(0);
   const featureIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [currentFeature, setCurrentFeature] = useState(0);
+  const [activeReview, setActiveReview] = useState(0);
 
+  // ── Estado calculadora ──
   const [kmSemanales, setKmSemanales] = useState<number>(0);
-  const [D, setD] = useState<number>(0);
-  const [PM, setPM] = useState<number>(0);
-  const [PS, setPS] = useState<number>(0);
+  const [alquilaVehiculo, setAlquilaVehiculo] = useState<'si' | 'no' | ''>('');
   const [modeloSeleccionado, setModeloSeleccionado] = useState<string>('Trooper');
 
   const CF = MODELOS.find((m) => m.label === modeloSeleccionado)?.cf ?? 130;
 
-  const [CO, setCO] = useState<number>(0);
-  const [COK, setCOK] = useState<number>(0);
-  const [CE, setCE] = useState<number>(0);
-  const [COKE, setCOKE] = useState<number>(0);
-  const [AS, setAS] = useState<number>(0);
-  const [AM, setAM] = useState<number>(0);
-  const [AN, setAN] = useState<number>(0);
+  // Resultados calculadora
+  const [CO, setCO] = useState<number>(0);   // Costo operativo semanal actual
+  const [COK, setCOK] = useState<number>(0); // Costo por km actual
+  const [CE, setCE] = useState<number>(0);   // Carga eléctrica semanal Smart Drive
+  const [COKE, setCOKE] = useState<number>(0); // Costo por km eléctrico
+  const [AS, setAS] = useState<number>(0);   // Ahorro semanal
+  const [AM, setAM] = useState<number>(0);   // Ahorro mensual
+  const [AN, setAN] = useState<number>(0);   // Ahorro anual
   const [calculado, setCalculado] = useState<boolean>(false);
 
+  // Valores desglosados para mostrar en tarjeta "Estado Actual"
+  const [gastoGasolinaCalc, setGastoGasolinaCalc] = useState<number>(0);
+  // const [alquilerIncluido, setAlquilerIncluido] = useState<number>(0);
+
   function calcular() {
-    if (kmSemanales <= 0) return;
-    const costoOperativoSemanal = D + PM / 4 + PS;
+    if (kmSemanales <= 0 || alquilaVehiculo === '') return;
+
+    const gasolinaSemanal = kmSemanales * COSTO_GASOLINA_POR_KM;
+    const alquilerSemanal = alquilaVehiculo === 'si' ? ALQUILER_SEMANAL_PROMEDIO : 0;
+
+    const costoOperativoSemanal = gasolinaSemanal + MANTENIMIENTO_SEMANAL_PROMEDIO + alquilerSemanal;
     const costoPorKm = costoOperativoSemanal / kmSemanales;
-    const cargaElectrica = D * 0.12;
+
+    const cargaElectrica = gasolinaSemanal * 0.12; // aprox 12% del costo gasolina equivalente
     const costoKmElectrico = (CF + cargaElectrica) / kmSemanales;
+
     const ahorroSemanal = costoOperativoSemanal - (CF + cargaElectrica);
     const ahorroMensual = ahorroSemanal * 4;
     const ahorroAnual = ahorroMensual * 12;
+
+    setGastoGasolinaCalc(gasolinaSemanal);
+    // setAlquilerIncluido(alquilerSemanal);
     setCO(costoOperativoSemanal);
     setCOK(costoPorKm);
     setCE(cargaElectrica);
@@ -117,6 +175,14 @@ const Quienes: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    if (DRIVER_REVIEWS.length <= 1) return;
+    const interval = setInterval(() => {
+      setActiveReview((prev) => (prev + 1) % DRIVER_REVIEWS.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
+
   const startFeatureAuto = useCallback(() => {
     if (featureIntervalRef.current) clearInterval(featureIntervalRef.current);
     featureIntervalRef.current = setInterval(() => {
@@ -138,6 +204,24 @@ const Quienes: React.FC = () => {
     setCurrentFeature((prev) => (prev === 0 ? 2 : prev - 1));
     startFeatureAuto();
   };
+
+  // Resetear resultado si cambia algún input
+  const handleKmChange = (val: string) => {
+    setKmSemanales(sanitize(val));
+    setCalculado(false);
+  };
+
+  const handleAlquilaChange = (val: 'si' | 'no') => {
+    setAlquilaVehiculo(val);
+    setCalculado(false);
+  };
+
+  const handleModeloChange = (val: string) => {
+    setModeloSeleccionado(val);
+    setCalculado(false);
+  };
+
+  const canCalculate = kmSemanales > 0 && alquilaVehiculo !== '';
 
   return (
     <>
@@ -202,6 +286,51 @@ const Quienes: React.FC = () => {
           </div>
         </section>
 
+        {/* ── RESEÑAS DE DRIVERS ── */}
+        <section className="drivers-reviews-section">
+          <div className="reviews-header">
+            <span className="reviews-kicker">Comunidad Smart Drive</span>
+            <h2 className="reviews-title">LO QUE DICEN NUESTROS DRIVERS</h2>
+            <p className="reviews-subtitle">
+              Experiencias reales de conductores que ya hicieron el cambio.
+            </p>
+          </div>
+
+          <div className="reviews-carousel-wrapper">
+            <div className="reviews-track">
+              {DRIVER_REVIEWS.map((review, i) => (
+                <div
+                  key={i}
+                  className={`review-card ${activeReview === i ? 'active' : ''}`}
+                  onClick={() => setActiveReview(i)}
+                >
+                  <span className="review-quote-mark">"</span>
+                  <p className="review-text">{review.text}</p>
+                  <div className="review-footer">
+                    <div className="review-avatar">{review.name.charAt(0)}</div>
+                    <div className="review-meta">
+                      <span className="review-name">{review.name}</span>
+                      <span className="review-vehicle">Smart Drive · {review.vehicle}</span>
+                    </div>
+                    <StarRating rating={review.rating} />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="reviews-dots">
+              {DRIVER_REVIEWS.map((_, i) => (
+                <button
+                  key={i}
+                  className={`reviews-dot ${activeReview === i ? 'active' : ''}`}
+                  onClick={() => setActiveReview(i)}
+                  aria-label={`Reseña ${i + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* CLIENTES */}
         <section className="clients-section">
           <h2 className="center-title">CLIENTES SATISFECHOS</h2>
@@ -210,10 +339,7 @@ const Quienes: React.FC = () => {
               <div key={index} className={`client-slide ${currentClient === index ? 'active' : ''}`}>
                 <div className="client-img-wrapper">
                   <img src={img} alt={`Cliente Satisfecho ${index + 1}`} />
-                  <div className="client-overlay">
-                    <p className="client-quote">"Gracias a Smart Drive, hoy soy dueño de mi propio futuro."</p>
-                    <span className="client-name">Socio Conductor Certificado</span>
-                  </div>
+                  <div className="client-overlay"></div>
                 </div>
               </div>
             ))}
@@ -252,17 +378,18 @@ const Quienes: React.FC = () => {
             <div className="impact-item">
               <h3>Nuestra Misión</h3>
               <p>
-                Facilitar el acceso a vehículos eléctricos a conductores de
-                plataformas de movilidad y delivery, mediante soluciones de
-                arrendamiento flexibles con opción a compra, brindando ingresos
-                sostenibles y promoviendo una movilidad urbana eficiente y
-                ambientalmente responsable.
+                Hacemos realidad el sueño de tener un vehículo eléctrico sin deudas. Con nuestro modelo Rent to Own,
+                cualquier conductor de plataforma puede convertirse en propietario simplemente cumpliendo su tiempo de alquiler,
+                promoviendo una movilidad urbana eficiente y sin complicaciones financieras
               </p>
             </div>
             <div className="impact-divider"></div>
             <div className="impact-item">
               <h3>Propuesta</h3>
-              <p>Convertir el sueño de tener un vehículo eléctrico propio en una realidad económica</p>
+              <p>
+                Conduce para ser dueño, convierte el sueño de tener un vehículo
+                eléctrico propio en una realidad económica
+              </p>
             </div>
           </div>
         </section>
@@ -271,17 +398,17 @@ const Quienes: React.FC = () => {
         <section className="section-ecosystem">
           <div className="ecosystem-container">
             <div className="ecosystem-text">
-              <span className="kicker">Sinergia Industrial</span>
-              <h2>Ecosistema Quantum-SmartDrive</h2>
+              <span className="kicker"></span>
+              <h2>La unión de la movilidad eléctrica y la libertad financiera.</h2>
               <p className="highlight-p">La unión de la movilidad eléctrica y la innovación financiera.</p>
               <p className="ecosystem-description">
-                <strong className="ecosystem-subtitle">SMART DRIVE</strong> permite a los conductores de aplicaciones acceder a vehículos eléctricos sin inversión inicial elevada, reduciendo costos operativos y ofreciendo una ruta clara hacia la propiedad del vehículo. Se basa en tres pilares:
+                <strong className="ecosystem-subtitle">SMART DRIVE</strong> permite a conductores de aplicaciones ser dueños de un vehículo eléctrico sin inversión inicial elevada y sin préstamos bancarios. Al cumplir tu tiempo de alquiler, el vehículo es legalmente tuyo.
                 <br /><br />
-                <strong className="ecosystem-subtitle">INCLUSIÓN FINANCIERA:</strong> Acceso a activos productivos para personas sin historial crediticio bancario.
+                <strong className="ecosystem-subtitle">INCLUSIÓN RADICAL:</strong> permite a conductores de aplicaciones ser dueños de un vehículo eléctrico sin inversión inicial elevada y sin préstamos bancarios. Al cumplir tu tiempo de alquiler, el vehículo es legalmente tuyo.
                 <br /><br />
-                <strong className="ecosystem-subtitle">EFICIENCIA ENERGÉTICA:</strong> Reducción del 80% en costos de combustible mediante electromovilidad.
+                <strong className="ecosystem-subtitle">AHORRO REAL:</strong> Reduce un 80% tus costos de energía frente a la gasolina
                 <br /><br />
-                <strong className="ecosystem-subtitle">CAPITALIZACIÓN DEL DRIVER:</strong> Al finalizar el contrato en cualquiera de sus formatos Sedan, Motos o VAN, la propiedad del vehículo se transfiere al conductor.
+                <strong className="ecosystem-subtitle">DUEÑO AL FINALIZAR:</strong> Sin letras chicas; al terminar el contrato, el vehículo te pertenece al 100%.
               </p>
             </div>
             <div className="ecosystem-image">
@@ -294,8 +421,6 @@ const Quienes: React.FC = () => {
 
           {/* CARRUSEL DE INFORMACIÓN */}
           <section className="info-carousel-section">
-
-            {/* Solo los slides — sin botones adentro */}
             <div className="info-carousel-wrapper">
               <div className={`info-slide ${currentFeature === 0 ? 'active' : ''}`}>
                 <section className="feature-grid">
@@ -306,8 +431,12 @@ const Quienes: React.FC = () => {
                     <div className="kicker">Misión 2026</div>
                     <h2>EL FIN DEL ALQUILER ETERNO</h2>
                     <p>
-                      Mientras que la competencia (rentadoras tradicionales y flotas privadas) basa su rentabilidad en mantener al conductor pagando indefinidamente, SMART DRIVE basa su éxito en convertir al conductor en dueño. Esto elimina la rotación de personal (churn),
-                      asegura el cuido extremo del activo por parte del driver y crea una barrera de salida casi imposible de romper para la competencia.
+                      Deja de pagar por el vehículo de otros y empieza a invertir en el tuyo. Mientras otros basan su éxito en tu pago indefinido, nosotros lo basamos en convertirte en propietario.
+
+                     * PROPIEDAD GARANTIZADA: Al finalizar tu contrato, el vehículo es 100% tuyo sin costos ocultos.
+                     * LIBERTAD FINANCIERA: Sin préstamos bancarios; tu cumplimiento es tu mejor crédito.
+                     (Botón: Quiero ser dueño)
+
                     </p>
                     <div className="stats-badges">
                       <span>+ Retención</span>
@@ -326,9 +455,9 @@ const Quienes: React.FC = () => {
                     <div className="kicker">Visión de Negocio</div>
                     <h2>UN MODELO DIFERENTE</h2>
                     <p>
-                      SMART DRIVE es una plataforma de movilidad que resuelve la brecha de capital para los trabajadores del sector de servicio de transporte en El Salvador.
-                      A través de un <strong>modelo</strong> híbrido de Leasing Operativo con Opción a Compra (Rent-to-Own), transformamos un gasto operativo (alquiler) en una inversión patrimonial para el conductor,
-                      utilizando vehículos 100% eléctricos de alta eficiencia.
+                     En SMART DRIVE, eliminamos la barrera del capital en El Salvador. Transformamos tu alquiler
+                     diario en una inversión real: con nuestro modelo único Rent-to-Own, dejas de pagar por el vehículo de otros y comienzas a construir
+                     tu propio patrimonio utilizando tecnología eléctrica de alta eficiencia.
                     </p>
                   </div>
                 </section>
@@ -343,21 +472,19 @@ const Quienes: React.FC = () => {
                     <div className="kicker">Nuestra Sede</div>
                     <h2>LA TIENDA</h2>
                     <p>
-                      Ven a visitarnos en nuestro showroom físico. Contamos con
-                      tecnología de punta y asesores listos para ayudarte a elegir
-                      el vehículo que impulsará tu independencia financiera.
+                     Ven a conocer de cerca la tecnología que transformará tu economía. En nuestra sede,
+                     asesores expertos te ayudarán a elegir el vehículo ideal para tu plan Rent to Own.
+                     Sin préstamos ni deudas bancarias, solo el camino directo a tu independencia financiera
                     </p>
                   </div>
                 </section>
               </div>
             </div>
 
-            {/* Botones + dots en la misma fila */}
             <div className="info-dots">
               <button className="nav-btn-info prev" onClick={prevFeature}>
                 <img src={atras} alt="Anterior" />
               </button>
-
               {[0, 1, 2].map((i) => (
                 <span
                   key={i}
@@ -365,12 +492,10 @@ const Quienes: React.FC = () => {
                   onClick={() => setCurrentFeature(i)}
                 />
               ))}
-
               <button className="nav-btn-info next" onClick={nextFeatureManual}>
                 <img src={adelante} alt="Siguiente" />
               </button>
             </div>
-
           </section>
 
           {/* CONTACTO */}
@@ -389,61 +514,132 @@ const Quienes: React.FC = () => {
           {/* CALCULADORA */}
           <section className="Seccion-calculadora">
             <h2 className="titulo-calculadora">CALCULADORA DE AHORRO</h2>
-            <p className="descripcion">Compara tu gasto actual con el modelo Smart Drive y descubre el potencial de tu inversión.</p>
+            <p className="descripcion">
+              Ingresa solo 3 datos y descubre cuánto puedes ahorrar al pasarte a Smart Drive.
+            </p>
 
             <div className="cuerpo-calculadora">
               <div className="entradas">
+
+                {/* Modelo Smart Drive */}
                 <div className="input-group">
-                  <label className="etiquetas" htmlFor="modelo-vehiculo">Selecciona el modelo Smart Drive</label>
-                  <select className="entrada" id="modelo-vehiculo" value={modeloSeleccionado}
-                    onChange={(e) => { setModeloSeleccionado(e.target.value); setCalculado(false); }}>
+                  <label className="etiquetas" htmlFor="modelo-vehiculo">
+                    Selecciona el modelo Smart Drive
+                  </label>
+                  <select
+                    className="entrada"
+                    id="modelo-vehiculo"
+                    value={modeloSeleccionado}
+                    onChange={(e) => handleModeloChange(e.target.value)}
+                  >
                     {MODELOS.map((m) => (
-                      <option key={m.label} value={m.label}>{m.label} — Cuota fija: ${m.cf}/sem</option>
+                      <option key={m.label} value={m.label}>
+                        {m.label} — Cuota fija: ${m.cf}/sem
+                      </option>
                     ))}
                   </select>
                 </div>
 
+                {/* Km semanales */}
                 <div className="input-group">
-                  <label className="etiquetas" htmlFor="km-semanales">¿Cuántos Km recorres en una semana promedio?</label>
-                  <input className="entrada" type="number" id="km-semanales" placeholder="0" min="0"
-                    value={kmSemanales || ''} onKeyDown={blockInvalidKeys} onPaste={blockInvalidPaste}
-                    onChange={(e) => setKmSemanales(sanitize(e.target.value))} />
+                  <label className="etiquetas" htmlFor="km-semanales">
+                    ¿Cuántos km recorres en una semana promedio?
+                  </label>
+                  <input
+                    className="entrada"
+                    type="number"
+                    id="km-semanales"
+                    placeholder="0"
+                    min="0"
+                    value={kmSemanales || ''}
+                    onKeyDown={blockInvalidKeys}
+                    onPaste={blockInvalidPaste}
+                    onChange={(e) => handleKmChange(e.target.value)}
+                  />
+                  {kmSemanales > 0 && (
+                    <span className="input-hint">
+                      Gasto estimado en gasolina: ${(kmSemanales * COSTO_GASOLINA_POR_KM).toFixed(2)}/sem
+                      <br />
+                      <span className="input-hint-small">(basado en promedio de $0.12/km)</span>
+                    </span>
+                  )}
                 </div>
 
+                {/* ¿Alquilas vehículo? */}
                 <div className="input-group">
-                  <label className="etiquetas" htmlFor="gasto-gasolina">¿Cuánto dinero gastas de gasolina a la semana? ($)</label>
-                  <input className="entrada" type="number" id="gasto-gasolina" placeholder="0" min="0"
-                    value={D || ''} onKeyDown={blockInvalidKeys} onPaste={blockInvalidPaste}
-                    onChange={(e) => setD(sanitize(e.target.value))} />
+                  <label className="etiquetas">¿Actualmente alquilas el vehículo que usas?</label>
+                  <div className="radio-group">
+                    <button
+                      type="button"
+                      className={`radio-btn ${alquilaVehiculo === 'si' ? 'radio-btn--active' : ''}`}
+                      onClick={() => handleAlquilaChange('si')}
+                    >
+                      Sí, alquilo
+                    </button>
+                    <button
+                      type="button"
+                      className={`radio-btn ${alquilaVehiculo === 'no' ? 'radio-btn--active' : ''}`}
+                      onClick={() => handleAlquilaChange('no')}
+                    >
+                      No, es mío
+                    </button>
+                  </div>
+                  {alquilaVehiculo === 'si' && (
+                    <span className="input-hint">
+                      Se incluirá un promedio de alquiler de ${ALQUILER_SEMANAL_PROMEDIO}/sem en el cálculo.
+                    </span>
+                  )}
                 </div>
 
-                <div className="input-group">
-                  <label className="etiquetas" htmlFor="gastos-mensuales">Gasto mensual en aceite, frenos y reparaciones ($)</label>
-                  <input className="entrada" type="number" id="gastos-mensuales" placeholder="0" min="0"
-                    value={PM || ''} onKeyDown={blockInvalidKeys} onPaste={blockInvalidPaste}
-                    onChange={(e) => setPM(sanitize(e.target.value))} />
+                {/* Nota sobre mantenimiento */}
+                <div className="input-group calc-note">
+                  <span className="calc-note-icon">ℹ️</span>
+                  <p>
+                    Se incluye un promedio de <strong>${MANTENIMIENTO_SEMANAL_PROMEDIO}/sem</strong> en mantenimiento
+                    (aceite, frenos, reparaciones) para un vehículo tradicional.
+                    Con Smart Drive, el mantenimiento está <strong>incluido</strong> en tu cuota.
+                  </p>
                 </div>
 
-                <div className="input-group">
-                  <label className="etiquetas" htmlFor="pago-semanal">Si alquilas, ¿cuánto pagas semanalmente? ($)</label>
-                  <input className="entrada" type="number" id="pago-semanal" placeholder="0" min="0"
-                    value={PS || ''} onKeyDown={blockInvalidKeys} onPaste={blockInvalidPaste}
-                    onChange={(e) => setPS(sanitize(e.target.value))} />
-                </div>
-
-                <button className="btn-ahorro" onClick={calcular}>Calcular</button>
+                <button
+                  className={`btn-ahorro ${!canCalculate ? 'btn-ahorro--disabled' : ''}`}
+                  onClick={calcular}
+                  disabled={!canCalculate}
+                >
+                  Calcular
+                </button>
               </div>
 
               <div className="salidas">
                 <div className="vehiculo-actual-card">
                   <h3 className="titulo-estado-actual">ESTADO ACTUAL</h3>
                   <div className="resultado-item">
-                    <span className="res-label">Costo operativo semanal:</span>
-                    <span className="res-valor primary-text">$ {CO.toFixed(2)}</span>
+                    <span className="res-label">Gasolina semanal (estimado):</span>
+                    <span className="res-valor">
+                      {calculado ? `$ ${gastoGasolinaCalc.toFixed(2)}` : '—'}
+                    </span>
                   </div>
                   <div className="resultado-item">
-                    <span className="res-label">Costo por KM:</span>
-                    <span className="res-valor">$ {COK.toFixed(2)}</span>
+                    <span className="res-label">Mantenimiento semanal (promedio):</span>
+                    <span className="res-valor">$ {MANTENIMIENTO_SEMANAL_PROMEDIO.toFixed(2)}</span>
+                  </div>
+                  {alquilaVehiculo === 'si' && (
+                    <div className="resultado-item">
+                      <span className="res-label">Alquiler semanal (promedio):</span>
+                      <span className="res-valor">$ {ALQUILER_SEMANAL_PROMEDIO.toFixed(2)}</span>
+                    </div>
+                  )}
+                  <div className="resultado-item resultado-item--total">
+                    <span className="res-label">Costo operativo semanal total:</span>
+                    <span className="res-valor primary-text">
+                      {calculado ? `$ ${CO.toFixed(2)}` : '—'}
+                    </span>
+                  </div>
+                  <div className="resultado-item">
+                    <span className="res-label">Costo por km:</span>
+                    <span className="res-valor">
+                      {calculado ? `$ ${COK.toFixed(4)}` : '—'}
+                    </span>
                   </div>
                 </div>
 
@@ -456,15 +652,19 @@ const Quienes: React.FC = () => {
                     </div>
                     <div className="resultado-item">
                       <span className="res-label">Carga eléctrica semanal:</span>
-                      <span className="res-valor">$ {CE.toFixed(2)}</span>
+                      <span className="res-valor">
+                        {calculado ? `$ ${CE.toFixed(2)}` : '—'}
+                      </span>
                     </div>
                     <div className="resultado-item">
                       <span className="res-label">Mantenimiento y seguro:</span>
                       <span className="res-valor">Incluido</span>
                     </div>
                     <div className="resultado-item">
-                      <span className="res-label">Costo por Km:</span>
-                      <span className="res-valor highlight-text">$ {COKE.toFixed(2)}</span>
+                      <span className="res-label">Costo por km:</span>
+                      <span className="res-valor highlight-text">
+                        {calculado ? `$ ${COKE.toFixed(4)}` : '—'}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -497,7 +697,7 @@ const Quienes: React.FC = () => {
           </section>
 
           {/* REGISTRO */}
-          <section className="contact-block">
+          {/* <section className="contact-block">
             <div className="contact-card2">
               <h2>¿LISTO PARA SER SMART? <br /> REGÍSTRATE AHORA</h2>
               <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center' }}>
@@ -509,7 +709,7 @@ const Quienes: React.FC = () => {
                 </a>
               </div>
             </div>
-          </section>
+          </section> */}
 
         </main>
 
