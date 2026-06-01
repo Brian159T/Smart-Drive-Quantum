@@ -2,70 +2,138 @@ import { useState } from 'react';
 import Footer from '../Components/Footer/Footer';
 import './Estaciones.css';
 import { Helmet } from 'react-helmet-async';
-import { MdBolt, MdAccessTime, MdSpeed } from 'react-icons/md';
+import { MdBolt, MdAccessTime, } from 'react-icons/md';
 import { FaWhatsapp, FaChargingStation, FaMapMarkerAlt } from 'react-icons/fa';
 
-/* ─────────────────────────────────────────────────────────
-   PUNTOS DE CARGA
-   Reemplaza lat/lng con las coordenadas reales cuando las tengas
-───────────────────────────────────────────────────────── */
 const PUNTOS = [
   {
     id: 1,
-    nombre: 'Estación Centro Histórico',
-    direccion: 'San Salvador, Centro Histórico',
-    lat: 13.6929,
-    lng: -89.2182,
-    tipo: 'Carga Rápida DC',
-    potencia: '50 kW',
+    nombre: 'Estacion Centro Historico',
+    direccion: 'San Salvador, Centro Historico',
+    lat: 13.7040,
+    lng: -89.2015,
+    
+    
     conectores: 4,
     horario: '24/7',
     disponible: true,
   },
   {
     id: 2,
-    nombre: 'Estación Santa Tecla',
+    nombre: 'Estacion Santa Tecla Norte',
     direccion: 'Santa Tecla, La Libertad',
-    lat: 13.6765,
-    lng: -89.2801,
-    tipo: 'Carga Estándar AC',
-    potencia: '22 kW',
+    lat: 13.7014,
+    lng: -89.2284,
+    // tipo: 'Carga Estandar AC',
+    
     conectores: 2,
-    horario: '06:00 – 22:00',
+    horario: '06:00 - 22:00',
     disponible: true,
   },
   {
     id: 3,
-    nombre: 'Estación Soyapango',
-    direccion: 'Soyapango, San Salvador',
-    lat: 13.7101,
-    lng: -89.1519,
-    tipo: 'Carga Rápida DC',
-    potencia: '50 kW',
+    nombre: 'Estacion Santa Tecla Oeste',
+    direccion: 'Santa Tecla, La Libertad',
+    lat: 13.7096,
+    lng: -89.2412,
+    // tipo: 'Carga Rapida DC',
+    
     conectores: 3,
     horario: '24/7',
     disponible: true,
   },
   {
     id: 4,
-    nombre: 'Estación San Marcos',
-    direccion: 'San Marcos, San Salvador',
-    lat: 13.6598,
-    lng: -89.1927,
-    tipo: 'Carga Estándar AC',
-    potencia: '22 kW',
-    conectores: 2,
-    horario: '07:00 – 21:00',
-    disponible: false,
+    nombre: 'Estacion Nuevo Cuscatlan',
+    direccion: 'Nuevo Cuscatlan, La Libertad',
+    lat: 13.6918,
+    lng: -89.2376,
+    // tipo: 'Carga Estandar AC',
+    // potencia: '22 kW',
+    
+    horario: '07:00 - 21:00',
+    disponible: true,
   },
   {
     id: 5,
-    nombre: 'Estación Antiguo Cuscatlán',
-    direccion: 'Antiguo Cuscatlán, La Libertad',
-    lat: 13.6720,
-    lng: -89.2480,
-    tipo: 'Carga Ultra-Rápida DC',
-    potencia: '75 kW',
+    nombre: 'Estacion Antiguo Cuscatlan Norte',
+    direccion: 'Antiguo Cuscatlan, La Libertad',
+    lat: 13.6764,
+    lng: -89.2457,
+    // tipo: 'Carga Ultra-Rapida DC',
+    
+    conectores: 6,
+    horario: '24/7',
+    disponible: true,
+  },
+  {
+    id: 6,
+    nombre: 'Estacion Antiguo Cuscatlan Sur',
+    direccion: 'Antiguo Cuscatlan, La Libertad',
+    lat: 13.6760,
+    lng: -89.2446,
+    // tipo: 'Carga Rapida DC',
+    
+    conectores: 4,
+    horario: '24/7',
+    disponible: true,
+  },
+  {
+    id: 7,
+    nombre: 'Estacion Merliot',
+    direccion: 'Ciudad Merliot, La Libertad',
+    lat: 13.6771,
+    lng: -89.2559,
+    // tipo: 'Carga Estandar AC',
+    
+    conectores: 2,
+    horario: '06:00 - 22:00',
+    disponible: true,
+  },
+  {
+    id: 8,
+    nombre: 'Estacion Lourdes',
+    direccion: 'Lourdes, La Libertad',
+    lat: 13.6670,
+    lng: -89.2706,
+    // tipo: 'Carga Rapida DC',
+    
+    conectores: 3,
+    horario: '24/7',
+    disponible: true,
+  },
+  {
+    id: 9,
+    nombre: 'Estacion Colon Norte',
+    direccion: 'Colon, La Libertad',
+    lat: 13.6782,
+    lng: -89.2968,
+    // tipo: 'Carga Estandar AC',
+    
+    conectores: 2,
+    horario: '07:00 - 21:00',
+    disponible: true,
+  },
+  {
+    id: 10,
+    nombre: 'Estacion Colon Sur',
+    direccion: 'Colon, La Libertad',
+    lat: 13.6773,
+    lng: -89.2974,
+    // tipo: 'Carga Rapida DC',
+    
+    conectores: 4,
+    horario: '24/7',
+    disponible: true,
+  },
+  {
+    id: 11,
+    nombre: 'Estacion Zaragoza',
+    direccion: 'Zaragoza, La Libertad',
+    lat: 13.6540,
+    lng: -89.2811,
+    // tipo: 'Carga Ultra-Rapida DC',
+    
     conectores: 6,
     horario: '24/7',
     disponible: true,
@@ -77,43 +145,45 @@ const Estaciones = () => {
 
   const activo = PUNTOS.find((p) => p.id === puntoActivo) ?? PUNTOS[0];
 
+  
+  const estaciones247 = PUNTOS.filter((p) => p.horario === '24/7').length;
+
   return (
     <>
       <Helmet>
         <title>Estaciones de Carga | Smart Drive</title>
         <meta
           name="description"
-          content="Encuentra los puntos de carga eléctrica Smart Drive más cercanos en El Salvador."
+          content="Encuentra los puntos de carga electrica Smart Drive mas cercanos en El Salvador."
         />
       </Helmet>
 
       <div className="estaciones-page">
 
-        {/* ── HERO ── */}
         <section className="est-hero">
           <div className="est-hero-grid" />
           <div className="est-hero-blob est-blob-1" />
           <div className="est-hero-blob est-blob-2" />
           <div className="est-hero-inner">
             <span className="est-kicker">
-              <MdBolt /> Red de Carga Eléctrica
+              <MdBolt /> Red de Carga Electrica
             </span>
             <h1 className="est-hero-title">
               CARGA DONDE<br />
-              <span className="est-hero-accent">ESTÉS</span>
+              <span className="est-hero-accent">ESTES</span>
             </h1>
             <p className="est-hero-sub">
-              Nuestra red de estaciones cubre los puntos estratégicos de
-              El Salvador para que nunca te quedes sin energía.
+              Nuestra red de estaciones cubre los puntos estrategicos de
+              El Salvador para que nunca te quedes sin energia.
             </p>
           </div>
 
           <div className="est-stat-strip">
             {[
-              { icon: <FaChargingStation />, val: '5',    label: 'Estaciones activas' },
-              { icon: <MdBolt />,            val: '17',   label: 'Conectores disponibles' },
-              { icon: <MdSpeed />,           val: '75kW', label: 'Potencia máxima' },
-              { icon: <MdAccessTime />,      val: '24/7', label: 'Estaciones sin horario' },
+              { icon: <FaChargingStation />, val: String(PUNTOS.length),   label: 'Estaciones activas'     },
+             
+                    
+              { icon: <MdAccessTime />,      val: String(estaciones247),   label: 'Estaciones 24/7'        },
             ].map((s, i) => (
               <div className="est-stat" key={i}>
                 <span className="est-stat-icon">{s.icon}</span>
@@ -124,7 +194,6 @@ const Estaciones = () => {
           </div>
         </section>
 
-        {/* ── MAPA + PANEL ── */}
         <section className="est-mapa-section">
 
           <aside className="est-panel">
@@ -147,8 +216,8 @@ const Estaciones = () => {
                       <FaMapMarkerAlt size={10} /> {p.direccion}
                     </span>
                     <div className="est-item-tags">
-                      <span className="est-tag">{p.potencia}</span>
-                      <span className="est-tag">{p.conectores} conectores</span>
+                     
+                    
                       <span className="est-tag" data-estado={p.disponible ? 'on' : 'off'}>
                         {p.disponible ? 'Disponible' : 'No disponible'}
                       </span>
@@ -168,16 +237,13 @@ const Estaciones = () => {
               </div>
               <div className="est-detalle-grid">
                 <div className="est-detalle-item">
-                  <span className="est-dl">Tipo</span>
-                  <span className="est-dv">{activo.tipo}</span>
+                  {/* <span className="est-dl">Tipo</span> */}
+                  
                 </div>
+                
                 <div className="est-detalle-item">
-                  <span className="est-dl">Potencia</span>
-                  <span className="est-dv">{activo.potencia}</span>
-                </div>
-                <div className="est-detalle-item">
-                  <span className="est-dl">Conectores</span>
-                  <span className="est-dv">{activo.conectores}</span>
+                  
+                  {/* <span className="est-dv">{activo.conectores}</span> */}
                 </div>
                 <div className="est-detalle-item">
                   <span className="est-dl">Horario</span>
@@ -190,7 +256,6 @@ const Estaciones = () => {
             </div>
           </aside>
 
-          {/* MAPA — iframe sin API key, cambia automáticamente al seleccionar punto */}
           <div className="est-mapa-wrapper">
             <iframe
               key={activo.id}
@@ -207,13 +272,12 @@ const Estaciones = () => {
 
         </section>
 
-        {/* ── LEYENDA ── */}
         <section className="est-leyenda-section">
           <div className="est-leyenda-inner">
             {[
-              { color: '#00ff88', label: 'Carga Rápida DC — 50 kW+' },
-              { color: '#38adb1', label: 'Carga Estándar AC — 22 kW' },
-              { color: '#444e5a', label: 'Sin servicio temporalmente' },
+              
+              
+              { color: '', label: '' },
             ].map((l, i) => (
               <div className="est-leyenda-item" key={i}>
                 <span className="est-leyenda-dot" style={{ background: l.color }} />
@@ -223,19 +287,18 @@ const Estaciones = () => {
           </div>
         </section>
 
-        {/* ── CTA ── */}
         <section className="est-cta">
           <div className="est-cta-inner">
             <FaChargingStation size={44} color="#00ff88" />
-            <h2>¿QUIERES UNA ESTACIÓN CERCA DE TI?</h2>
-            <p>Estamos expandiendo nuestra red. Escríbenos y evaluamos tu zona.</p>
+            <h2>QUIERES UNA ESTACION CERCA DE TI?</h2>
+            <p>Estamos expandiendo nuestra red. Escribenos y evaluamos tu zona.</p>
             <a
               href="https://wa.me/50361766862"
               target="_blank"
               rel="noopener noreferrer"
               className="est-btn"
             >
-              CONTÁCTANOS <FaWhatsapp size={20} />
+              CONTACTANOS <FaWhatsapp size={20} />
             </a>
           </div>
         </section>

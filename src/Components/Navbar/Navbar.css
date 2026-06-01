@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap');
 
-/* ================= CONFIGURACIÓN GENERAL ================= */
+/* ================= CONFIGURACION GENERAL ================= */
 .navbar {
     width: 100%;
     display: flex;
@@ -72,12 +72,10 @@
     background: rgba(255, 255, 255, 0.06);
 }
 
-/* estado activo */
 .nav-links a.active {
     color: #00ff88;
 }
 
-/* underline animation */
 .nav-links a::after,
 .nav-link-placeholder::after {
     content: "";
@@ -125,7 +123,6 @@
     transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
 }
 
-/* puntito conector arriba */
 .submenu::before {
     content: '';
     position: absolute;
@@ -186,7 +183,7 @@
     flex-direction: column;
     gap: 5px;
     cursor: pointer;
-    z-index: 1001;
+    z-index: 1002;
     padding: 4px;
 }
 
@@ -204,9 +201,13 @@
 
     .navbar {
         padding: 12px 5%;
+        z-index: 1002;
     }
 
-    .menu-toggle { display: flex; }
+    .menu-toggle {
+        display: flex;
+        z-index: 1002;
+    }
 
     .nav-links {
         position: fixed;
@@ -223,11 +224,19 @@
         align-items: center;
         overflow-y: auto;
         gap: 0;
+        z-index: 1001;
         transition: right 0.38s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: -20px 0 60px rgba(0,0,0,0.6);
+        /* Asegura que este completamente fuera de pantalla por defecto */
+        visibility: hidden;
+        pointer-events: none;
     }
 
-    .nav-links.active { right: 0; }
+    .nav-links.active {
+        right: 0;
+        visibility: visible;
+        pointer-events: all;
+    }
 
     .nav-links li {
         width: 100%;
@@ -300,7 +309,7 @@
         padding-left: 0;
     }
 
-    /* Animación hamburguesa → X */
+    /* Animacion hamburguesa X */
     .menu-toggle.open span:nth-child(1) {
         transform: rotate(45deg) translate(5px, 5px);
         background: #ffffff;
@@ -314,5 +323,22 @@
     .menu-toggle.open span:nth-child(3) {
         transform: rotate(-45deg) translate(5px, -5px);
         background: #ffffff;
+    }
+}
+
+/* ================= OVERLAY MOBILE ================= */
+.nav-overlay {
+    display: none;
+}
+
+@media (max-width: 1050px) {
+    .nav-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        z-index: 1000;
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
     }
 }

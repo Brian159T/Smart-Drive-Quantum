@@ -12,78 +12,87 @@ interface Noticia {
   lectura: string;
   autor: string;
   tag?: string;
+  imagen?: string;
 }
 
 const NOTICIAS: Noticia[] = [
   {
     id: 1,
-    categoria: 'Flota',
-    titulo: 'Smart Drive incorpora 50 motos eléctricas de última generación a su flota metropolitana',
-    resumen: 'La expansión posiciona a la empresa como el operador de movilidad eléctrica más grande del país, con cobertura en las principales rutas de reparto y transporte.',
+    categoria: 'Catalogo',
+    titulo: 'Smart Drive incorpora 50 motos electricas de ultima generacion a su flota metropolitana',
+    resumen: 'La expansion posiciona a la empresa como el operador de movilidad electrica mas grande del pais, con cobertura en las principales rutas de reparto y transporte.',
     fecha: '8 Mayo 2025',
     lectura: '4 min',
-    autor: 'Redacción SD',
+    autor: 'Redaccion SD',
     tag: 'EXCLUSIVA',
+    imagen: '',
   },
   {
     id: 2,
-    categoria: 'Tecnología',
+    categoria: 'Tecnologia',
     titulo: 'Plataforma de monitoreo en tiempo real transforma la experiencia del conductor afiliado',
-    resumen: 'La nueva app permite visualizar batería, mantenimiento y rendimiento desde el móvil, reduciendo tiempos muertos en un 38%.',
+    resumen: 'La nueva app permite visualizar bateria, mantenimiento y rendimiento desde el movil, reduciendo tiempos muertos en un 38%.',
     fecha: '2 Mayo 2025',
     lectura: '3 min',
     autor: 'Tech Desk',
+    imagen: '',
   },
   {
     id: 3,
     categoria: 'Rent to Own',
     titulo: '120 familias ya son propietarias gracias al programa Rent to Own de Smart Drive',
-    resumen: 'El programa cumple su segundo aniversario con resultados que superan las proyecciones iniciales y un índice de satisfacción del 94%.',
+    resumen: 'El programa cumple su segundo aniversario con resultados que superan las proyecciones iniciales y un indice de satisfaccion del 94%.',
     fecha: '28 Abr 2025',
     lectura: '5 min',
     autor: 'Reportaje especial',
     tag: 'REPORTAJE',
+    imagen: '',
   },
   {
     id: 4,
     categoria: 'Estaciones',
     titulo: 'Dos nuevas estaciones de carga abren en Santa Ana y Sonsonate',
-    resumen: 'La red nacional suma 14 puntos activos, cubriendo las rutas de mayor demanda fuera del área metropolitana.',
+    resumen: 'La red nacional suma 14 puntos activos, cubriendo las rutas de mayor demanda fuera del area metropolitana.',
     fecha: '20 Abr 2025',
     lectura: '2 min',
     autor: 'Operaciones',
+    imagen: '',
   },
   {
     id: 5,
     categoria: 'Alianzas',
-    titulo: 'Acuerdo estratégico con plataformas de delivery garantiza condiciones preferenciales',
-    resumen: 'El convenio asegura tarifas diferenciadas y prioridad de asignación para los más de 800 conductores activos de la flota.',
+    titulo: 'Acuerdo estrategico con plataformas de delivery garantiza condiciones preferenciales',
+    resumen: 'El convenio asegura tarifas diferenciadas y prioridad de asignacion para los mas de 800 conductores activos de la flota.',
     fecha: '14 Abr 2025',
     lectura: '3 min',
-    autor: 'Redacción SD',
+    autor: 'Redaccion SD',
+    imagen: '',
   },
   {
     id: 6,
     categoria: 'Sostenibilidad',
-    titulo: 'La flota evitó 340 toneladas de CO₂ en el primer trimestre de 2025',
-    resumen: 'El informe trimestral confirma que la transición a movilidad eléctrica genera beneficios medibles y sostenidos para la ciudad.',
+    titulo: 'La flota evito 340 toneladas de CO2 en el primer trimestre de 2025',
+    resumen: 'El informe trimestral confirma que la transicion a movilidad electrica genera beneficios medibles y sostenidos para la ciudad.',
     fecha: '5 Abr 2025',
     lectura: '6 min',
     autor: 'Sostenibilidad SD',
     tag: 'INFORME',
+    imagen: '',
   },
 ];
 
-const CATEGORIAS = ['Todas', 'Flota', 'Tecnología', 'Rent to Own', 'Estaciones', 'Alianzas', 'Sostenibilidad'];
+const CATEGORIAS = ['Todas', 'Catalogo', 'Tecnologia', 'Rent to Own', 'Estaciones', 'Alianzas', 'Sostenibilidad'];
 
 const CAT_CLASS: Record<string, string> = {
-  Flota:          'cat--flota',
-  Tecnología:     'cat--tech',
+  Catalogo:       'cat--flota',
+  Tecnologia:     'cat--tech',
   'Rent to Own':  'cat--rto',
   Estaciones:     'cat--est',
   Alianzas:       'cat--ali',
   Sostenibilidad: 'cat--eco',
 };
+
+const IMG_PLACEHOLDER = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400"%3E%3Crect width="800" height="400" fill="%23111"%2F%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" fill="%23333" font-size="18" font-family="sans-serif"%3ESin imagen%3C%2Ftext%3E%3C%2Fsvg%3E';
 
 const Noticias: React.FC = () => {
   const [filtro, setFiltro] = useState('Todas');
@@ -99,12 +108,12 @@ const Noticias: React.FC = () => {
     <>
       <Helmet>
         <title>Noticias | Smart Drive</title>
-        <meta name="description" content="Últimas noticias de Smart Drive: flota eléctrica, Rent to Own, tecnología y más." />
+        <meta name="description" content="Ultimas noticias de Smart Drive: catalogo electrico, Rent to Own, tecnologia y mas." />
       </Helmet>
 
       <div className="mag-wrapper">
 
-        {/* ── MASTHEAD ── */}
+        {/* MASTHEAD */}
         <header className="mag-masthead">
           <div className="mag-container">
             <div className="mag-edition-bar">
@@ -116,11 +125,10 @@ const Noticias: React.FC = () => {
               Centro de <em>Noticias</em>
             </h1>
             <p className="mag-tagline">
-              Innovación · Flota eléctrica · Movilidad urbana
+              Innovacion · Catalogo electrico · Movilidad urbana
             </p>
           </div>
 
-          {/* nav strip */}
           <nav className="mag-nav-strip">
             <div className="mag-container mag-nav-inner">
               {CATEGORIAS.map(cat => (
@@ -136,7 +144,7 @@ const Noticias: React.FC = () => {
           </nav>
         </header>
 
-        {/* ── PORTADA (solo sin filtro) ── */}
+        {/* PORTADA (solo sin filtro) */}
         {sinFiltro && (
           <section className="mag-portada">
             <div className="mag-container">
@@ -144,6 +152,13 @@ const Noticias: React.FC = () => {
 
                 {/* NOTA PRINCIPAL */}
                 <article className="mag-hero-story">
+                  <div className="mag-hero-img-wrap">
+                    <img
+                      src={principal.imagen || IMG_PLACEHOLDER}
+                      alt={principal.titulo}
+                      className="mag-hero-img"
+                    />
+                  </div>
                   <div className="mag-hero-accent" />
                   <div className="mag-hero-body">
                     <div className="mag-hero-tags">
@@ -161,18 +176,23 @@ const Noticias: React.FC = () => {
                       <span className="mag-dot" />
                       <span>{principal.lectura} de lectura</span>
                     </div>
-                    <a href="#" className="mag-hero-btn">
-                      Leer nota completa <span>→</span>
-                    </a>
+                   
                   </div>
                   <div className="mag-hero-number">01</div>
                 </article>
 
                 {/* HISTORIAS LATERALES */}
                 <aside className="mag-aside">
-                  <div className="mag-aside-label">También hoy</div>
+                  <div className="mag-aside-label">Tambien hoy</div>
                   {secundarias.map((n, i) => (
                     <article className="mag-aside-card" key={n.id}>
+                      <div className="mag-aside-img-wrap">
+                        <img
+                          src={n.imagen || IMG_PLACEHOLDER}
+                          alt={n.titulo}
+                          className="mag-aside-img"
+                        />
+                      </div>
                       <span className="mag-aside-num">0{i + 2}</span>
                       <div className="mag-aside-body">
                         <div className="mag-aside-tags">
@@ -187,7 +207,7 @@ const Noticias: React.FC = () => {
                           <span className="mag-dot" />
                           <span>{n.lectura}</span>
                         </div>
-                        <a href="#" className="mag-aside-link">Leer →</a>
+                        
                       </div>
                     </article>
                   ))}
@@ -198,25 +218,103 @@ const Noticias: React.FC = () => {
           </section>
         )}
 
-        {/* ── DIVISOR ── */}
+        {/* DIVISOR */}
         <div className="mag-rule">
           <div className="mag-container">
             <div className="mag-rule-inner">
               <div className="mag-rule-line" />
               <span className="mag-rule-label">
-                {sinFiltro ? 'Más noticias' : filtro}
+                {sinFiltro ? 'Mas noticias' : filtro}
               </span>
               <div className="mag-rule-line" />
             </div>
           </div>
         </div>
 
-        {/* ── GRID ── */}
+        {/* GRID */}
         <section className="mag-grid-section">
           <div className="mag-container">
             {gridItems.length === 0 ? (
-              <p className="mag-empty">No hay noticias en esta categoría todavía.</p>
+              <p className="mag-empty">No hay noticias en esta categoria todavia.</p>
+
+            ) : !sinFiltro ? (
+              <>
+                {/* ── HERO DE CATEGORIA: imagen derecha a full altura ── */}
+                <article className="mag-filter-hero">
+                  {/* Panel izquierdo: texto */}
+                  <div className="mag-filter-hero-body">
+                    <div className="mag-filter-hero-accent" />
+                    <div className="mag-filter-hero-content">
+                      <div className="mag-hero-tags">
+                        <span className={`mag-cat ${CAT_CLASS[gridItems[0].categoria]}`}>
+                          {gridItems[0].categoria}
+                        </span>
+                        {gridItems[0].tag && (
+                          <span className="mag-badge">{gridItems[0].tag}</span>
+                        )}
+                      </div>
+                      <h2 className="mag-hero-title">{gridItems[0].titulo}</h2>
+                      <p className="mag-hero-resumen">{gridItems[0].resumen}</p>
+                      <div className="mag-byline">
+                        <span>{gridItems[0].autor}</span>
+                        <span className="mag-dot" />
+                        <span>{gridItems[0].fecha}</span>
+                        <span className="mag-dot" />
+                        <span>{gridItems[0].lectura} de lectura</span>
+                      </div>
+                     
+                    </div>
+                  </div>
+
+                  {/* Panel derecho: imagen a full */}
+                  <div className="mag-filter-hero-img-wrap">
+                    <img
+                      src={gridItems[0].imagen || IMG_PLACEHOLDER}
+                      alt={gridItems[0].titulo}
+                      className="mag-filter-hero-img"
+                    />
+                  </div>
+                </article>
+
+                {/* Resto de noticias de la categoria en grid */}
+                {gridItems.length > 1 && (
+                  <div className="mag-grid mag-grid--filtered">
+                    {gridItems.slice(1).map((n, i) => (
+                      <article
+                        className="mag-card"
+                        key={n.id}
+                        style={{ animationDelay: `${i * 0.07}s` }}
+                      >
+                        <div className="mag-card-img-wrap">
+                          <img
+                            src={n.imagen || IMG_PLACEHOLDER}
+                            alt={n.titulo}
+                            className="mag-card-img"
+                          />
+                        </div>
+                        <div className="mag-card-header">
+                          <span className={`mag-cat ${CAT_CLASS[n.categoria]}`}>
+                            {n.categoria}
+                          </span>
+                          {n.tag && <span className="mag-badge mag-badge--xs">{n.tag}</span>}
+                          <span className="mag-card-index">{String(n.id).padStart(2, '0')}</span>
+                        </div>
+                        <h3 className="mag-card-title">{n.titulo}</h3>
+                        <p className="mag-card-resumen">{n.resumen}</p>
+                        <div className="mag-card-foot">
+                          <span className="mag-card-autor">{n.autor}</span>
+                          <span className="mag-dot" />
+                          <span className="mag-card-fecha">{n.fecha}</span>
+                          
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                )}
+              </>
+
             ) : (
+              /* ── VISTA "TODAS": grid normal ── */
               <div className="mag-grid">
                 {gridItems.map((n, i) => (
                   <article
@@ -224,6 +322,13 @@ const Noticias: React.FC = () => {
                     key={n.id}
                     style={{ animationDelay: `${i * 0.07}s` }}
                   >
+                    <div className="mag-card-img-wrap">
+                      <img
+                        src={n.imagen || IMG_PLACEHOLDER}
+                        alt={n.titulo}
+                        className="mag-card-img"
+                      />
+                    </div>
                     <div className="mag-card-header">
                       <span className={`mag-cat ${CAT_CLASS[n.categoria]}`}>
                         {n.categoria}
@@ -237,7 +342,7 @@ const Noticias: React.FC = () => {
                       <span className="mag-card-autor">{n.autor}</span>
                       <span className="mag-dot" />
                       <span className="mag-card-fecha">{n.fecha}</span>
-                      <a href="#" className="mag-card-leer">Leer →</a>
+                      
                     </div>
                   </article>
                 ))}
