@@ -1042,6 +1042,9 @@ video {
 /* =====================================================
    MÓVILES  ≤ 600px
 ===================================================== */
+/* =====================================================
+   MÓVILES  ≤ 600px
+===================================================== */
 @media (max-width: 600px) {
 
   .hero-carousel { height: 80vh; }
@@ -1073,8 +1076,32 @@ video {
     justify-content: center;
   }
 
-  .Seccion-calculadora { padding: 25px 16px; border-radius: 20px; box-sizing: border-box; }
-  .entradas { padding: 20px; }
+  .Seccion-calculadora {
+    padding: 25px 16px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .cuerpo-calculadora {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .entradas {
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .salidas,
+  .vehiculo-actual-card,
+  .nuevo-sd-card,
+  .visualizador {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
   .entrada { height: 44px; font-size: 0.95rem; }
   .visualizador .res-valor { font-size: 1.8rem; }
 
@@ -1090,39 +1117,22 @@ video {
 
   video { height: 200px; object-fit: cover; }
 
-  /* Botones navegación más pequeños en móvil */
-  .nav-btn-info {
-    width: 38px;
-    height: 38px;
-  }
+  .nav-btn-info { width: 38px; height: 38px; }
+  .nav-btn-info img { width: 16px; height: 16px; }
 
-  .nav-btn-info img {
-    width: 16px;
-    height: 16px;
-  }
-
-  /* ── Reseñas móvil: carrusel de 1 en 1 ── */
   .drivers-reviews-section { padding: 60px 5%; }
 
-  .reviews-track {
-    grid-template-columns: 1fr;
-    /* En móvil mostramos solo la activa */
-  }
+  .reviews-track { grid-template-columns: 1fr; }
 
-  .review-card {
-    display: none;
-  }
+  .review-card { display: none; }
 
   .review-card.active {
     display: flex;
     animation: fadeInUp 0.4s ease;
   }
 
-  .reviews-dots {
-    display: flex;
-  }
+  .reviews-dots { display: flex; }
 
-  /* Anula la regla del impar para móvil */
   .review-card:last-child:nth-child(odd) {
     grid-column: auto;
     max-width: none;
@@ -1219,6 +1229,20 @@ video {
 /* =====================================================
    MÓVILES PEQUEÑOS  ≤ 400px
 ===================================================== */
+
+/* ── FIX: botones nav no desborden en móvil ── */
+@media (max-width: 968px) {
+  .prev { left: 0; }
+  .next { right: 0; }
+  
+  .info-carousel-section {
+    overflow: hidden;
+  }
+
+  .main-content {
+    overflow: hidden;
+  }
+}
 @media (max-width: 400px) {
 
   .hero-title { font-size: 1.6rem; }
